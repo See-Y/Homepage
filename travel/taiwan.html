@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2023 대만 가족여행 - Antigravity</title>
+  <!-- 전역 스타일 및 컴포넌트 스타일 -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/travel.css">
+  <link rel="icon" type="image/png" href="/logo_favicon_1781948111845.png">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body class="scrolly-body">
+  <!-- 공통 헤더 -->
+  <div id="header-placeholder"></div>
+
+  <!-- 인트로 커버 -->
+  <div class="scrolly-cover">
+    <div class="scrolly-cover__content">
+      <h1 class="text-4xl text-gradient">2023 대만 가족여행</h1>
+      <p class="text-lg text-secondary">5일간의 우당탕탕 타이베이 여행기</p>
+      <div class="scroll-indicator">
+        <span>Scroll Down</span>
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </div>
+    </div>
+  </div>
+
+  <main class="scrolly-container">
+    <!-- 좌측: 스틱키 맵 영역 -->
+    <div class="scrolly-map-wrapper">
+      <div id="scrolly-map"></div>
+      
+      <!-- 집중 모드 토글 -->
+      <button id="theater-mode-toggle" class="theater-mode-btn" title="집중 모드 (지도 숨기기)">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+
+      <!-- SVG 경로 드로잉 -->
+      <svg id="journey-line" class="journey-svg" preserveAspectRatio="none">
+        <path id="journey-path" d="" fill="none" stroke="var(--color-accent-primary)" stroke-width="4" stroke-dasharray="10,10" stroke-linecap="round"/>
+      </svg>
+
+      <!-- 비 내리는 캔버스 (지우펀) -->
+      <canvas id="rain-canvas" class="weather-canvas"></canvas>
+    </div>
+
+    <!-- 우측: 스크롤 텍스트 영역 -->
+    <div class="scrolly-text" id="scrolly-text">
+      <!-- JS에서 JSON을 읽어와 동적으로 .step 엘리먼트를 생성하여 삽입합니다 -->
+    </div>
+  </main>
+
+  <!-- 영수증 모달 UI -->
+  <div id="receipt-modal" class="receipt-modal">
+    <div class="receipt-paper">
+      <h3>지출 내역서</h3>
+      <div class="receipt-items" id="receipt-items"></div>
+      <hr>
+      <div class="receipt-total" id="receipt-total"></div>
+      <button id="close-receipt" class="btn btn--secondary" style="margin-top: 20px; width: 100%;">닫기</button>
+    </div>
+  </div>
+
+  <!-- 공통 푸터 -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- 전역 스크립트 -->
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/travel-taiwan.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
