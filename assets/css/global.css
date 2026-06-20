@@ -71,23 +71,23 @@ table {
 
 :root {
   /* 컬러 — 배경 */
-  --color-bg-primary: #FFFFFF;
-  --color-bg-secondary: #F8FAFC;
-  --color-bg-tertiary: #F1F5F9;
+  --color-bg-primary: #FAF7F2;
+  --color-bg-secondary: #F3EBE1;
+  --color-bg-tertiary: #E8DCCB;
 
   /* 컬러 — 텍스트 */
-  --color-text-primary: #0F172A;
-  --color-text-secondary: #475569;
+  --color-text-primary: #3E2723;
+  --color-text-secondary: #5D4037;
   --color-text-muted: #94A3B8;
 
   /* 컬러 — 액센트 */
-  --color-accent-primary: #4F46E5;
-  --color-accent-secondary: #7C3AED;
-  --color-accent-gradient: linear-gradient(135deg, #4F46E5, #7C3AED);
+  --color-accent-primary: #B8860B;
+  --color-accent-secondary: #8B5A2B;
+  --color-accent-gradient: linear-gradient(135deg, #C19A6B, #8B5A2B);
 
   /* 컬러 — 보더 */
-  --color-border: #E2E8F0;
-  --color-border-hover: #CBD5E1;
+  --color-border: #D6C5B3;
+  --color-border-hover: #C19A6B;
 
   /* 컬러 — 상태 */
   --color-success: #10B981;
@@ -127,7 +127,7 @@ table {
                0 2px 4px -2px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
                0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.15);
+  --shadow-glow: 0 0 20px rgba(184, 134, 11, 0.15);
 
   /* 라운딩 (Border Radius) */
   --radius-sm: 0.375rem;  /* 6px */
@@ -152,20 +152,20 @@ table {
 /* ── 디자인 토큰: 다크 모드 ───────────────────────────────── */
 
 [data-theme='dark'] {
-  --color-bg-primary: #0F172A;
-  --color-bg-secondary: #1E293B;
-  --color-bg-tertiary: #334155;
+  --color-bg-primary: #2A211D;
+  --color-bg-secondary: #3A2E28;
+  --color-bg-tertiary: #4E4039;
 
-  --color-text-primary: #F1F5F9;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #64748B;
+  --color-text-primary: #F4EEE8;
+  --color-text-secondary: #D7CCC8;
+  --color-text-muted: #94A3B8;
 
-  --color-accent-primary: #818CF8;
-  --color-accent-secondary: #A78BFA;
-  --color-accent-gradient: linear-gradient(135deg, #818CF8, #A78BFA);
+  --color-accent-primary: #D4A373;
+  --color-accent-secondary: #E6CCB2;
+  --color-accent-gradient: linear-gradient(135deg, #E6CCB2, #D4A373);
 
-  --color-border: #334155;
-  --color-border-hover: #475569;
+  --color-border: #5A4B42;
+  --color-border-hover: #D4A373;
 
   --color-success: #34D399;
   --color-warning: #FBBF24;
@@ -177,7 +177,7 @@ table {
                0 2px 4px -2px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
                0 4px 6px -4px rgba(0, 0, 0, 0.2);
-  --shadow-glow: 0 0 20px rgba(129, 140, 248, 0.2);
+  --shadow-glow: 0 0 20px rgba(212, 163, 115, 0.2);
 }
 
 /* ── 기본 요소 스타일 ─────────────────────────────────────── */
@@ -377,12 +377,12 @@ tr:last-child td {
 /* ── 선택 영역 스타일링 ───────────────────────────────────── */
 
 ::selection {
-  background-color: rgba(79, 70, 229, 0.2);
+  background-color: rgba(184, 134, 11, 0.2);
   color: var(--color-text-primary);
 }
 
 [data-theme='dark'] ::selection {
-  background-color: rgba(129, 140, 248, 0.3);
+  background-color: rgba(212, 163, 115, 0.3);
 }
 
 /* ── 포커스 스타일 (접근성) ────────────────────────────────── */
