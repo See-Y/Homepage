@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokyo, Japan - Antigravity</title>
+  <!-- 전역 스타일 및 컴포넌트 스타일 -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <!-- Travel 전용 스타일 -->
+  <link rel="stylesheet" href="/assets/css/travel.css">
+  <!-- 마크다운 로더 스타일 재사용 -->
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="icon" type="image/png" href="/logo_favicon_1781948111845.png">
+  
+  <!-- marked.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <!-- 진행률 바 -->
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <!-- 공통 헤더 -->
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+      
+      <!-- 여행 헤더 -->
+      <header class="travel-header">
+        <h1 class="section-title">도쿄 3박 4일 미식 투어</h1>
+        <div class="travel-meta">
+          <span class="travel-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Tokyo, Japan
+          </span>
+          <time datetime="2026-04-15">2026. 04. 15</time>
+        </div>
+      </header>
+
+      <!-- YouTube 동영상 (선택 사항) -->
+      <div class="video-container">
+        <!-- 예시 동영상 (가상의 아이디) -->
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+
+      <!-- 본문 (마크다운) -->
+      <div class="markdown-body">
+        <p>코로나 이후 오랜만에 방문한 도쿄입니다. 신주쿠와 시부야를 중심으로 돌아다니며 맛있는 음식들을 먹고 왔습니다.</p>
+        <p>아키하바라에서는 다양한 전자제품과 서브컬처 굿즈를 구경했습니다.</p>
+      </div>
+
+      <!-- 사진 갤러리 -->
+      <section class="gallery-section">
+        <h2 class="gallery-title">Photo Gallery</h2>
+        <div class="gallery-grid">
+          <!-- 사진 1 (임시 그래디언트 박스로 대체 가능, 여기서는 빈 div에 배경색 사용) -->
+          <div class="gallery-item" style="background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);" title="Tokyo Street"></div>
+          <!-- 사진 2 -->
+          <div class="gallery-item" style="background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);" title="Sushi"></div>
+          <!-- 사진 3 -->
+          <div class="gallery-item" style="background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);" title="Akihabara"></div>
+          <!-- 사진 4 -->
+          <div class="gallery-item" style="background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);" title="Tokyo Tower"></div>
+          <!-- 사진 5 -->
+          <div class="gallery-item" style="background: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);" title="Ramen"></div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- 공통 푸터 -->
+  <div id="footer-placeholder"></div>
+
+  <!-- 전역 스크립트 -->
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 진행률 바 초기화
+      if (typeof initProgressBar === 'function') {
+        initProgressBar();
+      }
+    });
+  </script>
+</body>
+</html>

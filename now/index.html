@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="현재 하고 있는 것, 공부 중인 것, 근황">
+  <title>근황 — Blog</title>
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main>
+    <!-- 페이지 헤더 -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title" data-i18n="now.title">근황</h1>
+        <p class="now-updated">
+          <span data-i18n="now.lastUpdated">마지막 업데이트</span>:
+          <time datetime="2026-06-20">2026-06-20</time>
+        </p>
+      </div>
+    </section>
+
+    <!-- Now 콘텐츠 -->
+    <section class="now-content">
+      <div class="container container--narrow">
+        <div class="now-content__body">
+          <p data-i18n="now.placeholder">여기에 근황을 작성하세요.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

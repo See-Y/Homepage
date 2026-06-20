@@ -1,0 +1,82 @@
+<header class="header">
+  <div class="header__inner container">
+    <!-- 로고 -->
+    <a href="/" class="header__logo" id="site-logo">
+      <span class="header__logo-text">Blog</span>
+    </a>
+
+    <!-- 데스크톱 네비게이션 -->
+    <nav class="nav" id="desktop-nav" aria-label="주요 네비게이션">
+      <a href="/" class="nav__link" data-i18n="common.nav.home">홈</a>
+      <a href="/about" class="nav__link" data-i18n="common.nav.about">소개</a>
+      <a href="/now" class="nav__link" data-i18n="common.nav.now">근황</a>
+      <a href="/studies" class="nav__link" data-i18n="common.nav.studies">공부</a>
+      <a href="/projects" class="nav__link" data-i18n="common.nav.projects">프로젝트</a>
+      <a href="/travel" class="nav__link" data-i18n="common.nav.travel">여행</a>
+    </nav>
+
+    <!-- 우측 액션 -->
+    <div class="header__actions">
+      <!-- 검색 버튼 -->
+      <button class="header__action-btn" id="search-btn" aria-label="검색" data-i18n="common.search.title" data-i18n-attr="aria-label">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+
+      <!-- 다크모드 토글 -->
+      <button class="header__action-btn" id="theme-toggle" aria-label="다크모드 전환" data-i18n="common.theme.toggle" data-i18n-attr="aria-label">
+        <span class="theme-toggle__icon">🌙</span>
+      </button>
+
+      <!-- 언어 토글 -->
+      <button class="header__action-btn" id="lang-toggle" aria-label="언어 전환">
+        <span class="lang-toggle__label">EN</span>
+      </button>
+
+      <!-- 모바일 햄버거 -->
+      <button class="header__hamburger" id="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- 모바일 오버레이 -->
+<div class="mobile-overlay" id="mobile-overlay"></div>
+
+<!-- 모바일 네비게이션 -->
+<nav class="mobile-nav" id="mobile-nav" aria-label="모바일 네비게이션">
+  <a href="/" class="mobile-nav__link" data-i18n="common.nav.home">홈</a>
+  <a href="/about" class="mobile-nav__link" data-i18n="common.nav.about">소개</a>
+  <a href="/now" class="mobile-nav__link" data-i18n="common.nav.now">근황</a>
+  <a href="/studies" class="mobile-nav__link" data-i18n="common.nav.studies">공부</a>
+  <a href="/projects" class="mobile-nav__link" data-i18n="common.nav.projects">프로젝트</a>
+  <a href="/travel" class="mobile-nav__link" data-i18n="common.nav.travel">여행</a>
+</nav>
+
+<!-- 검색 모달 -->
+<div class="search-modal" id="search-modal" style="display: none;">
+  <div class="search-modal__overlay" id="search-overlay"></div>
+  <div class="search-modal__content">
+    <div class="search-modal__header">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-modal__icon">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" id="search-input" class="search-modal__input" placeholder="검색어를 입력하세요 (Ctrl+K)" data-i18n="common.search.placeholder" data-i18n-attr="placeholder" autocomplete="off">
+      <button class="search-modal__close" id="search-close" aria-label="닫기">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="search-modal__results" id="search-results">
+      <!-- 검색 결과가 여기에 동적으로 추가됩니다 -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="소개 — 기술 스택, 타임라인, 연락처, PGP 공개키">
+  <title>소개 — Blog</title>
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/about.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main>
+    <!-- 페이지 헤더 -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title" data-i18n="about.title">소개</h1>
+      </div>
+    </section>
+
+    <!-- 자기소개 -->
+    <section class="about-intro" id="about-intro">
+      <div class="container container--narrow">
+        <h2 class="about-section__heading" data-i18n="about.intro.heading">안녕하세요</h2>
+        <div class="about-intro__content">
+          <p data-i18n="about.intro.text">여기에 자기소개를 작성하세요.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 기술 스택 -->
+    <section class="about-skills" id="about-skills">
+      <div class="container container--narrow">
+        <h2 class="about-section__heading" data-i18n="about.skills.heading">기술 스택</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3 class="skill-category__title">Languages</h3>
+            <div class="skill-category__badges">
+              <span class="badge">Python</span>
+              <span class="badge">JavaScript</span>
+              <span class="badge">C</span>
+              <span class="badge">C++</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Security</h3>
+            <div class="skill-category__badges">
+              <span class="badge">Wireshark</span>
+              <span class="badge">Burp Suite</span>
+              <span class="badge">IDA Pro</span>
+              <span class="badge">AFL++</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Tools</h3>
+            <div class="skill-category__badges">
+              <span class="badge">Git</span>
+              <span class="badge">Linux</span>
+              <span class="badge">Docker</span>
+              <span class="badge">VS Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 타임라인 -->
+    <section class="about-timeline" id="about-timeline">
+      <div class="container container--narrow">
+        <h2 class="about-section__heading" data-i18n="about.timeline.heading">타임라인</h2>
+        <div class="timeline">
+          <div class="timeline__item">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <span class="timeline__date">2026</span>
+              <h3 class="timeline__title">포트폴리오 블로그 시작</h3>
+              <p class="timeline__desc">개인 기술 블로그 구축 및 운영 시작</p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <span class="timeline__date">2025</span>
+              <h3 class="timeline__title">마일스톤 예시</h3>
+              <p class="timeline__desc">이곳에 주요 마일스톤을 추가하세요.</p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <span class="timeline__date">2024</span>
+              <h3 class="timeline__title">마일스톤 예시</h3>
+              <p class="timeline__desc">이곳에 주요 마일스톤을 추가하세요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 연락처 -->
+    <section class="about-contact" id="about-contact">
+      <div class="container container--narrow">
+        <h2 class="about-section__heading" data-i18n="about.contact.heading">연락처</h2>
+        <div class="contact-grid">
+          <a href="mailto:email@example.com" class="contact-card">
+            <span class="contact-card__icon">📧</span>
+            <span class="contact-card__label">Email</span>
+            <span class="contact-card__value">email@example.com</span>
+          </a>
+          <a href="https://github.com" class="contact-card" target="_blank" rel="noopener noreferrer">
+            <span class="contact-card__icon">🐙</span>
+            <span class="contact-card__label">GitHub</span>
+            <span class="contact-card__value">github.com/username</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PGP 공개키 -->
+    <section class="about-pgp" id="about-pgp">
+      <div class="container container--narrow">
+        <h2 class="about-section__heading" data-i18n="about.pgp.heading">PGP 공개키</h2>
+        <div class="pgp-block">
+          <pre class="pgp-block__key"><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+여기에 PGP 공개키를 붙여넣으세요.
+
+-----END PGP PUBLIC KEY BLOCK-----</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

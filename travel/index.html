@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel - Antigravity</title>
+  <!-- 전역 스타일 및 컴포넌트 스타일 -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/travel.css">
+  <link rel="icon" type="image/png" href="/logo_favicon_1781948111845.png">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+  <!-- 공통 헤더 -->
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <section class="section" style="padding-top: var(--spacing-3xl);">
+      <div class="section-header">
+        <h1 class="section-title" data-i18n="travel.title">Travel</h1>
+        <p class="section-desc" data-i18n="home.sections.travel.desc">여행 기록과 사진을 공유합니다.</p>
+      </div>
+
+      <!-- 지도 영역 -->
+      <div id="travel-map" class="travel-map-container"></div>
+
+      <!-- 에러 시 빈 상태 메시지 -->
+      <div id="empty-state" class="empty-state" style="display: none; margin-bottom: var(--spacing-3xl);">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted); margin-bottom: var(--spacing-md);">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <p data-i18n="travel.empty">아직 여행 기록이 없습니다.</p>
+      </div>
+
+      <!-- 여행 카드 리스트 -->
+      <div class="travel-grid" id="travel-list">
+        <!-- 데모 여행 카드 1 -->
+        <a href="/travel/travel-template" class="card">
+          <h3 class="card__title">Tokyo, Japan</h3>
+          <p class="card__desc">도쿄에서의 3박 4일 일정. 맛집 탐방과 아키하바라.</p>
+          <div style="margin-top: var(--spacing-sm); color: var(--text-muted); font-size: var(--font-size-sm);">
+            <time>2026. 04. 15</time>
+          </div>
+        </a>
+
+        <!-- 데모 여행 카드 2 -->
+        <a href="/travel/travel-template" class="card">
+          <h3 class="card__title">Paris, France</h3>
+          <p class="card__desc">파리 에펠탑과 루브르 박물관 관람기.</p>
+          <div style="margin-top: var(--spacing-sm); color: var(--text-muted); font-size: var(--font-size-sm);">
+            <time>2025. 10. 02</time>
+          </div>
+        </a>
+
+        <!-- 데모 여행 카드 3 -->
+        <a href="/travel/travel-template" class="card">
+          <h3 class="card__title">San Francisco, USA</h3>
+          <p class="card__desc">실리콘밸리 투어 및 금문교 방문.</p>
+          <div style="margin-top: var(--spacing-sm); color: var(--text-muted); font-size: var(--font-size-sm);">
+            <time>2025. 01. 20</time>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- 공통 푸터 -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- 전역 스크립트 -->
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/travel-map.js"></script>
+  <script src="/assets/js/main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Leaflet 지도 초기화
+      if (typeof initMap === 'function') {
+        initMap('travel-map', '/assets/data/travel-data.json');
+      }
+    });
+  </script>
+</body>
+</html>

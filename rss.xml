@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>Antigravity Blog</title>
+  <link>https://antigravity.pages.dev</link>
+  <description>보안, CS 공부 노트 및 프로젝트 기록</description>
+  <language>ko-KR</language>
+
+  <item>
+    <title><![CDATA[Tokyo, Japan]]></title>
+    <link>https://antigravity.pages.dev/travel/tokyo</link>
+    <description><![CDATA[Travel log for Tokyo, Japan]]></description>
+    <pubDate>Sat, 20 Jun 2026 10:20:58 GMT</pubDate>
+  </item>
+  <item>
+    <title><![CDATA[Paris, France]]></title>
+    <link>https://antigravity.pages.dev/travel/paris</link>
+    <description><![CDATA[Travel log for Paris, France]]></description>
+    <pubDate>Sat, 20 Jun 2026 10:20:58 GMT</pubDate>
+  </item>
+  <item>
+    <title><![CDATA[San Francisco, USA]]></title>
+    <link>https://antigravity.pages.dev/travel/san-francisco</link>
+    <description><![CDATA[Travel log for San Francisco, USA]]></description>
+    <pubDate>Sat, 20 Jun 2026 10:20:58 GMT</pubDate>
+  </item>
+  <item>
+    <title><![CDATA[Crypto Notes]]></title>
+    <link>https://antigravity.pages.dev/studies/crypto/index</link>
+    <description><![CDATA[Crypto Notes]]></description>
+    <pubDate>Sat, 20 Jun 2026 10:20:58 GMT</pubDate>
+  </item>
+</channel>
+</rss>

@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Crypto Notes",
+    "content": "Crypto Notes",
+    "snippet": "Crypto Notes",
+    "url": "/studies/crypto/index",
+    "category": "Studies",
+    "date": "2026-06-20T10:20:58.796Z"
+  },
+  {
+    "title": "Tokyo, Japan",
+    "content": "Travel log for Tokyo, Japan",
+    "snippet": "Travel log for Tokyo, Japan",
+    "url": "/travel/tokyo",
+    "category": "Travel",
+    "date": "2026-06-20T10:20:58.797Z"
+  },
+  {
+    "title": "Paris, France",
+    "content": "Travel log for Paris, France",
+    "snippet": "Travel log for Paris, France",
+    "url": "/travel/paris",
+    "category": "Travel",
+    "date": "2026-06-20T10:20:58.797Z"
+  },
+  {
+    "title": "San Francisco, USA",
+    "content": "Travel log for San Francisco, USA",
+    "snippet": "Travel log for San Francisco, USA",
+    "url": "/travel/san-francisco",
+    "category": "Travel",
+    "date": "2026-06-20T10:20:58.797Z"
+  }
+]

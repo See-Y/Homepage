@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노트 제목 - Antigravity</title>
+  <!-- 전역 스타일 및 컴포넌트 스타일 -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="icon" type="image/png" href="/logo_favicon_1781948111845.png">
+  
+  <!-- marked.js CDN (클라이언트 마크다운 렌더링용) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <!-- 진행률 바 -->
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <!-- 공통 헤더 -->
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+      
+      <!-- 노트 헤더 (메타 정보) -->
+      <header class="note-header">
+        <div class="note-meta">
+          <span class="badge badge--crypto" id="note-category">Crypto</span>
+          <time datetime="2026-06-20" id="note-date">2026. 06. 20</time>
+          <div class="difficulty" id="note-difficulty">★★★★☆</div>
+        </div>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-lg);">스마트 컨트랙트 취약점 분석</h1>
+      </header>
+
+      <!-- TL;DR -->
+      <div class="tldr-box">
+        <div class="tldr-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="20" y2="9"></line>
+            <line x1="4" y1="15" x2="20" y2="15"></line>
+            <line x1="10" y1="3" x2="8" y2="21"></line>
+            <line x1="16" y1="3" x2="14" y2="21"></line>
+          </svg>
+          <span data-i18n="studies.note.tldr">TL;DR</span>
+        </div>
+        <p id="note-tldr">Reentrancy 공격은 컨트랙트가 외부 호출을 할 때 발생하는 취약점으로, DAO 해킹의 주 원인이 되었습니다. Checks-Effects-Interactions 패턴과 Mutex Lock을 통해 방어할 수 있습니다.</p>
+      </div>
+
+      <!-- 본문 (마크다운 렌더링 영역) -->
+      <div class="markdown-body" id="content-placeholder">
+        <!-- JS가 마크다운을 로드하여 이곳에 삽입합니다 -->
+        <p>로딩 중...</p>
+      </div>
+
+      <!-- 노트 하단 -->
+      <footer class="note-footer">
+        <div class="tags" id="note-tags">
+          <span class="tag">#web3</span>
+          <span class="tag">#defi</span>
+        </div>
+        
+        <a href="https://github.com/user/Blog/edit/main/studies/crypto/example.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span data-i18n="studies.edit_github">Edit on GitHub</span>
+        </a>
+      </footer>
+    </article>
+  </main>
+
+  <!-- 공통 푸터 -->
+  <div id="footer-placeholder"></div>
+
+  <!-- 전역 스크립트 -->
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 진행률 바 초기화
+      if (typeof initProgressBar === 'function') {
+        initProgressBar();
+      }
+      
+      // 마크다운 로드 (예시로 crypto/index.md 로드)
+      if (typeof loadMarkdown === 'function') {
+        loadMarkdown('/studies/crypto/index.md', 'content-placeholder');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studies - Antigravity</title>
+  <!-- 전역 스타일 및 컴포넌트 스타일 -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="icon" type="image/png" href="/logo_favicon_1781948111845.png">
+</head>
+<body>
+  <!-- 공통 헤더 -->
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <section class="section" style="padding-top: var(--spacing-3xl);">
+      <div class="section-header">
+        <h1 class="section-title" data-i18n="studies.title">Studies</h1>
+        <p class="section-desc" data-i18n="studies.desc">보안, CS, 개발 관련 공부 노트</p>
+      </div>
+
+      <!-- 필터 바 -->
+      <div class="filter-section" id="filter-container">
+        <div class="filter-group">
+          <div class="filter-group-title" data-i18n="studies.filter.category">카테고리</div>
+          <div class="filter-list">
+            <button class="filter-btn active" data-filter="all" data-i18n="studies.filter.all">전체</button>
+            <button class="filter-btn" data-filter="crypto" data-i18n="studies.filter.crypto">Crypto</button>
+            <button class="filter-btn" data-filter="network" data-i18n="studies.filter.network">Network</button>
+            <button class="filter-btn" data-filter="system" data-i18n="studies.filter.system">System</button>
+            <button class="filter-btn" data-filter="web" data-i18n="studies.filter.web">Web</button>
+            <button class="filter-btn" data-filter="fuzzing" data-i18n="studies.filter.fuzzing">Fuzzing</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-group-title" data-i18n="studies.filter.tags">태그</div>
+          <div class="filter-list" id="tag-container">
+            <button class="tag-btn" data-tag="web3">#web3</button>
+            <button class="tag-btn" data-tag="tcp">#tcp</button>
+            <button class="tag-btn" data-tag="os">#os</button>
+            <button class="tag-btn" data-tag="xss">#xss</button>
+            <button class="tag-btn" data-tag="afl">#afl</button>
+            <button class="tag-btn" data-tag="defi">#defi</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 노트 리스트 (그리드) -->
+      <div class="studies-grid" id="cards-container">
+        <!-- 데모 카드 1 -->
+        <a href="/studies/crypto/example" class="card section-card" data-category="crypto" data-tags="web3,defi">
+          <h3 class="card__title">스마트 컨트랙트 취약점 분석</h3>
+          <p class="card__desc">Reentrancy 공격의 원리와 방어 기법에 대한 연구.</p>
+          <div class="card__meta">
+            <span class="badge badge--crypto">Crypto</span>
+            <div class="difficulty">★★★★☆</div>
+          </div>
+        </a>
+
+        <!-- 데모 카드 2 -->
+        <a href="/studies/network/tcp-ip" class="card section-card" data-category="network" data-tags="tcp">
+          <h3 class="card__title">TCP/IP Handshake 심층 분석</h3>
+          <p class="card__desc">패킷 캡처를 통한 3-way handshake 과정 이해하기.</p>
+          <div class="card__meta">
+            <span class="badge badge--network">Network</span>
+            <div class="difficulty">★★★☆☆</div>
+          </div>
+        </a>
+
+        <!-- 데모 카드 3 -->
+        <a href="/studies/web/xss" class="card section-card" data-category="web" data-tags="xss">
+          <h3 class="card__title">모던 웹 브라우저의 XSS 방어</h3>
+          <p class="card__desc">CSP(Content Security Policy)를 이용한 안전한 웹 환경 구축.</p>
+          <div class="card__meta">
+            <span class="badge" style="background-color:var(--surface-3)">Web</span>
+            <div class="difficulty">★★★☆☆</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 빈 상태 메시지 -->
+      <div id="empty-state" class="empty-state" style="display: none;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted); margin-bottom: var(--spacing-md);">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <p data-i18n="studies.empty">해당 조건에 맞는 노트가 없습니다.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 공통 푸터 -->
+  <div id="footer-placeholder"></div>
+
+  <!-- 전역 스크립트 -->
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/filter.js"></script>
+  <script src="/assets/js/main.js"></script>
+  
+  <script>
+    // 페이지 전용 스크립트 실행
+    document.addEventListener('DOMContentLoaded', () => {
+      // 필터 기능 초기화
+      if (typeof initFilter === 'function') {
+        initFilter();
+      }
+    });
+  </script>
+</body>
+</html>

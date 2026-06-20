@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>경량 정적 블로그 시스템 - Antigravity</title>
+  <!-- 전역 스타일 및 컴포넌트 스타일 -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/projects.css">
+  <!-- 마크다운 렌더링 스타일 재사용 -->
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="icon" type="image/png" href="/logo_favicon_1781948111845.png">
+  
+  <!-- marked.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <!-- 진행률 바 -->
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <!-- 공통 헤더 -->
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+      
+      <!-- 프로젝트 헤더 -->
+      <header class="project-header">
+        <div class="project-meta">
+          <span class="status-badge status-badge--done" data-i18n="projects.status.done">완료</span>
+          <time datetime="2026-06-20">2026. 06. 20</time>
+        </div>
+        <h1 class="section-title project-title">경량 정적 블로그 시스템</h1>
+        <p class="project-summary">프레임워크 없이 순수 HTML/JS/CSS만으로 동작하며, 클라이언트 사이드 마크다운 렌더링을 지원하는 개인 블로그입니다.</p>
+        
+        <div class="project-tech-stack" style="padding-top: 0; margin-bottom: var(--spacing-lg);">
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">Vanilla JS</span>
+          <span class="tech-badge">Playwright</span>
+        </div>
+
+        <div class="project-links">
+          <a href="https://github.com/user/Blog" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            <span data-i18n="common.footer.source">소스 코드</span>
+          </a>
+          <a href="#" class="btn btn--primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Live Demo
+          </a>
+        </div>
+      </header>
+
+      <!-- 3단 섹션 (마크다운 로더 적용) -->
+      <div class="project-sections">
+        
+        <!-- Problem -->
+        <section class="project-section-wrapper">
+          <div class="project-section-header">
+            <svg class="project-section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <h2 class="project-section-title" data-i18n="projects.section.problem">문제</h2>
+          </div>
+          <div class="project-section-content markdown-body" id="problem-placeholder">
+            <p>기존 블로그 시스템들은 너무 무겁거나 불필요한 빌드 파이프라인을 요구했습니다. 빠른 로딩 속도와 유지보수의 편리함을 위해, 프레임워크 없는 순수 정적 사이트가 필요했습니다.</p>
+          </div>
+        </section>
+
+        <!-- Solution -->
+        <section class="project-section-wrapper">
+          <div class="project-section-header">
+            <svg class="project-section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20"></path>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            <h2 class="project-section-title" data-i18n="projects.section.solution">해결</h2>
+          </div>
+          <div class="project-section-content markdown-body" id="solution-placeholder">
+            <p>Vanilla JS와 CSS 변수를 활용한 자체 디자인 시스템을 구축하고, `marked.js`를 통해 클라이언트 렌더링 방식의 마크다운 로더를 작성하여 빌드 없는 정적 배포를 실현했습니다.</p>
+          </div>
+        </section>
+
+        <!-- Result -->
+        <section class="project-section-wrapper">
+          <div class="project-section-header">
+            <svg class="project-section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <h2 class="project-section-title" data-i18n="projects.section.result">결과</h2>
+          </div>
+          <div class="project-section-content markdown-body" id="result-placeholder">
+            <p>Lighthouse 점수 100점을 달성했으며, Playwright E2E 테스트를 통해 무결성을 검증했습니다. 이제 마크다운 파일만 업로드하면 자동으로 포스팅이 렌더링됩니다.</p>
+          </div>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <!-- 공통 푸터 -->
+  <div id="footer-placeholder"></div>
+
+  <!-- 전역 스크립트 -->
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 진행률 바 초기화
+      if (typeof initProgressBar === 'function') {
+        initProgressBar();
+      }
+      
+      // 예시: 실제 구현 시에는 각 섹션별 마크다운 파일을 로드할 수 있습니다.
+      // loadMarkdown('/projects/data/blog-problem.md', 'problem-placeholder');
+      // loadMarkdown('/projects/data/blog-solution.md', 'solution-placeholder');
+      // loadMarkdown('/projects/data/blog-result.md', 'result-placeholder');
+    });
+  </script>
+</body>
+</html>
