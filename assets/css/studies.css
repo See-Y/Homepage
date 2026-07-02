@@ -194,12 +194,20 @@
   height: 3px;
   background-color: transparent;
   z-index: 99;
+  overflow: hidden;
 }
 
-.reading-progress {
+/* global.css의 standalone .reading-progress(position:fixed, height:3px)와
+   클래스명이 충돌하므로, container 내부에서는 position/top/left/z-index를
+   명시적으로 재설정해 상위 규칙이 새어 들어오지 않도록 한다. */
+.reading-progress-container .reading-progress {
+  position: static;
+  top: auto;
+  left: auto;
+  z-index: auto;
   height: 100%;
-  background: linear-gradient(90deg, var(--primary-color), #a855f7);
   width: 0%;
+  background: linear-gradient(90deg, var(--primary-color), #a855f7);
   transition: width 0.1s ease-out;
 }
 

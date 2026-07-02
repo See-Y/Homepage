@@ -147,6 +147,35 @@ table {
   --max-width-narrow: 768px;
   --header-height: 64px;
   --footer-height: 200px;
+
+  /* ── 호환성 별칭 (Legacy Alias) ──────────────────────────
+   * components.css / studies.css가 참조하지만 위 토큰 목록에는
+   * 정의된 적이 없던 변수명들. Finance 노트 작업 중(2026-07-02) 발견.
+   * var()는 사용 시점에 동적으로 재해석되므로, 다크모드 재정의 없이
+   * 이 별칭 하나로 라이트/다크 전환이 그대로 반영된다.
+   * 근본 원인/영향 범위는 decisions.md, progress.md 참고.
+   * 신규 스타일은 가급적 위의 --color-*/--space-*/--text-* 원본을
+   * 사용할 것 — 이 별칭은 하위 호환용이다.
+   */
+  --surface-1: var(--color-bg-primary);
+  --surface-2: var(--color-bg-secondary);
+  --surface-3: var(--color-bg-tertiary);
+  --primary-color: var(--color-accent-primary);
+  --border-color: var(--color-border);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+  --font-size-xs: var(--text-xs);
+  --font-size-sm: var(--text-sm);
+  --font-size-base: var(--text-base);
+  --font-size-lg: var(--text-lg);
+  --spacing-xs: var(--space-1);
+  --spacing-sm: var(--space-2);
+  --spacing-md: var(--space-4);
+  --spacing-lg: var(--space-6);
+  --spacing-xl: var(--space-8);
+  --spacing-2xl: var(--space-10);
+  --spacing-3xl: var(--space-12);
 }
 
 /* ── 디자인 토큰: 다크 모드 ───────────────────────────────── */

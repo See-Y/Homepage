@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="컴퓨터 보안 개론 및 기본 개념 학습">
+  <title>01. 보안 개론 — Antigravity</title>
+  
+  <!-- FOUC 방지: 테마 즉시 적용 -->
+  <script>
+    (function() {
+      const t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" rel="stylesheet">
+  
+  <!-- 스타일 -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/course.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  
+  <!-- Progress Bar (기구현된 스타일 활용 가정) -->
+  <div id="progress-bar" style="position:fixed; top:0; left:0; height:3px; background:var(--color-accent-primary); z-index:9999; width:0%;"></div>
+
+  <main class="course-layout" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    
+    <!-- 좌측 사이드바: 코스 네비게이터 -->
+    <aside class="course-sidebar-left">
+      <div class="course-sidebar-title">Computer Security</div>
+      <ul class="course-nav-list">
+        <li class="course-nav-item active">
+          <a href="/studies/crypto/01-intro" class="course-nav-link">
+            <span>01. 보안 개론</span>
+            <span class="course-nav-status">✅</span>
+          </a>
+        </li>
+        <li class="course-nav-item">
+          <a href="/studies/crypto/02-threat-model" class="course-nav-link">
+            <span>02. 위협 모델링</span>
+          </a>
+        </li>
+        <li class="course-nav-item">
+          <a href="/studies/crypto/03-basic-crypto" class="course-nav-link">
+            <span>03. 암호학 기초</span>
+          </a>
+        </li>
+        <li class="course-nav-item">
+          <a href="/studies/crypto/04-symmetric" class="course-nav-link">
+            <span>04. 대칭키 암호</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- 중앙 본문 -->
+    <article class="course-main">
+      <header class="course-header">
+         <div class="course-meta">
+           <span class="badge badge--crypto" style="background-color: var(--color-accent-primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">Crypto</span>
+           <span class="difficulty" style="color: var(--color-warning);">★☆☆☆☆</span>
+           <span>소요시간: 10분</span>
+           <span>작성일: 2026.06.29</span>
+         </div>
+         <h1 class="course-title">01. 컴퓨터 보안 개론 (What is Security?)</h1>
+      </header>
+      
+      <!-- TL;DR -->
+
+
+      <!-- 본문 -->
+      <div class="course-content">
+        <h2 id="what-is-security">1. 보안(Security)이란 무엇인가?</h2>
+        <p>보안은 본질적으로 창과 방패의 싸움입니다. 완벽한 시스템은 존재하지 않으며, 공격자들은 항상 새로운 우회 기법을 찾아냅니다. <code>Computer Security</code> 과정에서는 다양한 공격 기법들을 배우지만, 궁극적인 목적은 <strong>'시스템을 어떻게 더 견고하게 방어할 것인가(Defense)'</strong>에 있습니다.</p>
+        
+        <p>성공적인 보안 시스템을 구축하기 위해서는 체계적인 계획(Systematic plans)과 자산에 대한 이해가 필수적입니다.</p>
+
+        <h2 id="cia-triad">2. 보안의 3요소: CIA Triad</h2>
+        <p>정보 보안의 목표를 정의할 때 가장 기본이 되는 세 가지 원칙입니다.</p>
+        <ul>
+          <li><strong>Confidentiality (기밀성)</strong>: 인가된 사용자만이 정보에 접근할 수 있도록 보장하는 성질입니다. (예: 데이터 암호화)</li>
+          <li><strong>Integrity (무결성)</strong>: 정보가 저장되거나 전송되는 과정에서 비인가자에 의해 변조, 훼손되지 않았음을 보장합니다. (예: 해시 함수, 전자서명)</li>
+          <li><strong>Availability (가용성)</strong>: 인가된 사용자가 정보나 시스템을 필요로 할 때 언제든 지연 없이 접근하고 사용할 수 있어야 합니다. (예: DDoS 방어)</li>
+        </ul>
+        
+        <h2 id="ethics">3. 해커의 윤리 (Ethics)</h2>
+        <p>네트워크 및 시스템 취약점을 배우고 실습할 때 지켜야 할 철칙입니다.</p>
+        <ul>
+          <li><strong>허가받지 않은 시스템 공격 금지</strong>: 모든 실습은 본인이 소유하거나, 명시적으로 허가받은 환경(CTF, Wargame, 개인 가상머신 등)에서만 진행해야 합니다.</li>
+          <li><strong>방어를 위한 공격 이해</strong>: 공격 메커니즘을 분석하는 이유는 더 안전한 소프트웨어를 설계하고 치명적인 취약점을 선제적으로 차단하기 위해서입니다.</li>
+        </ul>
+
+        <hr style="margin: var(--spacing-2xl) 0; border: none; border-top: 1px solid var(--color-border);">
+        <p style="font-size: var(--text-sm); color: var(--color-text-muted);">
+          <strong>Note:</strong> 이 문서는 CSE467 강의 자료를 기반으로 학습 목적으로 재구성되었습니다.
+        </p>
+      </div>
+      
+      <!-- 하단 페이지네이션 -->
+      <div class="course-pagination">
+         <a href="#" class="course-page-btn prev" style="visibility: hidden;">
+           <!-- 비어있음 -->
+         </a>
+         <a href="/studies/crypto/02-threat-model/index.html" class="course-page-btn next">
+           <span class="course-page-label">Next Lecture</span>
+           <span class="course-page-title">02. 위협 모델링</span>
+         </a>
+      </div>
+    </article>
+
+    <!-- 우측 사이드바: 목차 (TOC) -->
+    <aside class="course-sidebar-right">
+      <div class="course-toc-title">ON THIS PAGE</div>
+      <nav class="course-toc-list">
+        <a href="#what-is-security" class="course-toc-link active">1. 보안이란 무엇인가?</a>
+        <a href="#cia-triad" class="course-toc-link">2. CIA Triad</a>
+        <a href="#ethics" class="course-toc-link">3. 해커의 윤리 (Ethics)</a>
+      </nav>
+    </aside>
+  </main>
+  
+  <div id="footer-placeholder"></div>
+  
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script>
+    // 프로그레스 바 로직 (간단 구현)
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>

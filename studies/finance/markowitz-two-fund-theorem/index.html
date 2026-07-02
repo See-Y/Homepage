@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Markowitz 모델의 QP 정식화, Two-Fund 정리, 무위험자산 포함, One-Fund 정리와 샤프비율 최대화(QCQP)를 정리합니다.">
+  <title>Markowitz 모델과 Two-Fund 정리 - Antigravity</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="stylesheet" href="/assets/css/finance-notes.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+
+      <header class="note-header">
+        <div class="note-meta">
+          <span class="badge badge--finance" id="note-category">Finance</span>
+          <time datetime="2026-07-02" id="note-date">2026. 07. 02</time>
+          <div class="difficulty" id="note-difficulty">★★★★☆</div>
+        </div>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">Markowitz 모델과 Two-Fund 정리</h1>
+        <div class="prereq-box" id="note-prereq">
+          <span class="prereq-label">선수지식</span>
+          <a href="/studies/finance/expected-utility-mean-variance" class="prereq-tag">6편 · 기대효용과 평균-분산의 기초</a>
+        </div>
+      </header>
+
+      <div class="tldr-box">
+        <div class="tldr-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="20" y2="9"></line>
+            <line x1="4" y1="15" x2="20" y2="15"></line>
+            <line x1="10" y1="3" x2="8" y2="21"></line>
+            <line x1="16" y1="3" x2="14" y2="21"></line>
+          </svg>
+          <span data-i18n="studies.note.tldr">TL;DR</span>
+        </div>
+        <p id="note-tldr">Markowitz 모델은 평균-분산 포트폴리오 선택을 이차계획법(QP)으로 정식화한다. Two-Fund 정리는 효율적 포트폴리오가 단 두 펀드의 조합으로 표현됨을, One-Fund 정리는 무위험자산이 있으면 단 하나의 위험자산 펀드(탄젠트 포트폴리오)로 충분함을 보여준다.</p>
+      </div>
+
+      <details class="glossary-box" id="note-glossary" open>
+        <summary>핵심 용어 미니 사전</summary>
+        <dl>
+          <dt>QP (이차계획법)</dt>
+          <dd>목적함수나 제약식에 이차항이 있는 최적화 문제. Markowitz 모델의 표준 정식화 형태다.</dd>
+          <dt>탄젠트 포트폴리오</dt>
+          <dd>샤프비율을 최대화하는 위험자산 포트폴리오. One-Fund 정리가 말하는 그 "유일한 펀드"다.</dd>
+          <dt>QCQP (이차제약 이차계획법)</dt>
+          <dd>샤프비율 최대화라는 비볼록 문제를, 변수치환을 통해 볼록 문제로 바꾼 형태.</dd>
+        </dl>
+      </details>
+
+      <div class="markdown-body" id="content-placeholder">
+        <p>로딩 중...</p>
+      </div>
+
+      <footer class="note-footer">
+        <div class="tags" id="note-tags">
+          <span class="tag">#markowitz</span>
+          <span class="tag">#efficient-frontier</span>
+        </div>
+
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/markowitz-two-fund-theorem/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span data-i18n="studies.edit_github">Edit on GitHub</span>
+        </a>
+      </footer>
+
+      <nav class="note-pagination">
+        <a href="/studies/finance/expected-utility-mean-variance">
+          <span class="note-pagination__label">이전 (6/11)</span>
+          ← 기대효용과 평균-분산의 기초
+        </a>
+        <a href="/studies/finance/capm-security-market-line" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (8/11)</span>
+          CAPM과 증권시장선 →
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    function initFinanceChart() {
+      const canvas = document.getElementById('chart-efficient-frontier');
+      if (!canvas || typeof Chart === 'undefined') return;
+      const muA = 12, sigA = 30, muB = 18, sigB = 40, rho = 0.2, rf = 5;
+
+      const frontier = [];
+      let best = { sharpe: -Infinity, sig: 0, mu: 0 };
+      for (let w = -0.3; w <= 1.3001; w += 0.01) {
+        const mu = w*muA + (1-w)*muB;
+        const varP = w*w*sigA*sigA + (1-w)*(1-w)*sigB*sigB + 2*w*(1-w)*rho*sigA*sigB;
+        const sig = Math.sqrt(Math.max(varP,0));
+        frontier.push({x: sig, y: mu});
+        const sharpe = (mu - rf) / sig;
+        if (sharpe > best.sharpe) best = { sharpe, sig, mu };
+      }
+      const cml = [
+        {x: 0, y: rf},
+        {x: best.sig * 1.6, y: rf + best.sharpe * best.sig * 1.6}
+      ];
+
+      new Chart(canvas, {
+        type: 'scatter',
+        data: {
+          datasets: [
+            { label: '최소분산 곡선 (2자산 예시)', data: frontier, showLine: true, borderColor: '#94A3B8', backgroundColor: 'transparent', pointRadius: 0 },
+            { label: '자본시장선 (무위험자산 → 탄젠트 포트폴리오 F)', data: cml, showLine: true, borderColor: '#D97706', backgroundColor: 'transparent', pointRadius: 0, borderWidth: 2 },
+            { label: '탄젠트 포트폴리오 F', data: [{x: best.sig, y: best.mu}], showLine: false, borderColor: '#DC2626', backgroundColor: '#DC2626', pointRadius: 6, pointStyle: 'circle' },
+            { label: '무위험자산', data: [{x:0, y: rf}], showLine:false, borderColor:'#059669', backgroundColor:'#059669', pointRadius: 6 }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: { display: true, text: '무위험자산 포함 시의 One-Fund 정리 (예시)' },
+            legend: { position: 'bottom' }
+          },
+          scales: {
+            x: { title: { display: true, text: '표준편차 (%)' }, min: 0 },
+            y: { title: { display: true, text: '기대수익 (%)' } }
+          }
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initProgressBar === 'function') initProgressBar();
+      if (typeof loadMarkdown === 'function') {
+        loadMarkdown('/studies/finance/markowitz-two-fund-theorem/index.md', 'content-placeholder').then(() => {
+          if (window.renderMathInElement) {
+            renderMathInElement(document.getElementById('content-placeholder'), {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+              ],
+              throwOnError: false
+            });
+          }
+          initFinanceChart();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

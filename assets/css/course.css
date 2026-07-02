@@ -1,0 +1,313 @@
+/* 
+ * Course Layout (3-Column for Series Notes)
+ * Left: Syllabus Nav | Center: Main Content | Right: TOC
+ */
+
+.course-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) 280px;
+  gap: var(--spacing-2xl);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  align-items: start;
+}
+
+/* 좌측 사이드바 (코스 네비게이터) */
+.course-sidebar-left {
+  position: sticky;
+  top: calc(var(--header-height) + var(--spacing-xl));
+  max-height: calc(100vh - var(--header-height) - var(--spacing-2xl));
+  overflow-y: auto;
+  padding-right: var(--spacing-lg);
+  border-right: 1px solid var(--color-border);
+}
+
+.course-sidebar-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-accent-primary);
+}
+
+.course-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.course-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.course-nav-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.course-nav-link:hover {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-accent-primary);
+}
+
+.course-nav-item.active .course-nav-link {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-accent-primary);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--color-accent-primary);
+}
+
+.course-nav-status {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* 중앙 본문 영역 */
+.course-main {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.course-header {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.course-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.course-title {
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* TL;DR Box */
+.course-tldr {
+  background-color: var(--color-bg-secondary);
+  border-left: 4px solid var(--color-accent-primary);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  margin-bottom: var(--spacing-2xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.course-tldr-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-accent-primary);
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.course-tldr-content {
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+/* PDF/Slide Download Button */
+.course-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-base);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.course-download-btn:hover {
+  border-color: var(--color-accent-primary);
+  background: var(--color-bg-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 본문 콘텐츠 타이포그래피 */
+.course-content h2 {
+  font-size: var(--text-2xl);
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.course-content h3 {
+  font-size: var(--text-xl);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.course-content p {
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.course-content ul, .course-content ol {
+  margin-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-xl);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+.course-content li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* 우측 사이드바 (TOC) */
+.course-sidebar-right {
+  position: sticky;
+  top: calc(var(--header-height) + var(--spacing-xl));
+  max-height: calc(100vh - var(--header-height) - var(--spacing-2xl));
+  overflow-y: auto;
+  padding-left: var(--spacing-lg);
+  border-left: 1px solid var(--color-border);
+}
+
+.course-toc-title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.course-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.course-toc-link {
+  display: block;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  padding: var(--spacing-xs) 0;
+  transition: color var(--transition-fast);
+  line-height: 1.4;
+}
+
+.course-toc-link:hover, .course-toc-link.active {
+  color: var(--color-accent-primary);
+}
+
+.course-toc-list ul {
+  list-style: none;
+  padding-left: var(--spacing-md);
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* 하단 페이지네이션 */
+.course-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-3xl);
+  padding-top: var(--spacing-2xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.course-page-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.course-page-btn:hover {
+  border-color: var(--color-accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.course-page-btn.prev {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.course-page-btn.next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.course-page-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.course-page-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* 반응형 처리 */
+@media (max-width: 1024px) {
+  .course-layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+  .course-sidebar-right {
+    display: none; /* 숨김 처리 또는 하단으로 이동 */
+  }
+}
+
+@media (max-width: 768px) {
+  .course-layout {
+    grid-template-columns: 1fr;
+  }
+  .course-sidebar-left {
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-right: 0;
+    padding-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+  .course-pagination {
+    flex-direction: column;
+  }
+}

@@ -12,8 +12,8 @@ playwright-report/
 test-results/
 .playwright/
 
-# 에이전트 및 시스템 생성 파일 (AI 작업 내역, 환경 설정)
-.agents/
+# 시스템 생성 파일
+# .agents/ 는 2026-07-02부로 추적 대상 (팀 협업 문서로 공개, progress.md 참고)
 .DS_Store
 
 # 환경 변수
@@ -29,3 +29,6 @@ tests/
 jest.config.js
 playwright.config.js
 blog-plan.md
+
+# 원본 데이터
+data/
