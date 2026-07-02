@@ -1,23 +1,9 @@
 [
   {
-    "id": 1,
-    "lat": 35.6895,
-    "lng": 139.6917,
-    "title": "Tokyo, Japan",
-    "url": "/travel/tokyo"
-  },
-  {
-    "id": 2,
-    "lat": 48.8566,
-    "lng": 2.3522,
-    "title": "Paris, France",
-    "url": "/travel/paris"
-  },
-  {
-    "id": 3,
-    "lat": 37.7749,
-    "lng": -122.4194,
-    "title": "San Francisco, USA",
-    "url": "/travel/san-francisco"
+    "id": 4,
+    "lat": 25.0330,
+    "lng": 121.5654,
+    "title": "Taipei, Taiwan",
+    "url": "/travel/taiwan"
   }
 ]

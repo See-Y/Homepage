@@ -29,3 +29,7 @@ tests/
 jest.config.js
 playwright.config.js
 blog-plan.md
+
+# 데이터 폴더 (블로그 운영에 불필요)
+data/
+*.pdf
