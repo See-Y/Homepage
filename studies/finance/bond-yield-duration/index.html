@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="채권 가격결정 공식, 만기수익률(YTM), Macaulay/수정 듀레이션, 면역화(X Corporation 예제), 컨벡시티를 정리합니다.">
+  <title>채권, 수익률과 듀레이션 - Antigravity</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="stylesheet" href="/assets/css/finance-notes.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+
+      <header class="note-header">
+        <div class="note-meta">
+          <span class="badge badge--finance" id="note-category">Finance</span>
+          <time datetime="2026-07-02" id="note-date">2026. 07. 02</time>
+          <div class="difficulty" id="note-difficulty">★★★★☆</div>
+        </div>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">채권, 수익률과 듀레이션</h1>
+        <div class="prereq-box" id="note-prereq">
+          <span class="prereq-label">선수지식</span>
+          <a href="/studies/finance/interest-present-value" class="prereq-tag">2편 · 이자와 현재가치</a>
+          <a href="/studies/finance/irr-npv-investment" class="prereq-tag">3편 · IRR과 NPV</a>
+        </div>
+      </header>
+
+      <div class="tldr-box">
+        <div class="tldr-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="20" y2="9"></line>
+            <line x1="4" y1="15" x2="20" y2="15"></line>
+            <line x1="10" y1="3" x2="8" y2="21"></line>
+            <line x1="16" y1="3" x2="14" y2="21"></line>
+          </svg>
+          <span data-i18n="studies.note.tldr">TL;DR</span>
+        </div>
+        <p id="note-tldr">채권가격은 액면가와 쿠폰의 현재가치 합이고, 이를 역산한 이자율이 만기수익률(YTM)이다. 듀레이션은 가격의 수익률 민감도를 알려주며, 포트폴리오의 듀레이션을 채무와 일치시키는 면역화로 금리 리스크를 관리한다.</p>
+      </div>
+
+      <details class="glossary-box" id="note-glossary" open>
+        <summary>핵심 용어 미니 사전</summary>
+        <dl>
+          <dt>YTM (만기수익률)</dt>
+          <dd>쿠폰과 액면가의 현재가치 합을 현재 가격과 같게 만드는 이자율. 채권의 내부수익률(IRR)과 같은 개념이다.</dd>
+          <dt>Macaulay 듀레이션</dt>
+          <dd>현금흐름이 발생하는 시점들의 현재가치 가중평균. "일반화된 만기"로 해석할 수 있다.</dd>
+          <dt>면역화 (Immunization)</dt>
+          <dd>자산 포트폴리오의 현재가치·듀레이션을 채무의 그것과 일치시켜, 금리 변화에 대한 순가치 변동을 최소화하는 기법.</dd>
+        </dl>
+      </details>
+
+      <div class="markdown-body" id="content-placeholder">
+        <p>로딩 중...</p>
+      </div>
+
+      <footer class="note-footer">
+        <div class="tags" id="note-tags">
+          <span class="tag">#bond</span>
+          <span class="tag">#duration</span>
+        </div>
+
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/bond-yield-duration/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span data-i18n="studies.edit_github">Edit on GitHub</span>
+        </a>
+      </footer>
+
+      <nav class="note-pagination">
+        <a href="/studies/finance/irr-npv-investment">
+          <span class="note-pagination__label">이전 (3/11)</span>
+          ← IRR과 NPV로 투자안 평가하기
+        </a>
+        <a href="/studies/finance/term-structure-yield-curve" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (5/11)</span>
+          수익률 곡선과 기간구조 이론 →
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    function initFinanceChart() {
+      const canvas = document.getElementById('chart-price-yield');
+      if (!canvas || typeof Chart === 'undefined') return;
+
+      // 30년 만기, 10% 쿠폰 채권 (연 복리 가정)
+      function bondPrice(y) {
+        let p = 100 / Math.pow(1 + y, 30);
+        for (let k = 1; k <= 30; k++) p += 10 / Math.pow(1 + y, k);
+        return p;
+      }
+      const yields = [];
+      const prices = [];
+      const tangent = [];
+      const Dlambda = 9.47; // 액면가(par, y=10%)에서의 수정 듀레이션
+      for (let y = 0.03; y <= 0.20; y += 0.005) {
+        yields.push(Math.round(y * 1000) / 10);
+        prices.push(bondPrice(y));
+        tangent.push(100 - Dlambda * 100 * (y - 0.10));
+      }
+      new Chart(canvas, {
+        type: 'line',
+        data: {
+          labels: yields,
+          datasets: [
+            { label: '실제 가격-수익률 곡선', data: prices, borderColor: '#2563EB', backgroundColor: 'transparent', tension: 0.2, pointRadius: 0 },
+            { label: '수정 듀레이션 기반 접선 (y=10%)', data: tangent, borderColor: '#DC2626', backgroundColor: 'transparent', borderDash: [5,5], pointRadius: 0 }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: { display: true, text: '30년 만기 10% 쿠폰 채권의 가격-수익률 곡선' },
+            legend: { position: 'bottom' }
+          },
+          scales: {
+            x: { title: { display: true, text: '수익률 (%)' } },
+            y: { title: { display: true, text: '가격 (액면가 대비 %)' } }
+          }
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initProgressBar === 'function') initProgressBar();
+      if (typeof loadMarkdown === 'function') {
+        loadMarkdown('/studies/finance/bond-yield-duration/index.md', 'content-placeholder').then(() => {
+          if (window.renderMathInElement) {
+            renderMathInElement(document.getElementById('content-placeholder'), {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+              ],
+              throwOnError: false
+            });
+          }
+          initFinanceChart();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

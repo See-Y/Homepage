@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="암호학의 기반이 되는 컴퓨터 과학 수학 기초: 정수론 (Number Theory)">
+  <title>05. 정수론 — Antigravity</title>
+  
+  <script>
+    (function() {
+      const t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/course.css">
+  <link rel="stylesheet" href="/assets/css/animation.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <div id="progress-bar" style="position:fixed; top:0; left:0; height:3px; background:var(--color-accent-primary); z-index:9999; width:0%;"></div>
+
+  <main class="course-layout" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    
+    <aside class="course-sidebar-left">
+      <div class="course-sidebar-title">Computer Security</div>
+      <ul class="course-nav-list">
+        <li class="course-nav-item">
+          <a href="/studies/crypto/01-intro" class="course-nav-link">
+            <span>01. 보안 개론</span>
+            <span class="course-nav-status">✅</span>
+          </a>
+        </li>
+        <li class="course-nav-item">
+          <a href="/studies/crypto/02-threat-model" class="course-nav-link">
+            <span>02. 위협 모델링</span>
+            <span class="course-nav-status">✅</span>
+          </a>
+        </li>
+        <li class="course-nav-item">
+          <a href="/studies/crypto/03-basic-crypto" class="course-nav-link">
+            <span>03. 암호학 기초</span>
+            <span class="course-nav-status">✅</span>
+          </a>
+        </li>
+        <li class="course-nav-item">
+          <a href="/studies/crypto/04-symmetric" class="course-nav-link">
+            <span>04. 대칭키 암호</span>
+            <span class="course-nav-status">✅</span>
+          </a>
+        </li>
+        <li class="course-nav-item active">
+          <a href="/studies/cs/05-number-theory" class="course-nav-link">
+            <span>05. 정수론 (Number Theory)</span>
+            <span class="course-nav-status">✅</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <article class="course-main">
+      <header class="course-header">
+         <div class="course-meta">
+           <span class="badge" style="background-color: #6366f1; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">CS Math</span>
+           <span class="difficulty" style="color: var(--color-warning);">★★★★☆</span>
+           <span>소요시간: 30분</span>
+           <span>작성일: 2026.07.02</span>
+         </div>
+         <h1 class="course-title">05. 정수론 (Number Theory)</h1>
+      </header>
+      
+
+
+      <div class="course-content">
+        <h2 id="modular-arithmetic">1. 모듈러 연산 (Modular Arithmetic)</h2>
+        <p>시계의 12시간 체계처럼, 어떤 수를 나누었을 때의 '나머지'를 중심으로 연산하는 방법론입니다.</p>
+        <p>두 정수 \( a, b \) 와 양의 정수 \( n \) 에 대하여, \( a - b \) 가 \( n \) 의 배수일 때 두 수는 모듈로 \( n \) 에 대해 합동(Congruent)이라고 하며 다음과 같이 표기합니다.</p>
+        <p>$$ a \equiv b \pmod{n} $$</p>
+        <ul>
+          <li><strong>덧셈:</strong> \( (a + b) \pmod n = ((a \pmod n) + (b \pmod n)) \pmod n \)</li>
+          <li><strong>곱셈:</strong> \( (a \times b) \pmod n = ((a \pmod n) \times (b \pmod n)) \pmod n \)</li>
+        </ul>
+        <p>모듈러 연산은 무한히 커질 수 있는 수를 유한한 크기의 공간(Finite Field/Ring)에 가두기 때문에 암호학 연산에서 컴퓨터 오버플로우를 막아줍니다.</p>
+        <p><a href="https://en.wikipedia.org/wiki/Modular_arithmetic" target="_blank" rel="color: var(--color-accent-primary);">[Wikipedia: Modular Arithmetic]</a></p>
+
+        <h2 id="gcd-euclidean">2. 유클리드 호제법 (Euclidean Algorithm)</h2>
+        <p>두 정수 \( a \) 와 \( b \) 의 <strong>최대공약수(GCD: Greatest Common Divisor)</strong>를 빠르게 구하는 알고리즘입니다. 암호학에서 두 수가 서로소(GCD가 1)인지 판별하는 것은 공개키 생성 시 매우 중요합니다.</p>
+        <p>핵심 원리는 다음과 같습니다. \( a = b \times q + r \) 일 때,</p>
+        <p>$$ \gcd(a, b) = \gcd(b, r) $$</p>
+
+        <!-- 인터랙티브 유클리드 호제법 애니메이션 -->
+        <h3 id="interactive-ea">Interactive: 유클리드 호제법 시뮬레이터</h3>
+        <p>예를 들어, \( \gcd(48, 18) \) 을 구하는 과정을 아래 애니메이션으로 확인해 보세요. 앞선 단계의 나누는 수(\( b \))가 다음 단계의 나뉠 수(\( a \))가 되고, 나머지(\( r \))가 나누는 수가 됩니다.</p>
+
+        <div class="algo-player">
+          <div class="algo-player-header">
+            <div class="algo-player-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              GCD(48, 18) 계산 과정
+            </div>
+            <div class="algo-player-controls">
+              <button class="algo-btn primary" id="btn-play-ea">다음 단계</button>
+              <button class="algo-btn" id="btn-reset-ea">초기화</button>
+            </div>
+          </div>
+          
+          <div class="algo-canvas" style="flex-direction: column; gap: 20px; font-size: 1.2rem; font-weight: bold; font-family: 'JetBrains Mono', monospace;">
+            <div style="display: flex; gap: 10px; align-items: center; height: 50px;" id="ea-row">
+              <div id="ea-a" class="cipher-tile" style="width: 60px;">48</div> 
+              <div>=</div> 
+              <div id="ea-b" class="cipher-tile" style="width: 60px;">18</div> 
+              <div>&times;</div> 
+              <div id="ea-q" class="cipher-tile" style="width: 60px; background: transparent; border: none;">2</div> 
+              <div>+</div> 
+              <div id="ea-r" class="cipher-tile highlight" style="width: 60px;">12</div>
+            </div>
+          </div>
+          <div class="algo-status" id="ea-status">초기 상태: 48 = 18 &times; 2 + 12 (나머지 12). "다음 단계"를 누르세요.</div>
+        </div>
+        <p><a href="https://en.wikipedia.org/wiki/Euclidean_algorithm" target="_blank" rel="color: var(--color-accent-primary);">[Wikipedia: Euclidean Algorithm]</a></p>
+
+        <h2 id="eea">3. 확장 유클리드 호제법 (Extended Euclidean Algorithm)</h2>
+        <p>단순히 최대공약수를 구하는 것을 넘어, 베주 항등식(Bézout's identity)을 만족하는 두 정수 \( x, y \) 를 찾는 방법입니다.</p>
+        <p>$$ a \cdot x + b \cdot y = \gcd(a, b) $$</p>
+        <p>이 방법은 암호학에서 <strong>모듈러 역원(Modular Multiplicative Inverse)</strong>을 찾을 때 필수적으로 사용됩니다. (예: RSA 암호에서 비밀키 \( d \) 를 계산할 때)</p>
+
+        <h2 id="euler-totient">4. 오일러 파이 함수 (Euler's Totient Function)</h2>
+        <p>\( n \) 보다 작고 \( n \) 과 서로소인 양의 정수의 개수를 나타내는 함수 \( \phi(n) \) 입니다.</p>
+        <ul>
+          <li>\( p \) 가 소수(Prime)일 때: \( \phi(p) = p - 1 \)</li>
+          <li>\( p, q \) 가 서로 다른 소수일 때: \( \phi(pq) = \phi(p)\phi(q) = (p-1)(q-1) \)</li>
+        </ul>
+        <p>이 성질이 바로 RSA 암호의 안전성을 보장하는 핵심 수학적 트릭입니다.</p>
+
+        <h2 id="euler-theorem">5. 오일러의 정리 (Euler's Theorem)</h2>
+        <p>페르마의 소정리(Fermat's Little Theorem)를 일반화한 정리입니다. \( a \) 와 \( n \) 이 서로소일 때, 다음이 성립합니다.</p>
+        <p>$$ a^{\phi(n)} \equiv 1 \pmod{n} $$</p>
+        <p>이 정리를 응용하면 아주 큰 지수의 모듈러 연산을 극적으로 단순화할 수 있어, 거듭제곱을 사용하는 공개키 암호(비대칭키) 알고리즘을 가능하게 만듭니다.</p>
+
+      </div>
+      
+      <div class="course-pagination">
+         <a href="/studies/crypto/04-symmetric/index.html" class="course-page-btn prev">
+           <span class="course-page-label">Previous Lecture</span>
+           <span class="course-page-title">04. 대칭키 암호</span>
+         </a>
+         <a href="#" class="course-page-btn next">
+           <span class="course-page-label">Next Lecture</span>
+           <span class="course-page-title">06. 공개키 암호 (Asymmetric Crypto)</span>
+         </a>
+      </div>
+    </article>
+
+    <aside class="course-sidebar-right">
+      <div class="course-toc-title">ON THIS PAGE</div>
+      <nav class="course-toc-list">
+        <a href="#modular-arithmetic" class="course-toc-link">1. 모듈러 연산</a>
+        <a href="#gcd-euclidean" class="course-toc-link">2. 유클리드 호제법 (EA)</a>
+        <a href="#eea" class="course-toc-link">3. 확장 유클리드 호제법 (EEA)</a>
+        <a href="#euler-totient" class="course-toc-link">4. 오일러 파이 함수</a>
+        <a href="#euler-theorem" class="course-toc-link">5. 오일러의 정리</a>
+      </nav>
+    </aside>
+  </main>
+  
+  <div id="footer-placeholder"></div>
+  
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+  </script>
+
+  <!-- KaTeX -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" 
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+  <!-- Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const checkAnime = setInterval(() => {
+        if(window.anime) {
+          clearInterval(checkAnime);
+          initEaAnimation();
+        }
+      }, 100);
+
+      function initEaAnimation() {
+        const playBtn = document.getElementById('btn-play-ea');
+        const resetBtn = document.getElementById('btn-reset-ea');
+        const statusText = document.getElementById('ea-status');
+        
+        const elA = document.getElementById('ea-a');
+        const elB = document.getElementById('ea-b');
+        const elQ = document.getElementById('ea-q');
+        const elR = document.getElementById('ea-r');
+        
+        let step = 0;
+        // Steps data: [A, B, Q, R]
+        const steps = [
+          [48, 18, 2, 12],
+          [18, 12, 1, 6],
+          [12, 6, 2, 0]
+        ];
+
+        playBtn.addEventListener('click', () => {
+          if (step >= steps.length - 1) {
+            statusText.innerHTML = `<span style="color: var(--color-success);">계산 완료! 나머지가 0이므로 최대공약수(GCD)는 <strong>${steps[step][1]}</strong> 입니다.</span>`;
+            return;
+          }
+          
+          playBtn.disabled = true;
+          const nextData = steps[step + 1];
+          
+          // 애니메이션: B -> A로, R -> B로 시각적 이동 효과를 주고 값을 갱신
+          anime.timeline({
+            easing: 'easeInOutQuad',
+            duration: 500,
+            complete: () => {
+              // 값 갱신 및 위치 초기화
+              elA.innerText = nextData[0];
+              elB.innerText = nextData[1];
+              elQ.innerText = nextData[2];
+              elR.innerText = nextData[3];
+              
+              anime.set([elB, elR], { translateX: 0, translateY: 0, opacity: 1 });
+              
+              step++;
+              playBtn.disabled = false;
+              
+              if(nextData[3] === 0) {
+                 statusText.innerHTML = `<strong>Step ${step+1}:</strong> 12 = 6 &times; 2 + 0. 나머지가 0이 되어 종료됩니다!`;
+                 elR.classList.remove('highlight');
+                 elB.classList.add('highlight');
+              } else {
+                 statusText.innerHTML = `<strong>Step ${step+1}:</strong> 이전 단계의 b(18)가 a가 되고, r(12)이 b가 됩니다.`;
+              }
+            }
+          })
+          .add({
+            targets: elB,
+            translateX: -95, // a 위치로 대략 이동 (visual only)
+            opacity: 0.5
+          })
+          .add({
+            targets: elR,
+            translateX: -95, // b 위치로 대략 이동
+            opacity: 0.5
+          }, '-=500');
+        });
+
+        resetBtn.addEventListener('click', () => {
+          step = 0;
+          elA.innerText = steps[0][0];
+          elB.innerText = steps[0][1];
+          elQ.innerText = steps[0][2];
+          elR.innerText = steps[0][3];
+          elR.classList.add('highlight');
+          elB.classList.remove('highlight');
+          anime.set([elB, elR], { translateX: 0, translateY: 0, opacity: 1 });
+          statusText.innerHTML = '초기 상태: 48 = 18 &times; 2 + 12 (나머지 12). "다음 단계"를 누르세요.';
+          playBtn.disabled = false;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -43,4 +43,6 @@ function initProgressBar() {
   updateProgress();
 }
 
-module.exports = { initProgressBar };
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { initProgressBar };
+}

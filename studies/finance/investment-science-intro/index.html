@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="비교원칙·무차익원칙·위험회피·동역학이라는 투자과학의 4대 원칙과, 가격결정·헤징·순수투자로 나뉘는 투자 문제의 분류를 정리합니다.">
+  <title>투자과학이란 무엇인가 - Antigravity</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="stylesheet" href="/assets/css/finance-notes.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <!-- marked.js (클라이언트 마크다운 렌더링용) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- KaTeX 0.16.8 (.agents/plugins.md 참고, 버전 고정) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+
+      <header class="note-header">
+        <div class="note-meta">
+          <span class="badge badge--finance" id="note-category">Finance</span>
+          <time datetime="2026-07-02" id="note-date">2026. 07. 02</time>
+          <div class="difficulty" id="note-difficulty">★★☆☆☆</div>
+        </div>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">투자과학이란 무엇인가</h1>
+        <div class="prereq-box" id="note-prereq">
+          <span class="prereq-label">선수지식</span>
+          <span class="prereq-tag prereq-tag--none">없음 (시리즈 1편)</span>
+        </div>
+      </header>
+
+      <div class="tldr-box">
+        <div class="tldr-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="20" y2="9"></line>
+            <line x1="4" y1="15" x2="20" y2="15"></line>
+            <line x1="10" y1="3" x2="8" y2="21"></line>
+            <line x1="16" y1="3" x2="14" y2="21"></line>
+          </svg>
+          <span data-i18n="studies.note.tldr">TL;DR</span>
+        </div>
+        <p id="note-tldr">투자는 현금흐름 스트림을 원하는 형태로 재단하는 행위이며, 비교원칙·무차익원칙·위험회피·동역학이라는 4대 원칙으로 분석한다. 투자 문제는 가격결정·헤징·순수투자로 분류되고, 여기에 AI를 결합한 것이 이 시리즈(총 11편)의 주제다.</p>
+      </div>
+
+      <details class="glossary-box" id="note-glossary" open>
+        <summary>핵심 용어 미니 사전</summary>
+        <dl>
+          <dt>현금흐름 스트림 (Cash Flow Stream)</dt>
+          <dd>여러 시점에 걸친 순수입(지출은 음수, 수입은 양수)의 나열. 투자는 이 스트림을 원하는 형태로 바꾸는 행위다.</dd>
+          <dt>차익거래 (Arbitrage)</dt>
+          <dd>내 돈을 하나도 쓰지 않고 위험 없이 이익을 얻는 기회. 실제 시장에서는 오래 지속되지 않는다고 가정한다(무차익 가정).</dd>
+          <dt>위험회피 (Risk Aversion)</dt>
+          <dd>기대수익이 같다면 더 위험이 낮은 쪽을 선호하는 성향. 평균-분산 분석, 기대효용이론의 출발점이다.</dd>
+        </dl>
+      </details>
+
+      <div class="markdown-body" id="content-placeholder">
+        <p>로딩 중...</p>
+      </div>
+
+      <footer class="note-footer">
+        <div class="tags" id="note-tags">
+          <span class="tag">#investment-science</span>
+          <span class="tag">#arbitrage</span>
+        </div>
+
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/investment-science-intro/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span data-i18n="studies.edit_github">Edit on GitHub</span>
+        </a>
+      </footer>
+
+      <nav class="note-pagination">
+        <span></span>
+        <a href="/studies/finance/interest-present-value" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (2/11)</span>
+          이자와 현재가치 →
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initProgressBar === 'function') initProgressBar();
+      if (typeof loadMarkdown === 'function') {
+        loadMarkdown('/studies/finance/investment-science-intro/index.md', 'content-placeholder').then(() => {
+          if (window.renderMathInElement) {
+            renderMathInElement(document.getElementById('content-placeholder'), {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

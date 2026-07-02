@@ -164,6 +164,16 @@
   color: #FBBF24;
 }
 
+/* Finance (금융인공지능, IE412) — 색상 등록: .agents/styles.md "카테고리별 액센트 컬러" 참고 */
+.badge--finance {
+  background-color: rgba(37, 99, 235, 0.1);
+  color: #2563EB;
+}
+[data-theme='dark'] .badge--finance {
+  background-color: rgba(96, 165, 250, 0.15);
+  color: #60A5FA;
+}
+
 /* 상태 배지 */
 .badge--status-done {
   background-color: rgba(16, 185, 129, 0.1);

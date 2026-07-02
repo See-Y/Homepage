@@ -33,30 +33,80 @@
             <button class="filter-btn" data-filter="system" data-i18n="studies.filter.system">System</button>
             <button class="filter-btn" data-filter="web" data-i18n="studies.filter.web">Web</button>
             <button class="filter-btn" data-filter="fuzzing" data-i18n="studies.filter.fuzzing">Fuzzing</button>
+            <button class="filter-btn" data-filter="finance" data-i18n="studies.filter.finance">Finance</button>
           </div>
         </div>
 
         <div class="filter-group">
           <div class="filter-group-title" data-i18n="studies.filter.tags">태그</div>
           <div class="filter-list" id="tag-container">
+            <button class="tag-btn" data-tag="rsa">#rsa</button>
+            <button class="tag-btn" data-tag="aes">#aes</button>
+            <button class="tag-btn" data-tag="tls">#tls</button>
+            <button class="tag-btn" data-tag="pki">#pki</button>
             <button class="tag-btn" data-tag="web3">#web3</button>
             <button class="tag-btn" data-tag="tcp">#tcp</button>
             <button class="tag-btn" data-tag="os">#os</button>
             <button class="tag-btn" data-tag="xss">#xss</button>
             <button class="tag-btn" data-tag="afl">#afl</button>
             <button class="tag-btn" data-tag="defi">#defi</button>
+            <button class="tag-btn" data-tag="irr">#irr</button>
+            <button class="tag-btn" data-tag="bond">#bond</button>
+            <button class="tag-btn" data-tag="markowitz">#markowitz</button>
+            <button class="tag-btn" data-tag="capm">#capm</button>
+            <button class="tag-btn" data-tag="llm">#llm</button>
           </div>
         </div>
       </div>
 
       <!-- 노트 리스트 (그리드) -->
       <div class="studies-grid" id="cards-container">
-        <!-- 데모 카드 1 -->
-        <a href="/studies/crypto/example" class="card section-card" data-category="crypto" data-tags="web3,defi">
-          <h3 class="card__title">스마트 컨트랙트 취약점 분석</h3>
-          <p class="card__desc">Reentrancy 공격의 원리와 방어 기법에 대한 연구.</p>
+        <!-- CSE467 Crypto 노트 1 -->
+        <a href="/studies/crypto/01-intro" class="card section-card" data-category="crypto" data-tags="intro">
+          <h3 class="card__title">01. 보안 개론</h3>
+          <p class="card__desc">정보 보안의 3요소(CIA Triad), 보안 용어, 그리고 체계적인 보안 방어 접근법.</p>
           <div class="card__meta">
             <span class="badge badge--crypto">Crypto</span>
+            <div class="difficulty">★☆☆☆☆</div>
+          </div>
+        </a>
+
+        <!-- CSE467 Crypto 노트 2 -->
+        <a href="/studies/crypto/02-threat-model" class="card section-card" data-category="crypto" data-tags="intro">
+          <h3 class="card__title">02. 위협 모델링</h3>
+          <p class="card__desc">Alice, Bob, Eve 통신 모델과 능동적/수동적 공격, 위협 모델의 정량화.</p>
+          <div class="card__meta">
+            <span class="badge badge--crypto">Crypto</span>
+            <div class="difficulty">★★☆☆☆</div>
+          </div>
+        </a>
+
+        <!-- CSE467 Crypto 노트 3 -->
+        <a href="/studies/crypto/03-basic-crypto" class="card section-card" data-category="crypto" data-tags="rsa">
+          <h3 class="card__title">03. 암호학 기초</h3>
+          <p class="card__desc">케르크호프스 원리, 시저 암호와 치환 암호, 그리고 완벽한 보안 OTP.</p>
+          <div class="card__meta">
+            <span class="badge badge--crypto">Crypto</span>
+            <div class="difficulty">★★☆☆☆</div>
+          </div>
+        </a>
+
+        <!-- CSE467 Crypto 노트 4 -->
+        <a href="/studies/crypto/04-symmetric" class="card section-card" data-category="crypto" data-tags="aes">
+          <h3 class="card__title">04. 대칭키 암호</h3>
+          <p class="card__desc">혼돈과 확산, 블록 암호(DES, AES)의 구조 및 운영 모드(ECB, CBC 등).</p>
+          <div class="card__meta">
+            <span class="badge badge--crypto">Crypto</span>
+            <div class="difficulty">★★★☆☆</div>
+          </div>
+        </a>
+
+        <!-- CSE467 CS 노트 5 -->
+        <a href="/studies/cs/05-number-theory" class="card section-card" data-category="cs" data-tags="rsa">
+          <h3 class="card__title">05. 정수론 (Number Theory)</h3>
+          <p class="card__desc">공개키 암호를 위한 필수 수학: 모듈러 연산, 유클리드 호제법, 오일러의 정리.</p>
+          <div class="card__meta">
+            <span class="badge badge--cs" style="background-color: #6366f1; color: white;">CS Math</span>
             <div class="difficulty">★★★★☆</div>
           </div>
         </a>
@@ -77,6 +127,116 @@
           <p class="card__desc">CSP(Content Security Policy)를 이용한 안전한 웹 환경 구축.</p>
           <div class="card__meta">
             <span class="badge" style="background-color:var(--surface-3)">Web</span>
+            <div class="difficulty">★★★☆☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 1 -->
+        <a href="/studies/finance/investment-science-intro" class="card section-card" data-category="finance" data-tags="investment-science">
+          <h3 class="card__title">투자과학이란 무엇인가</h3>
+          <p class="card__desc">비교원칙·무차익원칙·위험회피·동역학, 그리고 가격결정/헤징/순수투자로 나뉘는 투자 문제 분류.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★☆☆☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 2 -->
+        <a href="/studies/finance/interest-present-value" class="card section-card" data-category="finance" data-tags="present-value">
+          <h3 class="card__title">이자와 현재가치: 단리, 복리, 연속복리</h3>
+          <p class="card__desc">복리의 기하급수적 성장, 연속복리의 극한, 할인계수를 이용한 현재가치 계산.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★☆☆☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 3 -->
+        <a href="/studies/finance/irr-npv-investment" class="card section-card" data-category="finance" data-tags="irr">
+          <h3 class="card__title">IRR과 NPV로 투자안 평가하기</h3>
+          <p class="card__desc">내부수익률과 순현재가치의 정의, 둘이 충돌하는 사례, 사이클 문제.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★★☆☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 4 -->
+        <a href="/studies/finance/bond-yield-duration" class="card section-card" data-category="finance" data-tags="bond">
+          <h3 class="card__title">채권, 수익률과 듀레이션</h3>
+          <p class="card__desc">채권 가격결정, YTM, Macaulay/수정 듀레이션, 면역화(X Corporation 예제), 컨벡시티.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★★★☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 5 -->
+        <a href="/studies/finance/term-structure-yield-curve" class="card section-card" data-category="finance" data-tags="bond">
+          <h3 class="card__title">수익률 곡선과 기간구조 이론</h3>
+          <p class="card__desc">현물이자율과 부트스트래핑, Fisher-Weil/준수정 듀레이션, 기간구조 기반 면역화.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★★★☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 6 -->
+        <a href="/studies/finance/expected-utility-mean-variance" class="card section-card" data-category="finance" data-tags="markowitz">
+          <h3 class="card__title">기대효용과 평균-분산의 기초</h3>
+          <p class="card__desc">폰 노이만-모겐슈테른 기대효용이론, 포트폴리오 평균·분산, 분산투자 효과.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★★☆☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 7 -->
+        <a href="/studies/finance/markowitz-two-fund-theorem" class="card section-card" data-category="finance" data-tags="markowitz">
+          <h3 class="card__title">Markowitz 모델과 Two-Fund 정리</h3>
+          <p class="card__desc">평균-분산 포트폴리오의 QP 정식화, Two-Fund/One-Fund 정리, 샤프비율 최대화(QCQP).</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★★★☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 8 -->
+        <a href="/studies/finance/capm-security-market-line" class="card section-card" data-category="finance" data-tags="capm">
+          <h3 class="card__title">CAPM과 증권시장선</h3>
+          <p class="card__desc">시장균형과 CAPM 증명, 증권시장선, 체계적/비체계적 위험, Roll의 비판.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★★★☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 9 -->
+        <a href="/studies/finance/decision-focused-learning" class="card section-card" data-category="finance" data-tags="llm">
+          <h3 class="card__title">Decision-Focused Learning: 예측과 최적화를 함께</h3>
+          <p class="card__desc">predict-then-optimize의 한계, KKT 기반 미분, 포트폴리오 최적화의 후회(regret)와 샤프비율 그래디언트.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★★★★</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 10 -->
+        <a href="/studies/finance/llm-for-finance" class="card section-card" data-category="finance" data-tags="llm">
+          <h3 class="card__title">LLM을 활용한 금융 연구 동향</h3>
+          <p class="card__desc">애널리스트 리포트 분석, 예측시장, 모델의 투자 편향, 시계열 분석, 데이터셋/벤치마크 연구.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
+            <div class="difficulty">★★★☆☆</div>
+          </div>
+        </a>
+
+        <!-- IE412 Finance 노트 11 -->
+        <a href="/studies/finance/fraud-detection-retail-investors" class="card section-card" data-category="finance" data-tags="llm">
+          <h3 class="card__title">이상거래탐지와 개인투자자 추천시스템</h3>
+          <p class="card__desc">이상거래탐지의 과제, 개인투자자 이질성, 분산투자·소비목표·개인선호를 통합하는 투자 모델링.</p>
+          <div class="card__meta">
+            <span class="badge badge--finance">Finance</span>
             <div class="difficulty">★★★☆☆</div>
           </div>
         </a>

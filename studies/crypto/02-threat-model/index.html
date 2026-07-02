@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="컴퓨터 보안 - 위협 모델링 및 시스템 계획">
+  <title>02. 위협 모델링 — Antigravity</title>
+  
+  <script>
+    (function() {
+      const t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/course.css">
+  <link rel="stylesheet" href="/assets/css/animation.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <div id="progress-bar" style="position:fixed; top:0; left:0; height:3px; background:var(--color-accent-primary); z-index:9999; width:0%;"></div>
+
+  <main class="course-layout" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    
+    <aside class="course-sidebar-left">
+      <div class="course-sidebar-title">Computer Security</div>
+      <ul class="course-nav-list">
+        <li class="course-nav-item">
+          <a href="/studies/crypto/01-intro" class="course-nav-link">
+            <span>01. 보안 개론</span>
+            <span class="course-nav-status">✅</span>
+          </a>
+        </li>
+        <li class="course-nav-item active">
+          <a href="/studies/crypto/02-threat-model" class="course-nav-link">
+            <span>02. 위협 모델링</span>
+            <span class="course-nav-status">✅</span>
+          </a>
+        </li>
+        <li class="course-nav-item">
+          <a href="/studies/crypto/03-basic-crypto" class="course-nav-link">
+            <span>03. 암호학 기초</span>
+          </a>
+        </li>
+        <li class="course-nav-item">
+          <a href="/studies/crypto/04-symmetric" class="course-nav-link">
+            <span>04. 대칭키 암호</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <article class="course-main">
+      <header class="course-header">
+         <div class="course-meta">
+           <span class="badge badge--crypto" style="background-color: var(--color-accent-primary); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">Crypto</span>
+           <span class="difficulty" style="color: var(--color-warning);">★★☆☆☆</span>
+           <span>소요시간: 15분</span>
+           <span>작성일: 2026.07.02</span>
+         </div>
+         <h1 class="course-title">02. 위협 모델링 (Threat Model)</h1>
+      </header>
+      
+      <div class="course-content">
+        <h2 id="systematic-plans">1. Systematic Plans (체계적 계획)</h2>
+        <p>보안은 임시방편(Ad-hoc)으로 해결할 수 없습니다. 시스템을 설계할 때 가장 중요한 것은 보안을 시스템의 <strong>체계적 계획(Systematic Plans)</strong> 단계부터 포함시키는 것입니다. 보안 정책(Policy), 위협 모델(Threat Model), 그리고 방어 메커니즘(Mechanism)이 삼위일체를 이루어야 합니다.</p>
+        
+        <h2 id="other-properties">2. Other Properties (추가적인 보안 속성)</h2>
+        <p>이전 강의에서 다룬 CIA(기밀성, 무결성, 가용성) 외에도 실제 시스템에서는 다음과 같은 추가적인 보안 속성들이 요구됩니다.</p>
+        <ul>
+          <li><strong>Authentication (인증)</strong>: 통신하는 상대방이 정말 자신이 주장하는 그 사람이 맞는지 확인하는 과정입니다.</li>
+          <li><strong>Accountability (책임성/추적성)</strong>: 시스템 내에서 일어난 행동을 특정 사용자에게 귀속시킬 수 있는 능력입니다. 침해 사고 발생 시 누가 그 행동을 했는지 로그를 통해 증명해야 합니다.</li>
+          <li><strong>Non-repudiation (부인 방지)</strong>: 어떤 행위를 한 사람이 나중에 자신이 그 행위를 하지 않았다고 부인(Deny)할 수 없게 만드는 성질입니다. 디지털 서명이 대표적인 예입니다.</li>
+        </ul>
+
+        <h2 id="friends-and-enemies">3. Friends and Enemies: Alice, Bob, Trudy/Eve</h2>
+        <p>암호학과 보안 프로토콜을 설명할 때 항상 등장하는 가상의 인물들입니다.</p>
+        <ul>
+          <li><strong>Alice & Bob (Friends)</strong>: 서로 안전하게 메시지를 주고받고자 하는 합법적인 통신 주체입니다.</li>
+          <li><strong>Eve (Eavesdropper)</strong>: 소극적인 공격자로, 통신 선로를 엿듣기만(Sniffing) 합니다. (Passive Attacker)</li>
+          <li><strong>Trudy (Intruder)</strong>: 적극적인 공격자로, 통신을 가로채어 메시지를 조작하거나 위조합니다. (Active Attacker)</li>
+        </ul>
+
+        <h2 id="security-attacks">4. Security Attacks: Passive vs Active</h2>
+        <p>Eve와 Trudy의 행동 패턴에 따라 보안 공격은 두 가지로 나뉩니다.</p>
+
+        <h3>Passive Attacks (수동적 공격)</h3>
+        <p>Passive Attack은 시스템 리소스에 영향을 주지 않고 단지 정보를 획득하는 데 목적이 있습니다. 메시지 도청이나 트래픽 분석이 이에 해당합니다. 탐지가 매우 어렵기 때문에 <strong>예방(Prevention)</strong>(예: 데이터 암호화)이 최선의 방어입니다.</p>
+
+        <h3>Active Attacks (능동적 공격)</h3>
+        <p>Active Attack은 데이터 스트림을 변조하거나 허위 스트림을 생성합니다. 메시지 변조, 재생 공격(Replay), 서비스 거부(DoS) 등이 포함됩니다. 완벽히 예방하기 어렵기 때문에, 공격을 빠르게 <strong>탐지(Detection)</strong>하고 복구하는 방향으로 방어합니다.</p>
+
+        <!-- 애니메이션: Passive vs Active Attack -->
+        <div class="algo-player" style="margin-top: 2rem;">
+          <div class="algo-player-header">
+            <div class="algo-player-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              애니메이션: Passive vs Active Attack
+            </div>
+            <div class="algo-player-controls">
+              <button class="algo-btn primary" id="btn-passive">Passive (Eve)</button>
+              <button class="algo-btn primary" id="btn-active" style="background-color: var(--color-danger);">Active (Trudy)</button>
+              <button class="algo-btn" id="btn-reset">초기화</button>
+            </div>
+          </div>
+          
+          <div class="algo-canvas" style="position: relative; height: 120px;">
+            <!-- Entities -->
+            <div id="actor-alice" class="cipher-tile" style="position: absolute; left: 10%; top: 30px; width: 60px;">Alice</div>
+            <div id="actor-bob" class="cipher-tile" style="position: absolute; left: 80%; top: 30px; width: 60px;">Bob</div>
+            <div id="actor-attacker" class="cipher-tile" style="position: absolute; left: 45%; top: 80px; width: 80px; background-color: #333; color: white;">Eve/Trudy</div>
+            
+            <!-- Message -->
+            <div id="msg-packet" style="position: absolute; left: 15%; top: 35px; padding: 4px 8px; background: var(--color-success); color: white; border-radius: 4px; font-size: 12px; opacity: 0;">"Hello"</div>
+          </div>
+          <div class="algo-status" id="anim-status">버튼을 눌러 수동적 공격과 능동적 공격의 차이를 확인하세요.</div>
+        </div>
+
+        <h2 id="problems">5. Problems (보안 실패의 원인들)</h2>
+        <p>보안 사고는 다음과 같은 세 가지 설계 단계의 문제(Problems)에서 발생합니다.</p>
+
+        <h3>Problems with the Policy (정책의 문제)</h3>
+        <p>보안 정책 자체가 현실과 동떨어져 있거나 잘못 설정된 경우입니다. 예를 들어, 너무 복잡한 비밀번호 정책을 강제하면 사용자들이 포스트잇에 비밀번호를 적어 모니터에 붙여놓게 되어 오히려 보안이 취약해집니다.</p>
+
+        <h3>Problems with Threat Model (위협 모델의 문제)</h3>
+        <p>가정한 위협 모델이 실제 공격자의 능력을 과소평가하거나 엉뚱한 방향을 잡은 경우입니다. 공격자가 네트워크 외부에서만 올 것이라 가정(Threat Model)하고 방화벽만 철저히 세웠는데, 실제로는 내부 직원이 USB를 통해 악성코드를 유포한다면 해당 위협 모델은 실패한 것입니다.</p>
+
+        <h3>Problems with the Mechanism (메커니즘의 문제)</h3>
+        <p>정책과 위협 모델은 완벽했으나, 이를 구현하는 코드나 메커니즘에 버그가 있는 경우입니다. 흔히 발생하는 버퍼 오버플로우(Buffer Overflow)나 암호화 라이브러리의 취약점(예: Heartbleed)이 여기에 해당합니다.</p>
+        
+        <p>결론적으로, 이 세 가지 단계(Policy, Threat Model, Mechanism)를 체계적으로 점검하고 일치시키는 <strong>Systematic Plans</strong>만이 안전한 시스템을 보장할 수 있습니다.</p>
+      </div>
+      
+      <div class="course-pagination">
+         <a href="/studies/crypto/01-intro/index.html" class="course-page-btn prev">
+           <span class="course-page-label">Previous Lecture</span>
+           <span class="course-page-title">01. 보안 개론</span>
+         </a>
+         <a href="/studies/crypto/03-basic-crypto/index.html" class="course-page-btn next">
+           <span class="course-page-label">Next Lecture</span>
+           <span class="course-page-title">03. 암호학 기초</span>
+         </a>
+      </div>
+    </article>
+
+    <aside class="course-sidebar-right">
+      <div class="course-toc-title">ON THIS PAGE</div>
+      <nav class="course-toc-list">
+        <a href="#systematic-plans" class="course-toc-link">1. Systematic Plans</a>
+        <a href="#other-properties" class="course-toc-link">2. Other Properties</a>
+        <a href="#friends-and-enemies" class="course-toc-link">3. Alice, Bob, Trudy</a>
+        <a href="#security-attacks" class="course-toc-link">4. Passive vs Active</a>
+        <a href="#problems" class="course-toc-link">5. Problems</a>
+      </nav>
+    </aside>
+  </main>
+  
+  <div id="footer-placeholder"></div>
+  
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+  </script>
+
+  <!-- Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const checkAnime = setInterval(() => {
+        if(window.anime) {
+          clearInterval(checkAnime);
+          initAttackAnimation();
+        }
+      }, 100);
+
+      function initAttackAnimation() {
+        const btnPassive = document.getElementById('btn-passive');
+        const btnActive = document.getElementById('btn-active');
+        const btnReset = document.getElementById('btn-reset');
+        const statusText = document.getElementById('anim-status');
+        
+        const msg = document.getElementById('msg-packet');
+        const attacker = document.getElementById('actor-attacker');
+
+        function disableBtns(disable) {
+            btnPassive.disabled = disable;
+            btnActive.disabled = disable;
+        }
+
+        btnPassive.addEventListener('click', () => {
+          disableBtns(true);
+          anime.set(msg, { left: '15%', top: '35px', opacity: 1, innerText: '"Hello"', backgroundColor: 'var(--color-success)' });
+          attacker.innerText = "Eve (Sniffing)";
+          statusText.innerHTML = "<strong>Passive Attack:</strong> Eve가 중간에 메시지를 몰래 복사해서 읽지만, 원본은 그대로 Bob에게 전달됩니다.";
+          
+          anime.timeline({
+            easing: 'linear',
+            complete: () => disableBtns(false)
+          })
+          .add({ targets: msg, left: '45%', duration: 1000 })
+          .add({ targets: msg, left: '80%', duration: 1000 })
+          .add({ 
+            targets: attacker, 
+            translateY: -30, 
+            duration: 300, 
+            direction: 'alternate', 
+            loop: 2 
+          }, '-=1000');
+        });
+
+        btnActive.addEventListener('click', () => {
+          disableBtns(true);
+          anime.set(msg, { left: '15%', top: '35px', opacity: 1, innerText: '"Hello"', backgroundColor: 'var(--color-success)' });
+          attacker.innerText = "Trudy (MITM)";
+          statusText.innerHTML = "<strong>Active Attack:</strong> Trudy가 중간에 메시지를 가로채어 내용을 악의적으로 조작한 뒤 Bob에게 보냅니다.";
+          
+          anime.timeline({
+            easing: 'linear',
+            complete: () => disableBtns(false)
+          })
+          .add({ targets: msg, left: '45%', top: '80px', duration: 1000 })
+          .add({
+            targets: msg,
+            update: function(anim) {
+              if(anim.progress > 50) {
+                msg.innerText = '"Hacked!"';
+                msg.style.backgroundColor = 'var(--color-danger)';
+              }
+            },
+            duration: 500
+          })
+          .add({ targets: msg, left: '80%', top: '35px', duration: 1000 });
+        });
+
+        btnReset.addEventListener('click', () => {
+          anime.remove(msg);
+          anime.remove(attacker);
+          anime.set(msg, { opacity: 0, left: '15%', top: '35px' });
+          anime.set(attacker, { translateY: 0, innerText: 'Eve/Trudy' });
+          statusText.innerHTML = "버튼을 눌러 수동적 공격과 능동적 공격의 차이를 확인하세요.";
+          disableBtns(false);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="predict-then-optimize의 한계, Decision-Focused Learning의 정식화와 KKT 기반 미분, 포트폴리오 최적화에서의 후회(regret)와 샤프비율 그래디언트를 정리합니다.">
+  <title>Decision-Focused Learning - Antigravity</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="stylesheet" href="/assets/css/finance-notes.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+
+      <header class="note-header">
+        <div class="note-meta">
+          <span class="badge badge--finance" id="note-category">Finance</span>
+          <time datetime="2026-07-02" id="note-date">2026. 07. 02</time>
+          <div class="difficulty" id="note-difficulty">★★★★★</div>
+        </div>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">Decision-Focused Learning: 예측과 최적화를 함께</h1>
+        <div class="prereq-box" id="note-prereq">
+          <span class="prereq-label">선수지식</span>
+          <a href="/studies/finance/markowitz-two-fund-theorem" class="prereq-tag">7편 · Markowitz 모델과 Two-Fund 정리</a>
+        </div>
+      </header>
+
+      <div class="tldr-box">
+        <div class="tldr-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="20" y2="9"></line>
+            <line x1="4" y1="15" x2="20" y2="15"></line>
+            <line x1="10" y1="3" x2="8" y2="21"></line>
+            <line x1="16" y1="3" x2="14" y2="21"></line>
+          </svg>
+          <span data-i18n="studies.note.tldr">TL;DR</span>
+        </div>
+        <p id="note-tldr">예측 정확도(MSE)를 최적화하는 것과 좋은 의사결정을 내리는 것은 다르다. Decision-Focused Learning은 예측이 만들어낸 결정의 실제 비용을 직접 손실로 학습하며, 포트폴리오 최적화에서는 샤프비율 그래디언트가 공분산으로 재가중된 MSE 형태를 띤다.</p>
+      </div>
+
+      <details class="glossary-box" id="note-glossary" open>
+        <summary>핵심 용어 미니 사전</summary>
+        <dl>
+          <dt>Predict-then-Optimize</dt>
+          <dd>예측과 최적화를 분리해서 순차적으로 수행하는 기존 파이프라인. 예측 정확도만 최적화한다.</dd>
+          <dt>후회 (Regret)</dt>
+          <dd>예측값으로 내린 결정과, 참값을 알았을 때의 최선의 결정 사이에 실제로 벌어지는 성과 차이.</dd>
+          <dt>KKT 조건</dt>
+          <dd>제약이 있는 최적화 문제의 최적해가 만족해야 하는 1차 필요조건. 최적해를 입력에 대해 미분할 때 사용된다.</dd>
+        </dl>
+      </details>
+
+      <div class="markdown-body" id="content-placeholder">
+        <p>로딩 중...</p>
+      </div>
+
+      <footer class="note-footer">
+        <div class="tags" id="note-tags">
+          <span class="tag">#decision-focused-learning</span>
+          <span class="tag">#kkt</span>
+        </div>
+
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/decision-focused-learning/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span data-i18n="studies.edit_github">Edit on GitHub</span>
+        </a>
+      </footer>
+
+      <nav class="note-pagination">
+        <a href="/studies/finance/capm-security-market-line">
+          <span class="note-pagination__label">이전 (8/11)</span>
+          ← CAPM과 증권시장선
+        </a>
+        <a href="/studies/finance/llm-for-finance" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (10/11)</span>
+          LLM을 활용한 금융 연구 동향 →
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initProgressBar === 'function') initProgressBar();
+      if (typeof loadMarkdown === 'function') {
+        loadMarkdown('/studies/finance/decision-focused-learning/index.md', 'content-placeholder').then(() => {
+          if (window.renderMathInElement) {
+            renderMathInElement(document.getElementById('content-placeholder'), {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
