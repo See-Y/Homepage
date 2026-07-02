@@ -24,22 +24,35 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 2. DOM 요소 생성 (.step)
   const scrollyTextContainer = document.getElementById('scrolly-text');
-  
+
   travelData.forEach((item, index) => {
     const stepEl = document.createElement('div');
     stepEl.classList.add('step');
     stepEl.setAttribute('data-index', index);
-    
+    stepEl.setAttribute('data-effect', item.effect || '');
+
     // Receipt 이벤트가 있는 경우 버튼 추가
     let extraHTML = '';
     if (item.effect === 'receipt') {
       extraHTML = `<button class="btn btn--primary" style="margin-top: 16px;" onclick="window.showReceipt(${index})">영수증 보기</button>`;
     }
 
+    // 대표 사진 (스텝당 1~2장)
+    let photosHTML = '';
+    if (item.images && item.images.length) {
+      const figures = item.images.map(img => `
+        <div class="step-photo__item">
+          <img src="${img.src}" alt="${img.caption || item.title}" loading="lazy">
+        </div>
+      `).join('');
+      photosHTML = `<div class="step-photo">${figures}</div>`;
+    }
+
     stepEl.innerHTML = `
       <div class="text-sm text-muted" style="margin-bottom: 8px;">Day ${item.day} • ${item.location}</div>
       <h2>${item.title}</h2>
       <p>${item.text}</p>
+      ${photosHTML}
       ${extraHTML}
     `;
     scrollyTextContainer.appendChild(stepEl);
@@ -71,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 모든 좌표에 마커 찍기 및 경로선 데이터 준비
   const latLngs = [];
   const markers = [];
-  
+
   travelData.forEach(item => {
     if (item.coordinates && item.coordinates.length === 2) {
       latLngs.push(item.coordinates);
@@ -101,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 4. 스크롤텔링 로직 (Intersection Observer)
   let currentActiveIndex = -1;
   const steps = document.querySelectorAll('.step');
-  
+
   const observerOptions = {
     root: null,
     rootMargin: '-40% 0px -40% 0px', // 화면 중앙 부근에서 트리거
@@ -110,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const rainCanvas = document.getElementById('rain-canvas');
   const scrollyMapWrapper = document.querySelector('.scrolly-map-wrapper');
-  
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -121,9 +134,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           // 현재 active 추가
           entry.target.classList.add('is-active');
           currentActiveIndex = index;
-          
+
           const item = travelData[index];
-          
+
           // Map FlyTo 처리
           if (item.coordinates && item.coordinates.length === 2) {
             map.flyTo(item.coordinates, item.zoom || 14, {
@@ -153,11 +166,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             // 노을 효과 (단수이)
             scrollyMapWrapper.style.boxShadow = 'inset 0 0 150px rgba(255, 100, 50, 0.4)';
             scrollyMapWrapper.style.filter = 'sepia(0.3) saturate(150%) brightness(0.9)';
+          } else if (item.effect === 'finish') {
+            // 여행 마무리 - 따뜻한 노스탤지어 톤
+            scrollyMapWrapper.style.boxShadow = 'inset 0 0 120px rgba(255, 215, 130, 0.45)';
+            scrollyMapWrapper.style.filter = 'sepia(0.25) brightness(1.05)';
           } else {
             scrollyMapWrapper.style.boxShadow = 'none';
             scrollyMapWrapper.style.filter = 'none';
           }
-          
+          // parallax 효과 (우라이) - 사진에 Ken Burns 스타일 은은한 확대 애니메이션은 CSS[data-effect="parallax"]에서 처리
+
           // SVG 좌측 진행률 드로잉 업데이트
           updateJourneyLine(index, travelData.length);
         }
@@ -183,7 +201,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           <span>${i.price}</span>
         </div>
       `).join('');
-      
+
       document.getElementById('receipt-items').innerHTML = listHtml;
       document.getElementById('receipt-total').innerHTML = `
         <span>TOTAL</span>
@@ -218,7 +236,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const ctx = rainCanvas.getContext('2d');
     rainCanvas.width = rainCanvas.clientWidth;
     rainCanvas.height = rainCanvas.clientHeight;
-    
+
     const drops = [];
     for(let i=0; i<100; i++) {
       drops.push({
@@ -234,7 +252,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       ctx.strokeStyle = 'rgba(255,255,255,0.4)';
       ctx.lineWidth = 1;
       ctx.beginPath();
-      
+
       drops.forEach(drop => {
         ctx.moveTo(drop.x, drop.y);
         ctx.lineTo(drop.x + drop.len * 0.1, drop.y + drop.len);
