@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="켈리 기준(Kelly criterion), 로그효용에 의한 성장률 극대화, 변동성 펌핑과 최적 성장 포트폴리오 이론을 정리합니다.">
+  <title>최적 포트폴리오 성장이론 - Antigravity</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="stylesheet" href="/assets/css/finance-notes.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+
+      <header class="note-header">
+        <div class="note-meta">
+          <span class="badge badge--finance" id="note-category">Finance</span>
+          <time datetime="2026-07-16" id="note-date">2026. 07. 16</time>
+          <div class="difficulty" id="note-difficulty">★★★★☆</div>
+        </div>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">최적 포트폴리오 성장이론</h1>
+        <div class="prereq-box" id="note-prereq">
+          <span class="prereq-label">선수지식</span>
+          <a href="/studies/finance/interest-rate-derivatives" class="prereq-tag">16편 · 이자율 파생상품</a>
+          <a href="/studies/finance/expected-utility-mean-variance" class="prereq-tag">7편 · 기대효용과 평균-분산의 기초</a>
+        </div>
+      </header>
+
+      <div class="tldr-box">
+        <div class="tldr-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="20" y2="9"></line>
+            <line x1="4" y1="15" x2="20" y2="15"></line>
+            <line x1="10" y1="3" x2="8" y2="21"></line>
+            <line x1="16" y1="3" x2="14" y2="21"></line>
+          </svg>
+          <span data-i18n="studies.note.tldr">TL;DR</span>
+        </div>
+        <p id="note-tldr">반복적인 투자 상황에서는 로그효용 U(X) = ln X를 극대화하는 <strong>로그-최적 전략</strong>이 장기 자본 성장률을 극대화한다. '두 배 아니면 전부'인 베팅에서는 이것이 <strong>켈리 기준</strong> α* = 2p − 1로 요약되며, 여러 자산을 재조정(rebalancing)하며 섞으면 <strong>변동성 펌핑</strong>을 통해 개별 자산에는 없던 초과 성장이 만들어진다. 다만 켈리 비율을 초과하는 과도한 베팅은 장기 성장률을 음수로 만들어 파산 확률을 높인다.</p>
+      </div>
+
+      <details class="glossary-box" id="note-glossary" open>
+        <summary>핵심 용어 미니 사전</summary>
+        <dl>
+          <dt>켈리 기준 (Kelly Criterion)</dt>
+          <dd>이길 확률이 p인 더블-오어-낫싱 베팅에서, 장기 자본 성장률을 극대화하는 베팅 비율 α* = 2p − 1.</dd>
+          <dt>로그효용 (Log Utility)</dt>
+          <dd>효용함수 U(X) = ln X. 이를 극대화하는 전략은 반복 투자에서 기대 로그성장률(기하평균 성장률)을 극대화하는 것과 동치다.</dd>
+          <dt>로그-최적 전략 (Log-Optimal Strategy)</dt>
+          <dd>매 시행마다 기대 로그수익을 최대화하는 고정비율 전략. 다른 어떤 전략에 대해서도 장기적으로 경쟁적 우월성을 갖는다.</dd>
+          <dt>변동성 펌핑 (Volatility Pumping)</dt>
+          <dd>변동성이 큰 자산들을 정기적으로 재조정(rebalancing)하며 섞음으로써, 개별 자산의 성장률 합보다 더 큰 포트폴리오 성장률을 얻는 효과.</dd>
+        </dl>
+      </details>
+
+      <div class="markdown-body" id="content-placeholder">
+        <p>로딩 중...</p>
+      </div>
+
+      <footer class="note-footer">
+        <div class="tags" id="note-tags">
+          <span class="tag">#kelly-criterion</span>
+          <span class="tag">#growth-optimal</span>
+          <span class="tag">#log-utility</span>
+        </div>
+
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/optimal-portfolio-growth/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span data-i18n="studies.edit_github">Edit on GitHub</span>
+        </a>
+      </footer>
+
+      <nav class="note-pagination">
+        <a href="/studies/finance/interest-rate-derivatives">
+          <span class="note-pagination__label">이전 (16/21)</span>
+          ← 이자율 파생상품
+        </a>
+        <a href="/studies/finance/general-investment-evaluation" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (18/21)</span>
+          일반적 투자안 평가 →
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    function initFinanceChart() {
+      const ctxGrowth = document.getElementById('chart-kelly-growth');
+      const ctxWealth = document.getElementById('chart-wealth-path');
+      if (typeof Chart === 'undefined') return;
+
+      // (a) 베팅 비율(alpha)에 따른 기대 로그성장률 m(alpha) = p*ln(1+a) + (1-p)*ln(1-a)
+      if (ctxGrowth) {
+        function kellyGrowth(alpha, p) {
+          return p * Math.log(1 + alpha) + (1 - p) * Math.log(1 - alpha);
+        }
+        const alphas = [];
+        const gBlackjack = [];
+        const gFavorable = [];
+        for (let a = 0; a <= 0.97; a += 0.01) {
+          alphas.push(Math.round(a * 100) / 100);
+          gBlackjack.push(kellyGrowth(a, 0.5075));
+          gFavorable.push(kellyGrowth(a, 0.60));
+        }
+        new Chart(ctxGrowth, {
+          type: 'line',
+          data: {
+            labels: alphas,
+            datasets: [
+              { label: '카드카운팅 블랙잭 (p=0.5075)', data: gBlackjack, borderColor: '#2563EB', backgroundColor: 'transparent', pointRadius: 0, tension: 0.15 },
+              { label: '가상의 유리한 게임 (p=0.60)', data: gFavorable, borderColor: '#60A5FA', backgroundColor: 'transparent', pointRadius: 0, tension: 0.15, borderDash: [5, 5] }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: { display: true, text: '베팅 비율 α에 따른 기대 로그성장률 m(α)' },
+              legend: { position: 'bottom' }
+            },
+            scales: {
+              x: { title: { display: true, text: '베팅 비율 α (자본 대비)' } },
+              y: { title: { display: true, text: '기대 로그성장률 m(α)' } }
+            }
+          }
+        });
+      }
+
+      // (b) 시간에 따른 부(wealth) 경로 시뮬레이션 (로그축), 동일한 승패 순서에 베팅비율만 변경
+      if (ctxWealth) {
+        function mulberry32(seed) {
+          return function () {
+            seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+            let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+            t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+          };
+        }
+        const rand = mulberry32(42);
+        const p = 0.55;
+        const n = 300;
+        const strategies = [
+          { label: '켈리 최적 (α=0.10)', alpha: 0.10, color: '#2563EB' },
+          { label: '하프 켈리 (α=0.05)', alpha: 0.05, color: '#60A5FA' },
+          { label: '과잉 베팅 (α=0.50)', alpha: 0.50, color: '#D97706' },
+          { label: '전액 베팅 (α=1.00)', alpha: 1.00, color: '#DC2626' }
+        ];
+        const labels = [];
+        for (let i = 0; i <= n; i++) labels.push(i);
+
+        const outcomes = [];
+        for (let i = 0; i < n; i++) outcomes.push(rand() < p);
+
+        strategies.forEach(s => {
+          let wealth = 100;
+          const path = [wealth];
+          let ruined = false;
+          for (let i = 0; i < n; i++) {
+            if (ruined) { path.push(null); continue; }
+            wealth = outcomes[i] ? wealth * (1 + s.alpha) : wealth * (1 - s.alpha);
+            if (wealth < 1e-6) { ruined = true; path.push(null); continue; }
+            path.push(wealth);
+          }
+          s.data = path;
+        });
+
+        new Chart(ctxWealth, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: strategies.map(s => ({
+              label: s.label, data: s.data, borderColor: s.color, backgroundColor: 'transparent',
+              pointRadius: 0, borderWidth: 1.5, spanGaps: false
+            }))
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: { display: true, text: '베팅 비율별 부(wealth) 경로 시뮬레이션 (초기자본 100, p=0.55, 300회)' },
+              legend: { position: 'bottom' }
+            },
+            scales: {
+              x: { title: { display: true, text: '베팅 횟수' } },
+              y: { type: 'logarithmic', title: { display: true, text: '자본 (로그축)' } }
+            }
+          }
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initProgressBar === 'function') initProgressBar();
+      if (typeof loadMarkdown === 'function') {
+        loadMarkdown('/studies/finance/optimal-portfolio-growth/index.md', 'content-placeholder').then(() => {
+          if (window.renderMathInElement) {
+            renderMathInElement(document.getElementById('content-placeholder'), {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+              ],
+              throwOnError: false
+            });
+          }
+          initFinanceChart();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

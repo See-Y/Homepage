@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="콜/풋옵션의 정의와 페이오프, 풋-콜 패리티, 옵션 가격의 상하한, 이항모형을 이용한 옵션 가격결정(단일기간·다기간)을 정리합니다.">
+  <title>옵션의 기초이론 - Antigravity</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="stylesheet" href="/assets/css/finance-notes.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+
+      <header class="note-header">
+        <div class="note-meta">
+          <span class="badge badge--finance" id="note-category">Finance</span>
+          <time datetime="2026-07-16" id="note-date">2026. 07. 16</time>
+          <div class="difficulty" id="note-difficulty">★★★★☆</div>
+        </div>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">옵션의 기초이론</h1>
+        <div class="prereq-box" id="note-prereq">
+          <span class="prereq-label">선수지식</span>
+          <a href="/studies/finance/asset-dynamics-binomial-lattice" class="prereq-tag">13편 · 자산가격의 동학과 이항격자모형</a>
+        </div>
+      </header>
+
+      <div class="tldr-box">
+        <div class="tldr-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="20" y2="9"></line>
+            <line x1="4" y1="15" x2="20" y2="15"></line>
+            <line x1="10" y1="3" x2="8" y2="21"></line>
+            <line x1="16" y1="3" x2="14" y2="21"></line>
+          </svg>
+          <span data-i18n="studies.note.tldr">TL;DR</span>
+        </div>
+        <p id="note-tldr">콜/풋옵션의 만기 페이오프와 풋-콜 패리티(C-P+dK=S)로부터 차익거래 없는 가격의 상하한을 유도하고, 이항모형으로 옵션의 이론가를 계산하는 방법을 다룹니다. 무배당 콜은 조기행사가 무의미하지만 풋은 조기행사가 최적일 수 있다는 점을 5개월 콜/풋 예제로 확인합니다.</p>
+      </div>
+
+      <details class="glossary-box" id="note-glossary" open>
+        <summary>핵심 용어 미니 사전</summary>
+        <dl>
+          <dt>콜옵션 (Call option)</dt>
+          <dd>정해진 행사가격에 기초자산을 살 수 있는 권리. 만기 가치는 max(0, S-K).</dd>
+          <dt>풋옵션 (Put option)</dt>
+          <dd>정해진 행사가격에 기초자산을 팔 수 있는 권리. 만기 가치는 max(0, K-S).</dd>
+          <dt>풋-콜 패리티 (Put-call parity)</dt>
+          <dd>동일한 행사가·만기를 가진 유럽식 콜과 풋 가격 사이의 관계식 C-P+dK=S. 콜·풋·무위험대출의 조합이 주식과 동일한 페이오프를 낸다는 사실에서 유도된다.</dd>
+          <dt>위험중립확률 (Risk-neutral probability, q)</dt>
+          <dd>이항모형에서 복제 포트폴리오를 구성해 옵션 가격을 구할 때 등장하는 확률 q=(R-d)/(u-d). 실제 상승확률 p와 무관하며, 이 확률로 할인된 기댓값을 취하면 옵션의 이론가가 된다.</dd>
+        </dl>
+      </details>
+
+      <div class="markdown-body" id="content-placeholder">
+        <p>로딩 중...</p>
+      </div>
+
+      <footer class="note-footer">
+        <div class="tags" id="note-tags">
+          <span class="tag">#option</span><span class="tag">#put-call-parity</span><span class="tag">#binomial-option-pricing</span>
+        </div>
+
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/options-basic-theory/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span data-i18n="studies.edit_github">Edit on GitHub</span>
+        </a>
+      </footer>
+
+      <nav class="note-pagination">
+        <a href="/studies/finance/asset-dynamics-binomial-lattice">
+          <span class="note-pagination__label">이전 (13/21)</span>
+          ← 자산가격의 동학과 이항격자모형
+        </a>
+        <a href="/studies/finance/black-scholes-options" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (15/21)</span>
+          블랙-숄즈 모형과 옵션 확장이론 →
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    function initOptionCharts() {
+      if (typeof Chart === 'undefined') return;
+
+      const S = [];
+      for (let s = 0; s <= 120; s += 5) S.push(s);
+      const K = 60;
+      const callPremium = 5.85;
+      const putPremium = 1.56;
+
+      // (a) 콜옵션 매수 페이오프
+      const callCanvas = document.getElementById('chart-call-payoff');
+      if (callCanvas) {
+        const payoff = S.map(s => Math.max(s - K, 0));
+        const profit = payoff.map(v => v - callPremium);
+        new Chart(callCanvas, {
+          type: 'line',
+          data: {
+            labels: S,
+            datasets: [
+              { label: '만기 페이오프', data: payoff, borderColor: '#2563EB', backgroundColor: 'transparent', pointRadius: 0, tension: 0 },
+              { label: '순손익 (프리미엄 차감)', data: profit, borderColor: '#DC2626', backgroundColor: 'transparent', borderDash: [5, 5], pointRadius: 0, tension: 0 }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: { display: true, text: '콜옵션 매수 (K=60, 프리미엄=5.85)' },
+              legend: { position: 'bottom' }
+            },
+            scales: {
+              x: { title: { display: true, text: '만기 시점 주가 S' } },
+              y: { title: { display: true, text: '금액 ($)' } }
+            }
+          }
+        });
+      }
+
+      // (b) 풋옵션 매수 페이오프
+      const putCanvas = document.getElementById('chart-put-payoff');
+      if (putCanvas) {
+        const payoff = S.map(s => Math.max(K - s, 0));
+        const profit = payoff.map(v => v - putPremium);
+        new Chart(putCanvas, {
+          type: 'line',
+          data: {
+            labels: S,
+            datasets: [
+              { label: '만기 페이오프', data: payoff, borderColor: '#2563EB', backgroundColor: 'transparent', pointRadius: 0, tension: 0 },
+              { label: '순손익 (프리미엄 차감)', data: profit, borderColor: '#DC2626', backgroundColor: 'transparent', borderDash: [5, 5], pointRadius: 0, tension: 0 }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: { display: true, text: '풋옵션 매수 (K=60, 프리미엄=1.56)' },
+              legend: { position: 'bottom' }
+            },
+            scales: {
+              x: { title: { display: true, text: '만기 시점 주가 S' } },
+              y: { title: { display: true, text: '금액 ($)' } }
+            }
+          }
+        });
+      }
+
+      // (c) 풋-콜 패리티: 콜 매수 + 풋 매도 페이오프 = S - K
+      const parityCanvas = document.getElementById('chart-put-call-parity');
+      if (parityCanvas) {
+        const callMinusPut = S.map(s => Math.max(s - K, 0) - Math.max(K - s, 0));
+        const line = S.map(s => s - K);
+        new Chart(parityCanvas, {
+          type: 'line',
+          data: {
+            labels: S,
+            datasets: [
+              { label: 'C - P (콜 매수 + 풋 매도)', data: callMinusPut, borderColor: '#2563EB', backgroundColor: 'transparent', pointRadius: 0, tension: 0, borderWidth: 4 },
+              { label: 'S - K', data: line, borderColor: '#60A5FA', backgroundColor: 'transparent', borderDash: [4, 4], pointRadius: 0, tension: 0, borderWidth: 2 }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: { display: true, text: '만기 시점 콜-풋 조합의 페이오프 = S - K' },
+              legend: { position: 'bottom' }
+            },
+            scales: {
+              x: { title: { display: true, text: '만기 시점 주가 S' } },
+              y: { title: { display: true, text: '금액 ($)' } }
+            }
+          }
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initProgressBar === 'function') initProgressBar();
+      if (typeof loadMarkdown === 'function') {
+        loadMarkdown('/studies/finance/options-basic-theory/index.md', 'content-placeholder').then(() => {
+          if (window.renderMathInElement) {
+            renderMathInElement(document.getElementById('content-placeholder'), {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+              ],
+              throwOnError: false
+            });
+          }
+          initOptionCharts();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

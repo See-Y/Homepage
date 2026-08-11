@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="이상거래탐지의 과제와, 개인투자자 이질성·분산투자·소비목표·개인선호를 통합하는 투자 모델링을 정리합니다.">
-  <title>이상거래탐지와 개인투자자 추천시스템 - Antigravity</title>
+  <meta name="description" content="선도가격 결정, 선물의 일일정산과 마진콜, 스왑의 가치평가, 완전헤지와 최소분산헤지를 정리합니다.">
+  <title>선도, 선물과 스왑 - Antigravity</title>
   <link rel="stylesheet" href="/assets/css/global.css">
   <link rel="stylesheet" href="/assets/css/layout.css">
   <link rel="stylesheet" href="/assets/css/components.css">
@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <div class="reading-progress-container">
@@ -32,12 +34,12 @@
         <div class="note-meta">
           <span class="badge badge--finance" id="note-category">Finance</span>
           <time datetime="2026-07-02" id="note-date">2026. 07. 02</time>
-          <div class="difficulty" id="note-difficulty">★★★☆☆</div>
+          <div class="difficulty" id="note-difficulty">★★★★☆</div>
         </div>
-        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">이상거래탐지와 개인투자자 추천시스템</h1>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">선도, 선물과 스왑</h1>
         <div class="prereq-box" id="note-prereq">
           <span class="prereq-label">선수지식</span>
-          <a href="/studies/finance/expected-utility-mean-variance" class="prereq-tag">7편 · 기대효용과 평균-분산의 기초</a>
+          <a href="/studies/finance/state-price-risk-neutral-pricing" class="prereq-tag">11편 · 상태가격과 위험중립가격결정</a>
         </div>
       </header>
 
@@ -51,18 +53,20 @@
           </svg>
           <span data-i18n="studies.note.tldr">TL;DR</span>
         </div>
-        <p id="note-tldr">이상거래탐지는 진화하는 사기 패턴과 데이터 불균형 속에서 균형을 찾는 문제다. 개인투자자는 균질한 집단이 아니라 서로 다른 유형과 성과를 가지며, 분산투자·소비목표·개인선호라는 세 축을 함께 고려하는 모델링이 필요하다.</p>
+        <p id="note-tldr">선도가격은 차익거래 논리로 F=S/d(0,T)(저장비용 있으면 추가)로 결정되고, 선물은 매일 일일정산되어 증거금 계좌로 손익이 정산된다. 헤징은 대상과 정확히 일치하는 완전헤지가 이상적이지만, 불가능할 때는 공분산 기반의 최소분산헤지를 쓴다.</p>
       </div>
 
       <details class="glossary-box" id="note-glossary" open>
         <summary>핵심 용어 미니 사전</summary>
         <dl>
-          <dt>딥클러스터링 (Deep Clustering)</dt>
-          <dd>신경망 기반 표현학습으로 유사한 행동 패턴을 가진 투자자를 자동으로 군집화하는 기법.</dd>
-          <dt>목표기반투자 (Goal-Based Investing)</dt>
-          <dd>우선순위가 다른 여러 소비 목표(은퇴, 교육, 의료 등)의 동시 달성 확률을 극대화하는 투자 기법.</dd>
-          <dt>협업 필터링 (Collaborative Filtering)</dt>
-          <dd>비슷한 사용자나 아이템의 정보를 이용해 개인의 선호를 추천하는 기법. 사용자 기반과 아이템 기반이 있다.</dd>
+          <dt>선도가격 (Forward Price)</dt>
+          <dd>선도계약 체결 시 초기 지급액이 0이 되도록 정해지는 미래 인도가격.</dd>
+          <dt>일일정산 (Mark to Market)</dt>
+          <dd>선물계약의 인도가격을 매일 그날의 선도가격으로 갱신해 증거금 계좌로 손익을 정산하는 절차.</dd>
+          <dt>마진콜 (Margin Call)</dt>
+          <dd>증거금 계좌 잔고가 유지증거금 아래로 떨어질 때 추가 입금을 요구받는 것.</dd>
+          <dt>최소분산헤지 (Minimum-Variance Hedge)</dt>
+          <dd>완전헤지가 불가능할 때, 헤지 대상과 선물가격의 공분산을 이용해 위험을 최소화하는 포지션 크기를 구하는 기법.</dd>
         </dl>
       </details>
 
@@ -72,11 +76,13 @@
 
       <footer class="note-footer">
         <div class="tags" id="note-tags">
-          <span class="tag">#fraud-detection</span>
-          <span class="tag">#retail-investors</span>
+          <span class="tag">#forward</span>
+          <span class="tag">#futures</span>
+          <span class="tag">#swap</span>
+          <span class="tag">#hedging</span>
         </div>
 
-        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/fraud-detection-retail-investors/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/forwards-futures-swaps/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -86,11 +92,14 @@
       </footer>
 
       <nav class="note-pagination">
-        <a href="/studies/finance/llm-for-finance">
-          <span class="note-pagination__label">이전 (20/21)</span>
-          ← LLM을 활용한 금융 연구 동향
+        <a href="/studies/finance/state-price-risk-neutral-pricing">
+          <span class="note-pagination__label">이전 (11/21)</span>
+          ← 상태가격과 위험중립가격결정
         </a>
-        <a href="/studies"><span class="note-pagination__label">시리즈 완료</span>Studies 목록으로 →</a>
+        <a href="/studies/finance/asset-dynamics-binomial-lattice" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (13/21)</span>
+          자산가격의 동학과 이항격자모형 →
+        </a>
       </nav>
     </article>
   </main>
@@ -106,10 +115,37 @@
   <script src="/assets/js/main.js"></script>
 
   <script>
+    function initFinanceChart() {
+      const canvas = document.getElementById('chart-margin-balance');
+      if (!canvas || typeof Chart === 'undefined') return;
+
+      // 옥수수 선물 마진콜 예제: 매수 시 800, 1일차 650, 2일차 550
+      new Chart(canvas, {
+        type: 'line',
+        data: {
+          labels: ['매수 시', '1일차', '2일차'],
+          datasets: [
+            { label: '증거금 잔고 ($)', data: [800, 650, 550], borderColor: '#2563EB', backgroundColor: 'transparent', tension: 0, pointRadius: 5 },
+            { label: '유지증거금 ($600)', data: [600, 600, 600], borderColor: '#DC2626', borderDash: [5, 5], backgroundColor: 'transparent', pointRadius: 0 }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: { display: true, text: '옥수수 선물 롱 포지션의 일일정산 증거금 잔고' },
+            legend: { position: 'bottom' }
+          },
+          scales: {
+            y: { title: { display: true, text: '증거금 잔고 ($)' } }
+          }
+        }
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       if (typeof initProgressBar === 'function') initProgressBar();
       if (typeof loadMarkdown === 'function') {
-        loadMarkdown('/studies/finance/fraud-detection-retail-investors/index.md', 'content-placeholder').then(() => {
+        loadMarkdown('/studies/finance/forwards-futures-swaps/index.md', 'content-placeholder').then(() => {
           if (window.renderMathInElement) {
             renderMathInElement(document.getElementById('content-placeholder'), {
               delimiters: [
@@ -120,6 +156,7 @@
               throwOnError: false
             });
           }
+          initFinanceChart();
         });
       }
     });

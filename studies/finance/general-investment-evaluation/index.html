@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="내부수익률(IRR)과 순현재가치(NPV)의 정의, 둘이 충돌하는 사례, 사이클 문제까지 정리합니다.">
-  <title>IRR과 NPV로 투자안 평가하기 - Antigravity</title>
+  <meta name="description" content="위험중립가격결정과 확실성등가법을 이용한 일반적 현금흐름 평가, 위험조정할인율과의 비교, 실물옵션 자본예산 의사결정을 정리합니다.">
+  <title>일반적 투자안 평가 - Antigravity</title>
   <link rel="stylesheet" href="/assets/css/global.css">
   <link rel="stylesheet" href="/assets/css/layout.css">
   <link rel="stylesheet" href="/assets/css/components.css">
@@ -33,13 +33,13 @@
       <header class="note-header">
         <div class="note-meta">
           <span class="badge badge--finance" id="note-category">Finance</span>
-          <time datetime="2026-07-02" id="note-date">2026. 07. 02</time>
+          <time datetime="2026-07-16" id="note-date">2026. 07. 16</time>
           <div class="difficulty" id="note-difficulty">★★★☆☆</div>
         </div>
-        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">IRR과 NPV로 투자안 평가하기</h1>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">일반적 투자안 평가</h1>
         <div class="prereq-box" id="note-prereq">
           <span class="prereq-label">선수지식</span>
-          <a href="/studies/finance/interest-present-value" class="prereq-tag">2편 · 이자와 현재가치</a>
+          <a href="/studies/finance/optimal-portfolio-growth" class="prereq-tag">17편 · 최적 포트폴리오 성장이론</a>
         </div>
       </header>
 
@@ -53,18 +53,22 @@
           </svg>
           <span data-i18n="studies.note.tldr">TL;DR</span>
         </div>
-        <p id="note-tldr">IRR은 스트림의 현재가치를 0으로 만드는 이자율, NPV는 시장 이자율로 할인한 순현재가치다. 두 기준은 종종 다른 결론을 주는데, 반복 재투자가 가능하면 IRR을, 일회성 투자라면 NPV를 우선하는 것이 합리적이다.</p>
+        <p id="note-tldr">다기간 상태그래프 위에서 위험중립가격결정을 일반화하면, 시장 리스크는 위험중립확률로 사적 리스크는 실제 확률(또는 확실성등가)로 각각 처리해 하나의 현금흐름 평가식으로 합칠 수 있다. 영점가격결정과 매입가격·확실성등가법은 전통적인 위험조정할인율의 엄밀한 대안이며, 나무 벌목·유전 완결처럼 실행 시점을 선택할 수 있는 실물옵션적 자본예산 의사결정에도 자연스럽게 확장된다.</p>
       </div>
 
       <details class="glossary-box" id="note-glossary" open>
         <summary>핵심 용어 미니 사전</summary>
         <dl>
-          <dt>IRR (내부수익률)</dt>
-          <dd>현금흐름 스트림의 현재가치를 정확히 0으로 만드는 이자율. 시장 이자율과 무관하게 스트림 자체로만 결정된다.</dd>
-          <dt>NPV (순현재가치)</dt>
-          <dd>편익의 현재가치에서 비용의 현재가치를 뺀 값. 양수면 투자할 가치가 있다는 뜻이다.</dd>
-          <dt>사이클 문제</dt>
-          <dd>수명 주기가 서로 다른 대안들을 공정하게 비교하기 위해 공통 시간 구간으로 환산하는 문제.</dd>
+          <dt>확실성등가 (Certainty Equivalent)</dt>
+          <dd>위험한 현금흐름과 동일한 효용을 주는 확정 금액. 지수형 효용함수를 쓰면 델타 성질을 만족해 다기간 계산에 편리하다.</dd>
+          <dt>위험조정할인율 (Risk-Adjusted Discount Rate)</dt>
+          <dd>위험 프리미엄을 반영해 기대현금흐름을 한 번에 할인하는 전통적 실무 할인율. 확실성등가법과 동일한 가격에 도달하지만, 위험을 분자(현금흐름) 대신 분모(할인율)에서 반영한다.</dd>
+          <dt>자본예산 (Capital Budgeting)</dt>
+          <dd>설비, 광산, 유전 등 장기 투자안의 채택 여부를 현금흐름 평가로 결정하는 의사결정 과정. 실행 시점을 선택할 수 있는 실물옵션이 얽혀 있는 경우가 많다.</dd>
+          <dt>영점가격결정 (Zero-Level Pricing)</dt>
+          <dd>사적 불확실성을 지닌 투자안에, 아주 작은 지분을 사거나 사지 않는 것 사이의 무차별 가격을 매기는 방법. 순수 사적 리스크라면 실제 확률에 대한 할인된 기대값과 같다.</dd>
+          <dt>매입가격 (Buying Price)</dt>
+          <dd>투자안 전체(지정된 수준)를 통째로 인수할 때 참여와 불참 사이 기대효용을 같게 만드는 가격. 위험을 분산할 수 없어 영점가격보다 낮게 형성된다.</dd>
         </dl>
       </details>
 
@@ -74,11 +78,10 @@
 
       <footer class="note-footer">
         <div class="tags" id="note-tags">
-          <span class="tag">#irr</span>
-          <span class="tag">#npv</span>
+          <span class="tag">#capital-budgeting</span><span class="tag">#certainty-equivalent</span><span class="tag">#investment-evaluation</span>
         </div>
 
-        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/irr-npv-investment/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/general-investment-evaluation/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -88,13 +91,13 @@
       </footer>
 
       <nav class="note-pagination">
-        <a href="/studies/finance/interest-present-value">
-          <span class="note-pagination__label">이전 (2/21)</span>
-          ← 이자와 현재가치
+        <a href="/studies/finance/optimal-portfolio-growth">
+          <span class="note-pagination__label">이전 (17/21)</span>
+          ← 최적 포트폴리오 성장이론
         </a>
-        <a href="/studies/finance/bond-yield-duration" class="note-pagination__next">
-          <span class="note-pagination__label">다음 (4/21)</span>
-          채권, 수익률과 듀레이션 →
+        <a href="/studies/finance/decision-focused-learning" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (19/21)</span>
+          Decision-Focused Learning: 예측과 최적화를 함께 →
         </a>
       </nav>
     </article>
@@ -112,27 +115,38 @@
 
   <script>
     function initFinanceChart() {
-      const canvas = document.getElementById('chart-npv-curve');
+      const canvas = document.getElementById('chart-npv-sensitivity');
       if (!canvas || typeof Chart === 'undefined') return;
-      const rates = [];
-      const npvs = [];
-      for (let r = 0; r <= 0.60; r += 0.01) {
-        rates.push(Math.round(r * 100));
-        npvs.push(-2 + 1/(1+r) + 1/Math.pow(1+r,2) + 1/Math.pow(1+r,3));
+
+      // 초기투자 100, 위험한 기대현금흐름 110(t=1), 확실성등가 105
+      const cost = 100;
+      const expectedCF = 110;
+      const ceCF = 105;
+
+      const labels = [];
+      const npvRiskAdjusted = [];
+      const npvCertaintyEquiv = [];
+      for (let rPct = 1; rPct <= 25; rPct += 1) {
+        const r = rPct / 100;
+        labels.push(rPct);
+        npvRiskAdjusted.push(-cost + expectedCF / (1 + r));
+        npvCertaintyEquiv.push(-cost + ceCF / (1 + r));
       }
+
       new Chart(canvas, {
         type: 'line',
         data: {
-          labels: rates,
+          labels: labels,
           datasets: [
-            { label: 'NPV(r) for stream (-2, 1, 1, 1)', data: npvs, borderColor: '#2563EB', backgroundColor: 'rgba(37,99,235,0.08)', fill: true, tension: 0.15, pointRadius: 0 }
+            { label: '위험조정할인율법 NPV (E[CF]=110 할인)', data: npvRiskAdjusted, borderColor: '#2563EB', backgroundColor: 'transparent', tension: 0.2, pointRadius: 0 },
+            { label: '확실성등가법 NPV (CE=105 할인)', data: npvCertaintyEquiv, borderColor: '#DC2626', backgroundColor: 'transparent', borderDash: [5,5], tension: 0.2, pointRadius: 0 }
           ]
         },
         options: {
           responsive: true,
           plugins: {
-            title: { display: true, text: 'NPV vs 할인율 — 곡선이 0을 지나는 지점(약 23%)이 IRR' },
-            legend: { display: false }
+            title: { display: true, text: '할인율에 따른 NPV 민감도: 위험조정할인율법 vs 확실성등가법' },
+            legend: { position: 'bottom' }
           },
           scales: {
             x: { title: { display: true, text: '할인율 (%)' } },
@@ -145,7 +159,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       if (typeof initProgressBar === 'function') initProgressBar();
       if (typeof loadMarkdown === 'function') {
-        loadMarkdown('/studies/finance/irr-npv-investment/index.md', 'content-placeholder').then(() => {
+        loadMarkdown('/studies/finance/general-investment-evaluation/index.md', 'content-placeholder').then(() => {
           if (window.renderMathInElement) {
             renderMathInElement(document.getElementById('content-placeholder'), {
               delimiters: [

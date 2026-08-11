@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="수익률 곡선의 형태, 현물이자율과 부트스트래핑, Fisher-Weil/준수정 듀레이션, 기간구조 기반 면역화를 정리합니다.">
-  <title>수익률 곡선과 기간구조 이론 - Antigravity</title>
+  <meta name="description" content="이자율 파생상품의 이항 단기이자율모형, 채권옵션·선도·선물, 캡/플로어/칼라, 이자율스왑 가격결정, 면역화와 CMO를 정리합니다.">
+  <title>이자율 파생상품 - Antigravity</title>
   <link rel="stylesheet" href="/assets/css/global.css">
   <link rel="stylesheet" href="/assets/css/layout.css">
   <link rel="stylesheet" href="/assets/css/components.css">
@@ -33,13 +33,13 @@
       <header class="note-header">
         <div class="note-meta">
           <span class="badge badge--finance" id="note-category">Finance</span>
-          <time datetime="2026-07-02" id="note-date">2026. 07. 02</time>
+          <time datetime="2026-07-16" id="note-date">2026. 07. 16</time>
           <div class="difficulty" id="note-difficulty">★★★★☆</div>
         </div>
-        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">수익률 곡선과 기간구조 이론</h1>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">이자율 파생상품</h1>
         <div class="prereq-box" id="note-prereq">
           <span class="prereq-label">선수지식</span>
-          <a href="/studies/finance/bond-yield-duration" class="prereq-tag">4편 · 채권, 수익률과 듀레이션</a>
+          <a href="/studies/finance/black-scholes-options" class="prereq-tag">15편 · 블랙-숄즈 모형과 옵션 확장이론</a>
         </div>
       </header>
 
@@ -53,18 +53,20 @@
           </svg>
           <span data-i18n="studies.note.tldr">TL;DR</span>
         </div>
-        <p id="note-tldr">현물이자율은 만기별로 순수하게 정의된 이자율로, 무이표채 수익률이나 쿠폰부 채권의 부트스트래핑으로 구할 수 있다. 현물이자율 곡선의 평행이동에 대한 민감도가 Fisher-Weil/준수정 듀레이션이며, 면역화 논리는 그대로 확장된다.</p>
+        <p id="note-tldr">기간구조가 평행이동만 한다는 가정은 필연적으로 차익거래를 허용하므로, 각 노드에 단기이자율과 리스크중립확률을 직접 배정하는 이항 단기이자율격자가 무차익적인 대안이 된다. 이 격자 하나로 채권옵션·선도/선물·변동금리대출·캡/플로어/칼라·이자율스왑·면역화·CMO까지 동일한 리스크중립 역산 방법론으로 값을 매길 수 있다.</p>
       </div>
 
       <details class="glossary-box" id="note-glossary" open>
         <summary>핵심 용어 미니 사전</summary>
         <dl>
-          <dt>현물이자율 (Spot Rate)</dt>
-          <dd>지금부터 특정 만기까지 자금을 예치할 때 적용되는 순수 이자율. 만기마다 다른 값을 가질 수 있다.</dd>
-          <dt>부트스트래핑 (Bootstrapping)</dt>
-          <dd>쿠폰부 채권 가격에서 현물이자율을 한 단계씩 역산해 쌓아 올리는 절차.</dd>
-          <dt>평행이동 (Parallel Shift)</dt>
-          <dd>모든 만기의 현물이자율이 동일한 폭만큼 함께 변한다고 가정하는 시나리오. Fisher-Weil 듀레이션이 다루는 민감도의 기준이다.</dd>
+          <dt>이항 단기이자율모형 (binomial short rate lattice)</dt>
+          <dd>각 노드에 단기이자율과 리스크중립확률(관례적으로 0.5)을 직접 배정해 기간구조 전체와 파생상품 가격을 무차익적으로 계산하는 격자.</dd>
+          <dt>캡 (cap)</dt>
+          <dd>변동금리 대출의 이자율에 상한을 씌우는 계약. 각 기간의 캡릿(caplet)들의 포트폴리오로, 페이오프는 명목원금×max(관측금리-행사금리, 0).</dd>
+          <dt>플로어 (floor)</dt>
+          <dd>변동금리의 하한을 보장하는 계약. 플로어릿들의 포트폴리오로, 페이오프는 명목원금×max(행사금리-관측금리, 0). 캡 매수+플로어 매도 조합을 칼라(collar)라 한다.</dd>
+          <dt>파 스왑금리 (par swap rate)</dt>
+          <dd>변동금리 다리가 리셋 직후 항상 액면가로 재평가된다는 성질을 이용해, 스왑의 초기가치를 0으로 만드는 고정금리. 같은 만기의 파 채권 수익률과 같다.</dd>
         </dl>
       </details>
 
@@ -74,11 +76,10 @@
 
       <footer class="note-footer">
         <div class="tags" id="note-tags">
-          <span class="tag">#yield-curve</span>
-          <span class="tag">#term-structure</span>
+          <span class="tag">#interest-rate-derivative</span><span class="tag">#cap-floor</span><span class="tag">#swap-pricing</span>
         </div>
 
-        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/term-structure-yield-curve/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/interest-rate-derivatives/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -88,13 +89,13 @@
       </footer>
 
       <nav class="note-pagination">
-        <a href="/studies/finance/bond-yield-duration">
-          <span class="note-pagination__label">이전 (4/21)</span>
-          ← 채권, 수익률과 듀레이션
+        <a href="/studies/finance/black-scholes-options">
+          <span class="note-pagination__label">이전 (15/21)</span>
+          ← 블랙-숄즈 모형과 옵션 확장이론
         </a>
-        <a href="/studies/finance/applied-interest-rate-analysis" class="note-pagination__next">
-          <span class="note-pagination__label">다음 (6/21)</span>
-          응용 이자율 분석: 세금, 인플레이션과 저축 계획 →
+        <a href="/studies/finance/optimal-portfolio-growth" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (17/21)</span>
+          최적 포트폴리오 성장이론 →
         </a>
       </nav>
     </article>
@@ -112,31 +113,44 @@
 
   <script>
     function initFinanceChart() {
-      const canvas = document.getElementById('chart-yield-curve');
+      const canvas = document.getElementById('chart-rate-derivative');
       if (!canvas || typeof Chart === 'undefined') return;
-      const maturities = [1,2,3,5,7,10,15,20,25,30];
-      // 정상형: 완만하게 우상향, 5%에서 시작해 7% 근처로 수렴
-      const normal = maturities.map(t => 5 + 2.2 * (1 - Math.exp(-t/8)));
-      // 역전형: 단기가 높고 장기로 갈수록 낮아짐
-      const inverted = maturities.map(t => 6.5 - 1.7 * (1 - Math.exp(-t/8)));
+
+      // 예제 1: 이항 단기이자율격자 (u=1.3, d=0.9, q=0.5), 연 단위 t=0..5
+      // 각 시리즈는 i(상승 횟수)를 고정한 채 t가 증가하는 경로를 나타낸다.
+      const labels = ['0', '1', '2', '3', '4', '5'];
+      const series = [
+        { label: 'i=0 (전기간 평행/하락)', data: [7.00, 6.30, 5.67, 5.10, 4.59, 4.13], color: '#2563EB' },
+        { label: 'i=1', data: [null, 9.10, 8.19, 7.37, 6.63, 5.97], color: '#60A5FA' },
+        { label: 'i=2', data: [null, null, 11.83, 10.65, 9.58, 8.62], color: '#F59E0B' },
+        { label: 'i=3', data: [null, null, null, 15.38, 13.84, 12.46], color: '#DC2626' },
+        { label: 'i=4', data: [null, null, null, null, 19.99, 17.99], color: '#7C3AED' },
+        { label: 'i=5 (전기간 상승)', data: [null, null, null, null, null, 25.99], color: '#059669' }
+      ];
+
       new Chart(canvas, {
         type: 'line',
         data: {
-          labels: maturities,
-          datasets: [
-            { label: '정상형 (우상향)', data: normal, borderColor: '#2563EB', backgroundColor: 'transparent', tension: 0.3 },
-            { label: '역전형 (inverted)', data: inverted, borderColor: '#DC2626', backgroundColor: 'transparent', tension: 0.3, borderDash: [5,5] }
-          ]
+          labels: labels,
+          datasets: series.map(s => ({
+            label: s.label,
+            data: s.data,
+            borderColor: s.color,
+            backgroundColor: 'transparent',
+            spanGaps: false,
+            tension: 0.15,
+            pointRadius: 3
+          }))
         },
         options: {
           responsive: true,
           plugins: {
-            title: { display: true, text: '정상형 vs 역전된 수익률 곡선 (예시)' },
+            title: { display: true, text: '이항 단기이자율격자: 시간에 따른 이자율의 분기' },
             legend: { position: 'bottom' }
           },
           scales: {
-            x: { title: { display: true, text: '만기 (년)' } },
-            y: { title: { display: true, text: '수익률 (%)' } }
+            x: { title: { display: true, text: '시점 t (년)' } },
+            y: { title: { display: true, text: '단기이자율 (%)' } }
           }
         }
       });
@@ -145,7 +159,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       if (typeof initProgressBar === 'function') initProgressBar();
       if (typeof loadMarkdown === 'function') {
-        loadMarkdown('/studies/finance/term-structure-yield-curve/index.md', 'content-placeholder').then(() => {
+        loadMarkdown('/studies/finance/interest-rate-derivatives/index.md', 'content-placeholder').then(() => {
           if (window.renderMathInElement) {
             renderMathInElement(document.getElementById('content-placeholder'), {
               delimiters: [

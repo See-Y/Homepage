@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="무차익 원리, 선형가격결정, 상태가격, 양의 상태가격 정리, 위험중립확률과 복제 포트폴리오를 정리합니다.">
+  <title>상태가격과 위험중립가격결정 - Antigravity</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="stylesheet" href="/assets/css/finance-notes.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+
+      <header class="note-header">
+        <div class="note-meta">
+          <span class="badge badge--finance" id="note-category">Finance</span>
+          <time datetime="2026-07-02" id="note-date">2026. 07. 02</time>
+          <div class="difficulty" id="note-difficulty">★★★★☆</div>
+        </div>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">상태가격과 위험중립가격결정</h1>
+        <div class="prereq-box" id="note-prereq">
+          <span class="prereq-label">선수지식</span>
+          <a href="/studies/finance/factor-models-apt" class="prereq-tag">10편 · 팩터 모델과 APT</a>
+        </div>
+      </header>
+
+      <div class="tldr-box">
+        <div class="tldr-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="20" y2="9"></line>
+            <line x1="4" y1="15" x2="20" y2="15"></line>
+            <line x1="10" y1="3" x2="8" y2="21"></line>
+            <line x1="16" y1="3" x2="14" y2="21"></line>
+          </svg>
+          <span data-i18n="studies.note.tldr">TL;DR</span>
+        </div>
+        <p id="note-tldr">무차익 원리만으로 선형가격결정과 양수인 상태가격의 존재가 보장된다. 상태가격을 정규화하면 위험중립확률을 얻고, 모든 증권의 가격은 위험중립확률에 대한 기댓값을 무위험이자율로 할인한 값과 같다 — 실제확률이나 위험선호는 전혀 필요 없다.</p>
+      </div>
+
+      <details class="glossary-box" id="note-glossary" open>
+        <summary>핵심 용어 미니 사전</summary>
+        <dl>
+          <dt>상태가격 (State Price)</dt>
+          <dd>특정 상태에서만 1을 지급하는 기본상태증권의 가격 \(\psi_s\). 무차익 하에서는 항상 양수다.</dd>
+          <dt>위험중립확률 (Risk-Neutral Probability)</dt>
+          <dd>상태가격을 그 합으로 정규화해서 얻는 인위적 확률 \(q_s = \psi_s/\psi_0\). 실제 확률과는 대개 다르다.</dd>
+          <dt>복제 포트폴리오 (Replicating Portfolio)</dt>
+          <dd>기초자산과 무위험자산을 조합해 파생상품과 정확히 같은 지급을 만드는 포트폴리오. 그 비용이 곧 무차익 가격이다.</dd>
+        </dl>
+      </details>
+
+      <div class="markdown-body" id="content-placeholder">
+        <p>로딩 중...</p>
+      </div>
+
+      <footer class="note-footer">
+        <div class="tags" id="note-tags">
+          <span class="tag">#risk-neutral</span>
+          <span class="tag">#state-price</span>
+          <span class="tag">#no-arbitrage</span>
+        </div>
+
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/state-price-risk-neutral-pricing/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span data-i18n="studies.edit_github">Edit on GitHub</span>
+        </a>
+      </footer>
+
+      <nav class="note-pagination">
+        <a href="/studies/finance/factor-models-apt">
+          <span class="note-pagination__label">이전 (10/21)</span>
+          ← 팩터 모델과 차익거래가격결정이론(APT)
+        </a>
+        <a href="/studies/finance/forwards-futures-swaps" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (12/21)</span>
+          선도, 선물과 스왑 →
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    function initRiskNeutralAnim() {
+      const container = document.getElementById('risk-neutral-anim-container');
+      const btn = document.getElementById('rn-toggle-btn');
+      if (!container || !btn) return;
+
+      let showingRiskNeutral = false;
+
+      btn.addEventListener('click', () => {
+        showingRiskNeutral = !showingRiskNeutral;
+        const upLabel = document.getElementById('rn-label-up');
+        const downLabel = document.getElementById('rn-label-down');
+        const upNode = document.getElementById('rn-node-up');
+        const downNode = document.getElementById('rn-node-down');
+        const caption = document.getElementById('rn-caption');
+
+        if (typeof anime === 'undefined') {
+          // anime.js가 로드되지 않은 경우를 대비한 최소 폴백
+          if (upLabel) upLabel.textContent = showingRiskNeutral ? 'q=0.5' : 'p=0.6';
+          if (downLabel) downLabel.textContent = showingRiskNeutral ? 'q=0.5' : 'p=0.4';
+          return;
+        }
+
+        const targetColor = showingRiskNeutral ? '#DC2626' : '#2563EB';
+        const targetText = showingRiskNeutral ? ['q=0.5', 'q=0.5'] : ['p=0.6', 'p=0.4'];
+        const targetCaption = showingRiskNeutral
+          ? '위험중립확률 q (빨강) — 무위험이자율과 무차익 조건으로 역산된 가격결정용 가중치'
+          : '실제확률 p (파랑) → 버튼을 눌러 위험중립확률 q로 전환';
+
+        anime({
+          targets: [upNode, downNode],
+          scale: [1, 1.15, 1],
+          duration: 600,
+          easing: 'easeInOutQuad'
+        });
+
+        if (upLabel) { upLabel.textContent = targetText[0]; upLabel.setAttribute('fill', targetColor); }
+        if (downLabel) { downLabel.textContent = targetText[1]; downLabel.setAttribute('fill', targetColor); }
+        if (caption) caption.textContent = targetCaption;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initProgressBar === 'function') initProgressBar();
+      if (typeof loadMarkdown === 'function') {
+        loadMarkdown('/studies/finance/state-price-risk-neutral-pricing/index.md', 'content-placeholder').then(() => {
+          if (window.renderMathInElement) {
+            renderMathInElement(document.getElementById('content-placeholder'), {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+              ],
+              throwOnError: false
+            });
+          }
+          initRiskNeutralAnim();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

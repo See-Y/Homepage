@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="블랙-숄즈 공식의 유도와 콜옵션 가격, 델타·감마·세타·베가 등 그릭스, 델타헤지의 동적 리밸런싱, 내재변동성, 배당 확장과 미국식 옵션 조기행사를 정리합니다.">
+  <title>블랙-숄즈 모형과 옵션 확장이론 - Antigravity</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/studies.css">
+  <link rel="stylesheet" href="/assets/css/finance-notes.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress-container">
+    <div id="reading-progress" class="reading-progress"></div>
+  </div>
+
+  <div id="header-placeholder"></div>
+
+  <main class="container" style="padding-top: var(--header-height); min-height: calc(100vh - var(--footer-height));">
+    <article class="section" style="padding-top: var(--spacing-3xl); max-width: 800px; margin: 0 auto;">
+
+      <header class="note-header">
+        <div class="note-meta">
+          <span class="badge badge--finance" id="note-category">Finance</span>
+          <time datetime="2026-07-16" id="note-date">2026. 07. 16</time>
+          <div class="difficulty" id="note-difficulty">★★★★★</div>
+        </div>
+        <h1 class="section-title" id="note-title" style="margin-bottom: var(--spacing-sm);">블랙-숄즈 모형과 옵션 확장이론</h1>
+        <div class="prereq-box" id="note-prereq">
+          <span class="prereq-label">선수지식</span>
+          <a href="/studies/finance/options-basic-theory" class="prereq-tag">14편 · 옵션의 기초이론</a>
+        </div>
+      </header>
+
+      <div class="tldr-box">
+        <div class="tldr-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="20" y2="9"></line>
+            <line x1="4" y1="15" x2="20" y2="15"></line>
+            <line x1="10" y1="3" x2="8" y2="21"></line>
+            <line x1="16" y1="3" x2="14" y2="21"></line>
+          </svg>
+          <span data-i18n="studies.note.tldr">TL;DR</span>
+        </div>
+        <p id="note-tldr">블랙-숄즈 방정식은 이항격자와 같은 복제 논리를 연속시간으로 옮긴 것이며, 배당 없는 유럽식 콜에는 \(C=SN(d_1)-Ke^{-r(T-t)}N(d_2)\)라는 닫힌 공식이 존재한다. 델타·감마·세타·베가(그릭스)는 옵션가치의 민감도를 알려주고, 델타를 이용한 동적 리밸런싱(델타헤지)으로 옵션을 기초자산과 무위험자산으로 복제할 수 있다. 시장가에서 거꾸로 구한 내재변동성, 배당(보유비용) 확장, 미국식 옵션의 조기행사 문제까지 함께 다룬다.</p>
+      </div>
+
+      <details class="glossary-box" id="note-glossary" open>
+        <summary>핵심 용어 미니 사전</summary>
+        <dl>
+          <dt>블랙-숄즈 공식 (Black-Scholes formula)</dt>
+          <dd>배당이 없는 유럽식 콜옵션의 가격을 닫힌 형태로 주는 공식. \(C(S,t)=SN(d_1)-Ke^{-r(T-t)}N(d_2)\).</dd>
+          <dt>델타 (Delta, \(\Delta\))</dt>
+          <dd>기초자산 가격에 대한 옵션가치의 민감도(\(=\partial f/\partial S\)). 콜옵션의 헤지 비율이며, 콜의 경우 \(\Delta=N(d_1)\)이다.</dd>
+          <dt>내재변동성 (Implied Volatility)</dt>
+          <dd>시장에서 관측된 옵션 가격을 블랙-숄즈 공식에 대입해 거꾸로 역산한 변동성 \(\sigma\) 값.</dd>
+          <dt>델타헤지 (Delta Hedging)</dt>
+          <dd>델타 비율만큼 기초자산을 보유해 옵션 포지션의 가격위험을 상쇄하는 기법. 델타가 계속 변하므로 주기적 리밸런싱(동적 헤지)이 필요하다.</dd>
+        </dl>
+      </details>
+
+      <div class="markdown-body" id="content-placeholder">
+        <p>로딩 중...</p>
+      </div>
+
+      <footer class="note-footer">
+        <div class="tags" id="note-tags">
+          <span class="tag">#black-scholes</span>
+          <span class="tag">#delta-hedging</span>
+          <span class="tag">#greeks</span>
+        </div>
+
+        <a href="https://github.com/See-Y/Homepage/edit/master/studies/finance/black-scholes-options/index.md" target="_blank" rel="noopener noreferrer" class="github-edit-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span data-i18n="studies.edit_github">Edit on GitHub</span>
+        </a>
+      </footer>
+
+      <nav class="note-pagination">
+        <a href="/studies/finance/options-basic-theory">
+          <span class="note-pagination__label">이전 (14/21)</span>
+          ← 옵션의 기초이론
+        </a>
+        <a href="/studies/finance/interest-rate-derivatives" class="note-pagination__next">
+          <span class="note-pagination__label">다음 (16/21)</span>
+          이자율 파생상품 →
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/component-loader.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/progress-bar.js"></script>
+  <script src="/assets/js/markdown-loader.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    // 표준정규분포 근사 (Abramowitz-Stegun 7.1.26)
+    function normCDF(x) {
+      const sign = x < 0 ? -1 : 1;
+      const ax = Math.abs(x) / Math.sqrt(2);
+      const a1 = 0.254829592, a2 = -0.284496736, a3 = 1.421413741, a4 = -1.453152027, a5 = 1.061405429, p = 0.3275911;
+      const t = 1 / (1 + p * ax);
+      const y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-ax * ax);
+      return 0.5 * (1 + sign * y);
+    }
+
+    function bsD1D2(S, K, r, sigma, T) {
+      const d1 = (Math.log(S / K) + (r + sigma * sigma / 2) * T) / (sigma * Math.sqrt(T));
+      const d2 = d1 - sigma * Math.sqrt(T);
+      return { d1: d1, d2: d2 };
+    }
+
+    function bsCall(S, K, r, sigma, T) {
+      if (T <= 0) return Math.max(S - K, 0);
+      const d = bsD1D2(S, K, r, sigma, T);
+      return S * normCDF(d.d1) - K * Math.exp(-r * T) * normCDF(d.d2);
+    }
+
+    function bsDelta(S, K, r, sigma, T) {
+      const d = bsD1D2(S, K, r, sigma, T);
+      return normCDF(d.d1);
+    }
+
+    function initFinanceChart() {
+      const canvas = document.getElementById('chart-black-scholes');
+      if (!canvas || typeof Chart === 'undefined') return;
+
+      // Example 13.3 조건: K=40, sigma=20%, r=10%, 잔여만기 6개월
+      const K = 40, r = 0.10, sigma = 0.20, T = 0.5;
+      const S0 = 43;
+      const delta0 = bsDelta(S0, K, r, sigma, T);
+      const C0 = bsCall(S0, K, r, sigma, T);
+
+      const labels = [];
+      const prices = [];
+      const tangent = [];
+      for (let S = 20; S <= 70; S += 2) {
+        labels.push(S);
+        prices.push(bsCall(S, K, r, sigma, T));
+        tangent.push(C0 + delta0 * (S - S0));
+      }
+
+      new Chart(canvas, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            { label: '블랙-숄즈 콜옵션 가격 C(S)', data: prices, borderColor: '#2563EB', backgroundColor: 'transparent', tension: 0.3, pointRadius: 0 },
+            { label: 'S=43에서의 델타 접선', data: tangent, borderColor: '#DC2626', backgroundColor: 'transparent', borderDash: [5, 5], pointRadius: 0 }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: { display: true, text: '콜옵션 가격 대 기초자산 가격 (K=40, σ=20%, r=10%, 잔여만기 6개월)' },
+            legend: { position: 'bottom' }
+          },
+          scales: {
+            x: { title: { display: true, text: '기초자산 가격 S' } },
+            y: { title: { display: true, text: '콜옵션 가격 C' } }
+          }
+        }
+      });
+    }
+
+    function initDeltaHedgeAnim() {
+      const wrap = document.getElementById('delta-hedge-anim');
+      if (!wrap) return;
+
+      const K = 40, r = 0.10, sigma = 0.20, T = 0.5;
+      const Smin = 25, Smax = 61;
+      let S = 43;
+
+      const deltaBar = document.getElementById('delta-bar');
+      const stockBar = document.getElementById('stock-bar');
+      const deltaValue = document.getElementById('delta-value');
+      const stockValue = document.getElementById('stock-value');
+      const btnUp = document.getElementById('btn-price-up');
+      const btnDown = document.getElementById('btn-price-down');
+      const btnReset = document.getElementById('btn-price-reset');
+      if (!deltaBar || !stockBar || !deltaValue || !stockValue || !btnUp || !btnDown || !btnReset) return;
+
+      function render(animate) {
+        const delta = bsDelta(S, K, r, sigma, T);
+        const deltaPct = Math.max(2, Math.min(100, delta * 100));
+        const stockPct = Math.max(2, Math.min(100, ((S - Smin) / (Smax - Smin)) * 100));
+
+        if (animate && typeof anime !== 'undefined') {
+          anime({ targets: deltaBar, height: deltaPct + '%', duration: 650, easing: 'easeInOutQuad' });
+          anime({ targets: stockBar, height: stockPct + '%', duration: 650, easing: 'easeInOutQuad' });
+        } else {
+          deltaBar.style.height = deltaPct + '%';
+          stockBar.style.height = stockPct + '%';
+        }
+        deltaValue.textContent = delta.toFixed(3);
+        stockValue.textContent = '$' + S.toFixed(1);
+      }
+
+      btnUp.addEventListener('click', function () {
+        S = Math.min(Smax, S + 3);
+        render(true);
+      });
+      btnDown.addEventListener('click', function () {
+        S = Math.max(Smin, S - 3);
+        render(true);
+      });
+      btnReset.addEventListener('click', function () {
+        S = 43;
+        render(true);
+      });
+
+      render(false);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initProgressBar === 'function') initProgressBar();
+      if (typeof loadMarkdown === 'function') {
+        loadMarkdown('/studies/finance/black-scholes-options/index.md', 'content-placeholder').then(() => {
+          if (window.renderMathInElement) {
+            renderMathInElement(document.getElementById('content-placeholder'), {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+              ],
+              throwOnError: false
+            });
+          }
+          initFinanceChart();
+          initDeltaHedgeAnim();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
