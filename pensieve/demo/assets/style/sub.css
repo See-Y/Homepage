@@ -1,0 +1,47 @@
+/* 서브메뉴 CSS */
+.sub-menu-box{display: flex;justify-content: center;width : 100%;border-bottom: 1px solid rgba(0,0,0,0.1);position : relative; z-index: 1;}
+.sub-menu-inner{display: flex; align-items : center;max-width: 1200px; width : 100%;}
+.sub-menu{display:flex;align-items:center;min-width:150px;max-width:150px;position:relative;font-size: 14px;letter-spacing: -0.04em;height:50px;padding:0 15px;color:#111;cursor:pointer}
+.sub-menu:not(:last-child)::before{position:absolute;content:'';width:1px;height:15px;background:#aaa;right:0;}
+.sub-menu.long{min-width:200px;max-width:250px}
+.sub-menu.disable{pointer-events: none;color : #aaa}
+.sub-menu::after{position: absolute;content:'';width:7px;height:7px;border-top:1px solid #555;border-right:1px solid #555;transform: rotate(45deg);right:15px;transition:transform .2s;}
+.sub-menu:hover::after{transform: rotate(135deg)}
+.sub-menu.disable::after{border-color:#aaa;}
+.sub-menu>ul{display:none;position: absolute;top:100%;left:0;width:100%;border:1px solid #ccc;border-bottom:none;border-top:none}
+.sub-menu:hover>ul{display:block;}
+.sub-menu>ul>li>a{display:flex;flex-direction:column;justify-content:center;height:40px;background:#fff;border-bottom:1px solid #ccc;padding-left:15px;font-size:14px;transition:padding-left .2s;position:relative;overflow:hidden;}
+.sub-menu>ul>li>a::after{position:absolute;content:'';width:5px;height:5px;border-top:1px solid #555;border-right:1px solid #555;transform: rotate(45deg);left:0px;opacity:0;transition:opacity .2s,left .2s;}
+.sub-menu>ul>li>a:hover::after{left:10px;opacity:1;}
+.sub-menu>ul>li.long>a{height:55px;}
+.sub-menu>ul>li>a:hover{padding-left:25px;font-weight:500}
+.sub-menu>ul>li:nth-child(1)>a{border-top:1px solid #ccc}
+.sub-menu>ul>li>a:hover{background:#f1f1f1}
+
+.sub-title-box{display: flex;justify-content: center;align-items: center;position : relative;height : 346px;padding-top: 80px;overflow: hidden;}
+.sub-title-bg{width : 100%;height : 100%;object-fit: cover;object-position : center bottom;position : absolute;left : 0;top : 0;z-index: -1;overflow : Hidden;animation : sub-title-bg 3s both;)}
+@keyframes sub-title-bg{
+	0%{transform : scale(1.15)}
+	100%{transform : scale(1)}
+}
+
+.sub-title-inner{width : 100%;max-width : 1200px;text-align : right;}
+.sub-title-eng{font-size : 72px; font-weight : 300; color : #fff;font-family : futura-pt; animation : sub-title-eng 1s both .5s}
+@keyframes sub-title-eng{
+	0%{opacity : 0; transform : translateX(-100px)}
+}
+.sub-title-kor{font-size : 17px; font-weight : 500; color : #fff;letter-spacing : -0.04em;animation : sub-title-kor 1s both .5s}
+@keyframes sub-title-kor{
+	0%{opacity : 0; transform : translateX(100px)}
+}
+
+.sub-content-box{padding : 66px 0 192px;}
+.sub-content-img{margin : 0 auto;}
+/* 오리발 CSS */
+.page_info{display:flex;flex-direction:column;justify-content:center;max-width : 1200px;margin : 4em auto 0;background:#f7f7f7;border:1px solid #e5e5e5;padding:25px 60px 25px 120px;min-height :120px;font-size:13px;letter-spacing:-0.04em;color:#777;position:relative;}
+.page_info::after{display: flex;align-items: center;justify-content: center;color : #fff;font-size: 36px;font-weight: 700;content : '!';position : absolute;width : 70px;height : 70px;border-radius: 50%;background : #ddd;left : 25px;top : 50%;transform: translateY(-50%);}
+.page_info>li{position : relative;padding-left : 14px;}
+.page_info>li+li{margin-top : 3px;}
+.page_info>li::before{content : '※ ';position : absolute;left : 0;font-size: 11px;line-height: 18px;}
+.page_info>li>a{color:rgba(50,80,255,1);text-decoration:underline;}
+/* 오리발 CSS END */

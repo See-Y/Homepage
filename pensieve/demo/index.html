@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:image" content="/assets/images/common/og_image.png">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="627">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<script src="assets/js/vendors/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="assets/style/vendors/jquery.fullpage.min.css">
+<link rel="stylesheet" href="assets/style/vendors/swiper.css">
+<link rel="stylesheet" href="assets/style/vendors/aos.css">
+<link rel="stylesheet" href="assets/style/vendors/tab.css">
+<link rel="stylesheet" href="assets/style/common.css?v=11">
+<link rel="stylesheet" href="assets/style/sub.css?v=1">
+
+<!-- 1127 스크립트 --> 
+<title>[MVP 데모] 문수로 코아루 에듀 Sky</title>
+    <link rel="stylesheet" href="assets/style/main.css?v=11">
+	<style>
+		.visual-inner{align-items : center;margin : 0 auto;}
+		.visual-title-box{display : flex; flex-direction : column;align-items : center;}
+		.visual-bg{display : flex; justify-content : center; position : absolute;width :100%;height : 100%;left : 0;top : 0;animation : visual-zoom 5s both;overflow : hidden;}
+		.visual-bg > img{width : 100%;position : absolute;;z-index : 1;bottom : -10%;}
+		.visual-bg > video{width : 100%;height : 100%; object-fit : cover;object-position : center;position : absolute;z-index : 0;}
+
+		.video-banner {
+			position: absolute;
+			width: 300px;
+			z-index: 10;
+			right: 30px;
+			bottom: 70px;
+			background: #000;
+			color: #fff;
+			padding: 4px;
+			font-size: 13px;
+			border-radius: 7px;
+			font-weight: 500;
+			animation: visual-video 2s both 5s;
+		}
+
+		.video-banner .video-banner-container {
+			width: 100%;
+			padding-bottom : 56.25%;
+			position : relative;
+		}
+		.video-banner .video-banner-container iframe{position : absolute;width : 100%;height : 100%; border : none;border-radius : 5px;}
+		.video-banner > p {
+			padding: 4px 5px 8px;
+			font-weight: 500;
+		}
+
+		@media(max-width : 750px){
+		.visual-inner{align-items : center;}
+			.visual-bg > img{width : 180%;max-width : none;position : absolute;z-index : 1;bottom : 0;}
+		}
+	</style>
+<style id="mvp-ribbon-style">
+#mvp-ribbon{position:fixed;left:0;top:0;width:100%;height:40px;z-index:20000;background:#B4453A;color:#fff;font:700 14px/40px "Noto Sans KR","Malgun Gothic",sans-serif;text-align:center;letter-spacing:.02em;box-shadow:0 1px 6px rgba(0,0,0,.25)}
+#mvp-ribbon b{background:#fff;color:#B4453A;border-radius:3px;padding:2px 8px;margin-right:10px;font-size:12px;letter-spacing:.08em}
+#mvp-ribbon a{color:#fff;text-decoration:underline;margin-left:12px;font-weight:400;font-size:13px}
+.header{margin-top:40px!important}
+@media (max-width:640px){#mvp-ribbon{font-size:12px;line-height:1.35;padding:6px 10px;height:auto}#mvp-ribbon b{display:inline-block;margin:0 0 2px}}
+</style>
+<meta name="robots" content="noindex,nofollow">
+<style id="mvp-attention">
+.header-nav .mvp-tour{position:relative}
+.header-nav .mvp-tour>a{color:#12B3BE!important;font-weight:700;position:relative;border-radius:8px;box-shadow:0 0 0 0 rgba(18,179,190,.55);animation:mvpGlow 1.8s ease-out infinite}
+.header-nav .mvp-tour::after{content:"NEW";position:absolute;left:50%;top:8px;transform:translateX(-50%);background:#E0B060;color:#0B1418;font:900 10px/1 "Noto Sans KR","Malgun Gothic",sans-serif;padding:3px 7px;border-radius:999px;letter-spacing:.08em;animation:mvpBob 1s ease-in-out infinite;pointer-events:none;z-index:2;white-space:nowrap}
+@keyframes mvpGlow{0%{box-shadow:0 0 0 0 rgba(18,179,190,.6);background:rgba(18,179,190,.22)}70%{box-shadow:0 0 0 14px rgba(18,179,190,0);background:rgba(18,179,190,.06)}100%{box-shadow:0 0 0 0 rgba(18,179,190,0);background:rgba(18,179,190,.22)}}
+@keyframes mvpBob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-4px)}}
+#mvp-fab{position:fixed;right:22px;bottom:26px;z-index:20001;display:flex;align-items:center;gap:10px;background:#12B3BE;color:#04191c;text-decoration:none;font:900 15px/1 "Noto Sans KR","Malgun Gothic",sans-serif;padding:15px 20px 15px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.35);animation:mvpFab 1.8s ease-out infinite}
+#mvp-fab i{font-style:normal;display:inline-block;width:10px;height:10px;border-radius:50%;background:#04191c;box-shadow:0 0 0 0 rgba(4,25,28,.5);animation:mvpDot 1.8s ease-out infinite}
+#mvp-fab small{font-weight:500;font-size:12px;opacity:.85}
+#mvp-fab:hover{background:#5EE0E8}
+@keyframes mvpFab{0%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 0 rgba(18,179,190,.7)}70%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 18px rgba(18,179,190,0)}100%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 0 rgba(18,179,190,0)}}
+@keyframes mvpDot{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
+@media (max-width:640px){#mvp-fab{right:12px;bottom:14px;padding:13px 16px;font-size:14px}}
+@media (prefers-reduced-motion:reduce){.header-nav .mvp-tour>a,.header-nav .mvp-tour>a::before,#mvp-fab,#mvp-fab i{animation:none}}
+</style>
+</head>
+<body>
+<div id="mvp-ribbon" role="note"><b>MVP DEMO</b>MVP용으로 시연하고자 만든 것으로, 실제 홈페이지가 아닙니다. 시행사·분양대행사와 무관합니다.<a href="../index.html">← Pensieve 제품 페이지</a></div>
+    <header class="header">
+	<div class="header-inner">
+		<h1 class="main-logo"><a href="index.html"></a></h1>
+		<nav class="header-nav">
+			<ul>
+				<li><a href="pages/overview.html">사업안내</a>
+					<ul>
+						<li><a href="pages/overview.html">사업개요</a></li>
+					</ul>
+				</li>
+				<li><a href="pages/environment.html">단지안내</a>
+					<ul>
+						<li><a href="pages/environment.html">입지환경</a></li>
+						<li><a href="pages/premium.html">프리미엄</a></li>
+						<li><a href="pages/place.html">단지배치도</a></li>
+						<li><a href="pages/video.html">층별영상</a></li>
+						<li><a href="pages/telecom.html">이동통신 설비협의서</a></li>
+					</ul>
+				</li>
+				<li><a href="pages/unit.html">공간안내</a>
+					<ul>
+						<li><a href="pages/unit.html">타입별평면안내</a></li>
+					</ul>
+				</li>
+				<li class="mvp-tour"><a href="pages/tour.html">사이버 임장</a>
+					<ul>
+						<li><a href="pages/tour.html">사이버 임장 체험</a></li>
+					</ul>
+				</li>
+				<li><a href="pages/notice.html">분양안내</a>
+					<ul>
+						<li><a href="pages/notice.html">입주자모집공고</a></li>
+					</ul>
+				</li>
+				<li><a href="pages/tv.html">홍보센터</a>
+					<ul>
+						<li><a href="pages/tv.html">홍보영상</a></li>
+						<li><a href="pages/media.html">언론보도</a></li>
+					</ul>
+				</li>
+				<li><a href="pages/location.html">오시는길</a></li>
+				<!-- <li><a href="#" title="준비중">관심고객등록</a></li> -->
+			</ul>
+		</nav>
+		<div class="header-right">
+			<div class="bap-bar-box">
+				<a class="bap-bar" href="javascript:void(0)">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</a>
+				사운드를 켜고 감상하세요.
+			
+				<div class="toggle">
+					<span>ON</span>
+					<span>OFF</span>
+					<div></div>
+				</div>
+			</div>
+
+			<!-- <a href="/customer/customer.html" class="customer"><div class="customer-icon"></div><span>관심고객등록</span></a> -->
+			<a href="#" class="header-tel"><img src="assets/images/common/header-tel-icon.png" alt="" class="header-tel-icon"><span>052.227.0737</span></a>
+			<a href="javascript:void(0)" class="hamburger"><span></span><span></span><span></span></a>
+		</div>
+	</div>
+</header>	<!-- <div class="open-rotate">
+			<p><b>11</b>월</p>
+			<p>오픈예정</p>
+	</div> -->
+    <div class="cursor"><span class="left"></span>SCROLL<span class="right"></span></div>
+    <div id="fullpage">
+		<!-- <section class="section main-section-archi">
+			<div class="archi-inner">
+				<div class="archi-bg">
+					<img src="assets/images/main/archi-bg-01.jpg" alt="" class="archi-bg-img archi-bg-img-01">
+					<div class="archi-mask">
+						<img src="assets/images/main/archi-space.jpg" alt="" class="archi-space">
+						<img src="assets/images/main/archi-line.png" alt="" class="archi-line">
+					</div>
+					<img src="assets/images/main/archi-logo.png" alt="" class="archi-logo">
+				</div>
+				<div class="archi-bg-02">
+					<img src="assets/images/main/archi-bg-02.jpg" alt="">
+					<div class="archi-bg-inner">
+						<div class="archi-title-box">
+							<h2 class="archi-title">문수로 코아루 에듀 스카이</h2>
+							<p class="archi-desc">
+								4BAY 3면개방<br>
+								최대 50.16㎡ 서비스면적<br>
+								대치동이 부러워할 교육집중 평면
+							</p>
+						</div>
+						<div class="archi-left">
+							<div class="archi-con archi-con-02"><img src="assets/images/main/archi-con-02.jpg" alt="" class="archi-img"> <span class="archi-meter">75m View</span><span class="archi-dot-line"></span><span class="archi-dot archi-dot-02"></span></div>
+							<div class="archi-con archi-con-01"><img src="assets/images/main/archi-con-01.jpg" alt="" class="archi-img"> <span class="archi-meter">50m View</span><span class="archi-dot-line"></span><span class="archi-dot archi-dot-01"></span></div>
+						</div>
+						<div class="archi-right">
+							<div class="archi-con archi-con-04"><span class="archi-dot archi-dot-04"></span><span class="archi-dot-line"></span><span class="archi-meter">200m View</span><img src="assets/images/main/archi-con-04.jpg" alt="" class="archi-img"></div>
+							<div class="archi-con archi-con-03"><span class="archi-dot archi-dot-03"></span><span class="archi-dot-line"></span><span class="archi-meter">100m View</span><img src="assets/images/main/archi-con-03.jpg" alt="" class="archi-img"></div>
+						</div>										
+					</div>
+				</div>
+		
+				<div class="archi-slide-window archi-slide-window-01">
+					<div class="archi-slide-box">
+						<h2 class="archi-slide-title">50m View</h2>
+						<div class="archi-slide archi-slide-01">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_01.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_02.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_03.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_04.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_05.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_06.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_07.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_08.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_09.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_50_10.jpg" alt=""></div>
+							</div>
+						</div>
+						<div class="archi-navigation">
+							<div class="archi-prev archi-prev-01"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+							<div class="archi-next archi-next-01"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+						</div>
+						<div class="archi-close"></div>
+					</div>
+				</div>
+				<div class="archi-slide-window archi-slide-window-02">
+					<div class="archi-slide-box">
+						<h2 class="archi-slide-title">75m View</h2>
+						<div class="archi-slide archi-slide-02">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_01.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_02.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_03.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_04.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_05.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_06.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_07.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_08.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_09.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_75_10.jpg" alt=""></div>
+							</div>
+						</div>
+						<div class="archi-navigation">
+							<div class="archi-prev archi-prev-02"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+							<div class="archi-next archi-next-02"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+						</div>
+						<div class="archi-close"></div>
+					</div>
+				</div>
+				<div class="archi-slide-window archi-slide-window-03">
+					<div class="archi-slide-box">
+						<h2 class="archi-slide-title">100m View</h2>
+						<div class="archi-slide archi-slide-03">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_01.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_02.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_03.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_04.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_05.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_06.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_07.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_08.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_09.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_100_10.jpg" alt=""></div>
+							</div>
+						</div>
+						<div class="archi-navigation">
+							<div class="archi-prev archi-prev-03"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+							<div class="archi-next archi-next-03"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+						</div>
+						<div class="archi-close"></div>
+					</div>
+				</div>
+				<div class="archi-slide-window archi-slide-window-04">
+					<div class="archi-slide-box">
+						<h2 class="archi-slide-title">200m View</h2>
+						<div class="archi-slide archi-slide-04">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_01.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_02.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_03.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_04.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_05.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_06.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_07.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_08.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_09.jpg" alt=""></div>
+								<div class="swiper-slide"><img src="assets/images/main/archi_200_10.jpg" alt=""></div>
+							</div>
+						</div>
+						<div class="archi-navigation">
+							<div class="archi-prev archi-prev-04"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+							<div class="archi-next archi-next-04"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+						</div>
+						<div class="archi-close"></div>
+					</div>
+				</div>
+				
+			</div>
+		</section> -->
+        <section class="section main-section-visual" style="background: #000">
+			<div class="visual-slide">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="visual-bg"><video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" poster="assets/images/poster/main-video.jpg" data-demo-video="main-video.mp4" muted background loop playsinline></video></div>
+					</div>
+				</div>
+			</div>
+			<!-- <a class="video-banner" href="pages/tv.html">
+				<p>문수로 코아루 에듀 SKY</p>
+				<div class="video-banner-container">
+					<img src="assets/images/poster/main-video.jpg" alt="홍보영상(데모에서는 정지 화면)" style="width:100%;height:100%;object-fit:cover;border-radius:5px">
+				</div>
+			</a> -->
+        </section>
+
+		<section class="section main-section-tv">
+			<div class="tv-intro">
+				<div class="tv-bg"><img src="assets/images/main/tv-bg.jpg" alt=""></div>
+				<div class="tv-intro-inner">
+					<h2 class="tv-intro-title tv-intro-title-01"><b>더 차이나게</b> <p class="tv-intro-desc-01">더 커질 문수로 에듀벨트에서</p></h2>
+					<h2 class="tv-intro-title tv-intro-title-02"><b>더 특별하게</b> <p class="tv-intro-desc-02">대 치 동 이 부 러 워 할 교 육 공 간 으 로</p></h2>
+					<!-- <video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" poster="assets/images/poster/main-video.jpg" data-demo-video="tv.mp4" id="mainVideo" class="tv-intro-video" muted loop playsinline></video> -->
+					<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" id="mainVideo" class="tv-intro-video" preload="metadata" data-allow-play-when-changed="true" muted loop playsinline>
+					  <source data-demo-video="tv.mp4" type="video/mp4">
+					</video>
+				</div>
+			</div>
+			<div class="tv-inner">
+				<div class="tv-left">
+					<!-- <div class="tv-navigation">
+						<div class="tv-prev">PREV <img src="assets/images/main/tv-arrow.png" alt=""></div>
+						<div class="tv-rect"></div>
+						<div class="tv-next">NEXT <img src="assets/images/main/tv-arrow.png" alt=""></div>
+					</div> -->
+					<!-- <div class="tv-slide">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide"><img src="assets/images/main/tv-img-01.jpg" alt=""></div>
+							<div class="swiper-slide"><img src="assets/images/main/tv-img-01.jpg" alt=""></div>
+						</div>
+					</div> -->
+				</div>
+				<div class="tv-right">
+					<h2 class="tv-title">
+						MORE DIFFERENT,<br>
+						MORE SPECIAL
+					</h2>
+					<div class="tv-title-box">
+						<h3 class="tv-sub-title">
+							더 차이나게<br>
+							더 특별하게
+						</h3>
+						<p class="tv-desc">
+							더 커질 문수로 에듀벨트에서<br>
+							대치동이 부러워할 교육공간으로
+						</p>
+					</div>
+
+					<div class="tv-img-box">
+						<h3 class="tv-img-title">MEDIA</h3>
+						<ul class="thumbs">
+							<li><img class="thumb" tabindex="0" role="tab" aria-pressed="true" data-video-src="" data-demo-video="tv.mp4" src="assets/images/main/tv-01.jpg" alt="" style="cursor: pointer" /></li>
+							<li><img class="thumb" tabindex="0" role="tab" aria-pressed="false" data-video-src="" data-demo-video="main-video.mp4" src="assets/images/main/tv-02.jpg" alt="" style="cursor: pointer" /></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section main-section-media">
+			<div class="media-slide type1">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide media-first-slide">
+						<div class="media-slide-inner">
+							<div class="media-video-box media-video-box-05">
+								<h2 class="media-video-title">PLAY 20~38 floor <b>View</b></h2>
+								<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" poster="assets/images/poster/elev.jpg" data-demo-video="5_20층~38층엘베뷰.mp4" muted background playsinline loop></video>
+							</div>
+							<div class="media-video-box media-video-box-06">
+								<h2 class="media-video-title">PLAY 20~38 floor <b>PANORAMA</b></h2>
+								<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" poster="assets/images/poster/pano.jpg" data-demo-video="6_38층파노라마뷰.mp4" muted background playsinline loop></video>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="media-slide-inner">
+							<div class="media-video-box media-video-box-03">
+								<h2 class="media-video-title">PLAY 10~20 floor <b>View</b></h2>
+								<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" poster="assets/images/poster/elev.jpg" data-demo-video="3_10층~20층엘베뷰.mp4" muted background playsinline loop></video>
+							</div>
+							<div class="media-video-box media-video-box-04">
+								<h2 class="media-video-title">PLAY 10~20 floor <b>PANORAMA</b></h2>
+								<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" poster="assets/images/poster/pano2.jpg" data-demo-video="4_20층파노라마뷰.mp4" muted background playsinline loop></video>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide media-last-slide">
+						<div class="media-slide-inner">
+							<div class="media-video-box media-video-box-01">
+								<h2 class="media-video-title">PLAY 0~10 floor <b>View</b></h2>
+								<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" poster="assets/images/poster/elev.jpg" data-demo-video="1_0~10층엘베뷰.mp4" muted background playsinline loop></video>
+							</div>
+							<div class="media-video-box media-video-box-02">
+								<h2 class="media-video-title">PLAY 0~10 floor <b>PANORAMA</b></h2>
+								<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" poster="assets/images/poster/pano.jpg" data-demo-video="2_10층파노라마뷰.mp4" muted background playsinline loop></video>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="media-bg">
+					<img src="assets/images/main/media-bg.jpg" alt="" class="media-bg-img">
+					<img src="assets/images/main/media-light.png" alt="" class="media-light media-light-01">
+					<img src="assets/images/main/media-light.png" alt="" class="media-light media-light-02">
+
+					<span class="media-badge media-badge-01"><b>0-10</b>Floor</span>
+					<span class="media-badge media-badge-02"><b>10-20</b>Floor</span>
+					<span class="media-badge media-badge-03"><b>20-38</b>Floor</span>
+				</div>
+				<div class="media-inner">
+					<h2 class="media-title">
+						<p>Floor</p>
+						<p>View </p>
+					</h2>
+					<p class="media-desc">문수로 코아루 에듀 스카이 <span>층별 영상</span>을 확인해 보세요.</p>
+				</div>
+			</div>	
+
+			<!-- <a href="javascript:void(0)" class="media-btn"><div>층별 영상 <span>view more</span> <div></div></div></a> -->
+
+			<div class="media-slide-window media-slide-window-01">
+				<div class="media-slide-box">
+					<h2 class="media-slide-title">50m View</h2>
+					<div class="media-video">
+						<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" src="" loop muted controls></video>
+					</div>
+					<div class="media-navigation">
+						<div class="media-prev media-prev-01"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+						<div class="media-next media-next-01"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+					</div>
+					<div class="media-close"></div>
+				</div>
+			</div>
+		</section>
+
+		
+
+		<!-- <section class="section main-section-archi">
+			<div class="archi-inner">
+				<div class="archi-intro">
+					<div class="archi-intro-inner">
+						<h2 class="archi-intro-title">문수로 코아루 에듀 스카이</h2>
+						<p class="archi-intro-desc">
+							4BAY 3면개방<br>
+							최대 50.16㎡ 서비스면적<br>
+							대치동이 부러워할 교육집중 평면
+						</p>
+					</div>
+				</div>
+				<div class="archi-intro-logo">
+					<img src="assets/images/main/archi-intro-logo.png" alt="">
+				</div> -->
+				<!-- <div class="archi-bg">
+					<img src="assets/images/main/archi-bg-01.jpg" alt="" class="archi-bg-img archi-bg-img-01">
+					<div class="archi-mask">
+						<img src="assets/images/main/archi-space.jpg" alt="" class="archi-space">
+						<img src="assets/images/main/archi-line.png" alt="" class="archi-line">
+					</div>
+					<img src="assets/images/main/archi-logo.png" alt="" class="archi-logo">
+				</div> -->
+				<!-- <div class="archi-bg-02">
+					<img src="assets/images/main/archi-bg-02.jpg" alt="">
+					<div class="archi-bg-inner">
+						<div class="archi-left">
+							<div class="archi-con archi-con-05"><span class="archi-dot archi-dot-05"></span></div>
+							<div class="archi-con archi-con-04"><span class="archi-dot archi-dot-04"></span></div>
+							<div class="archi-con archi-con-03"><span class="archi-dot archi-dot-03"></span></div>
+							<div class="archi-con archi-con-02"><span class="archi-dot archi-dot-02"></span></div>
+							<div class="archi-con archi-con-01"><span class="archi-dot archi-dot-01"></span></div>
+						</div>
+						<div class="archi-right">
+							<div class="archi-con archi-con-10"><span class="archi-dot archi-dot-010"></span></div>
+							<div class="archi-con archi-con-09"><span class="archi-dot archi-dot-09"></span></div>
+							<div class="archi-con archi-con-08"><span class="archi-dot archi-dot-08"></span></div>
+							<div class="archi-con archi-con-07"><span class="archi-dot archi-dot-07"></span></div>
+							<div class="archi-con archi-con-06"><span class="archi-dot archi-dot-06"></span></div>
+						</div>		
+					</div>
+					<div class="archi-title-box">
+						<h2 class="archi-title">문수로 코아루 에듀 스카이</h2>
+						<p class="archi-desc">
+							4BAY 3면개방<br>
+							최대 50.16㎡ 서비스면적<br>
+							대치동이 부러워할 교육집중 평면
+						</p>
+					</div>
+				</div>
+				<div class="archi-btn">
+					<div class="archi-btn-box archi-btn-box-01">
+						<div class="archi-btn-title">ELEVATOR <span></span></div>
+						<ul class="archi-btn-list archi-btn-list-01">
+							<li class="archi-btn-01 on"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>ELEVATOR01</span></li>
+							<li class="archi-btn-02"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>ELEVATOR02</span></li>
+							<li class="archi-btn-03"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>ELEVATOR03</span></li>
+						</ul>
+					</div>
+					<div class="archi-btn-box archi-btn-box-02">
+						<div class="archi-btn-title">SKY VIEW <span></span></div>
+						<ul class="archi-btn-list archi-btn-list-02">
+							<li class="archi-btn-04"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>21m</span></li>
+							<li class="archi-btn-05"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>35m</span></li>
+							<li class="archi-btn-06"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>50m</span></li>
+							<li class="archi-btn-07"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>67m</span></li>
+							<li class="archi-btn-08"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>81m</span></li>
+							<li class="archi-btn-09"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>143m</span></li>
+							<li class="archi-btn-010"><div class="archi-btn-img"><img src="assets/images/main/archi-thum.png" alt=""></div><span>165m</span></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="archi-slide-window archi-slide-window-01">
+					<div class="archi-slide-box">
+						<h2 class="archi-slide-title">50m View</h2>
+						<div class="archi-video">
+							<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" src="" loop muted controls></video>
+						</div>
+						<div class="archi-navigation">
+							<div class="archi-prev archi-prev-01"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+							<div class="archi-next archi-next-01"><img src="assets/images/main/archi-arrow.png" alt=""></div>
+						</div>
+						<div class="archi-close"></div>
+					</div>
+				</div>
+				
+							</div>
+						</section> -->
+
+		<section class="section main-section-complex">
+			<div class="complex-slide">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide complex-first-slide">
+						<div class="complex-slide-inner">
+							<div class="complex-slide-con">
+								<h2 class="complex-slide-title">Family Room</h2>
+								<h3 class="complex-slide-sub-title">
+									함께 <b>머물고,성장</b>하는 <br>
+									<b>가족친화적</b> 거실
+								</h3>
+								<p class="complex-slide-desc">
+									• 거실 서재화로 가족이 함께 만들어가는 <br>학구적 분위기
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="complex-slide-inner">
+							<div class="complex-slide-con">
+								<h2 class="complex-slide-title">Alpa Room</h2>
+								<h3 class="complex-slide-sub-title">
+									<b>학령기 아이</b>에게 <b>제공</b>되는<br>
+									맞춤 공간<small>(안방, 알파룸)</small>
+								</h3>
+								<p class="complex-slide-desc">
+									• 공부와 생활이 함께 가능한 넓은 안방<br>
+									• 집중공부방, 운동방 등 다양한 용도로 <br>활용 가능한 알파룸
+								</p>
+								<p class="complex-info">※ 본 제안은 발코니확장 및 침실1특화(84A,84B)를 선택한 경우를 가정하였음</p>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide complex-last-slide">
+						<div class="complex-slide-inner">
+							<div class="complex-slide-con">
+								<h2 class="complex-slide-title">Private Room </h2>
+								<h3 class="complex-slide-sub-title">
+									<b>부부</b> 를 위한 <br>
+									<b>프라이빗</b>  공간<small>(침실2, 침실3)</small>
+								</h3>
+								<p class="complex-slide-desc">
+									• 침실2를 홈시어터, 취미방 등 부부를 위한 <br>여가공간으로 활용<br>
+									• 침실3을 효율적인 구조의 아늑한 <br>부부침실로 활용
+								</p>
+								<p class="complex-info">※ 본 제안은 발코니확장 및 침실2,3특화(84A,84B,84C)를 선택한 경우를 가정하였음</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="complex-bg">
+					<img class="on" src="assets/images/main/complex-img-01.jpg" alt="">
+					<img src="assets/images/main/complex-img-02.jpg" alt="">
+					<img src="assets/images/main/complex-img-03.jpg" alt="">
+				</div>
+				<div class="complex-marqee">
+					<p>Design</p><p>Design</p>
+				</div>
+				<!-- <div class="complex-pattern"></div> -->
+				<div class="complex-inner">
+					<div class="complex-title-box">
+						<h3 class="complex-sub-title">Special PLAN.</h3>
+						<p class="complex-title complex-title-01">요즘 대세, 온가족이 만족하는</p>
+						<p class="complex-title complex-title-02">대치동 스타일 하우스 활용법 제안</p>
+					</div>
+					<div class="complex-control">
+						<div class="complex-progress"><span></span></div>
+						<div class="complex-pagination">
+							<div class="complex-index">1</div>/<div class="complex-total">3</div>
+						</div>
+						<div class="complex-navigation">
+							<div class="complex-prev"></div>
+							<div class="complex-rect"></div>
+							<div class="complex-next"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+
+		<!-- <section class="section main-section-envi">
+			<div class="envi-bg"><img src="assets/images/main/envi-bg.jpg" alt=""></div>
+			<div class="envi-slide">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide envi-slide-01 envi-first-slide">
+						<h2 class="envi-slide-title">Multifunctional<br>living room</h2>
+						<div class="envi-con">
+							<h3 class="envi-con-title"><b>함께 머물고, 성장하는 가족친화적 거실</b></h3>
+							<p class="envi-con-desc">
+								- 거실 서재화로 가족이 함께 만들어가는 학구적 분위기<br>
+							</p>
+						</div>
+					</div>
+					<div class="swiper-slide envi-slide-02">
+						<h2 class="envi-slide-title">A living room that<br>satisfies your tastes</h2>
+						<div class="envi-con">
+							<h3 class="envi-con-title"><b>학령기 아이에게 제공되는 맞춤 공간</b>(안방, 알파룸)</h3>
+							<p class="envi-con-desc">
+								- 공부와 생활이 함께 가능한 넓은 안방<br>
+								- 집중공부방, 운동방 등 다양한 용도로 활용 가능한 알파룸<br> 
+							</p>
+						</div>
+					</div>
+					<div class="swiper-slide envi-slide-03 envi-last-slide">
+						<h2 class="envi-slide-title">Private Multi room</h2>
+						<div class="envi-con">
+							<h3 class="envi-con-title"><b>부부를 위한 프라이빗 공간</b>(침실2, 침실3) </h3>
+							<p class="envi-con-desc">
+								- 침실2를 홈시어터, 취미방 등 부부를 위한 여가공간으로 활 <br>
+								- 침실3을 효율적인 구조의 아늑한 부부침실로 활용<br>
+		
+							</p>
+						</div>
+					</div>
+				<div class="swiper-slide envi-slide-04">
+						<h2 class="envi-slide-title">Comfortable <br>Bedroom</h2>
+						<div class="envi-con">
+							<h3 class="envi-con-title">안락한 부부의 침실 </h3>
+							<p class="envi-con-desc">
+								효율적 구조로 완성된 부부의 공간이자 <br>
+								더 깊은 휴식을 선사하는 <br>
+								안락한 침실 
+							</p>
+						</div>
+					</div>
+					<div class="swiper-slide envi-slide-05 envi-last-slide">
+						<h2 class="envi-slide-title">Private<br>Couple space</h2>
+						<div class="envi-con">
+							<h3 class="envi-con-title">부부의 홈시어터룸 </h3>
+							<p class="envi-con-desc">
+								외부의 방해 없이 <br>
+								영화관 수준의 몰입감을 제공하는 <br>
+								프라이빗한 부부공간 
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="envi-img-box">
+					<div class="envi-img envi-img-01"><img src="assets/images/main/envi-img-01.jpg" alt=""></div>
+					<div class="envi-img envi-img-02"><img src="assets/images/main/envi-img-02.jpg" alt=""></div>
+					<div class="envi-img envi-img-03"><img src="assets/images/main/envi-img-03.jpg" alt=""></div>
+				    <div class="envi-img envi-img-04"><img src="assets/images/main/envi-img-04.jpg" alt=""></div>
+					<div class="envi-img envi-img-05"><img src="assets/images/main/envi-img-05.jpg" alt=""></div>
+				</div>
+				<div class="envi-inner">
+					<h3 class="envi-sub-title">요즘 대세, 온가족이 만족하는</h3>
+					<h2 class="envi-title">Style <span>PLAN.</span></h2>
+					<p class="envi-desc"><b>대치동 스타일 하우스 활용법 제안된 대치동 스타일 설계</b></p>
+		
+					<div class="envi-pagination">
+						<span class="envi-index">01</span>
+						<div class="envi-circle"></div>
+						<div class="envi-total">03</div>
+					</div>
+		
+					<div class="envi-navigation">
+						<div class="envi-prev">PREV <img src="assets/images/main/envi-arrow.png" alt=""></div>
+						<div class="envi-rect"></div>
+						<div class="envi-next">NEXT <img src="assets/images/main/envi-arrow.png" alt=""></div>
+					</div>
+				</div>
+			</div>
+		</section> -->
+
+<section class="section main-section-premium2">
+			<div class="premium-bg">
+				<p>PREMIUM•PREMIUM•</p><p>PREMIUM•PREMIUM•</p>
+			</div>
+			<div class="premium-inner">
+				<div class="premium-slide2">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide premium-first-slide">
+							<div class="premium-slide-inner">
+								<div class="premium-img"><img src="assets/images/main/premium_img_01.png" alt="">
+								<!-- <p class="premium-img-title">
+									Educaiton <span></span>
+								</p>
+								<a class="premium-rotate-btn" href="pages/premium.html">
+									<div class="premium-rotate-text"></div>
+									<div class="premium-rotate-circle"></div>
+								</a>
+								<p class="premium-img-text">
+									‘울산의 대치동’ 문수로의<br>
+									명문학군 및 학원가 인접
+								</p> -->
+								</div>
+								<!-- <h3 class="premium-slide-title">E<span>ducaiton</span></h3>
+								<p class="premium-slide-small-title">더 우수한 <span>교육환경</span></p> -->
+
+								<div class="premium-slide-con">
+									<h2 class="premium-slide-title2">Educaiton</h2>
+									<h3 class="premium-slide-sub-title2">
+										더 우수한 <b>교육환경</b>
+									</h3>
+									<p class="premium-slide-desc2">
+										‘울산의 대치동’ 문수로의<br>
+										명문학군 및 학원가 인접
+									</p>
+								</div>
+							</div>	
+						</div>
+		
+						<div class="swiper-slide">
+							<div class="premium-slide-inner">
+								<div class="premium-img">
+								<!-- <p class="premium-img-title">
+									Special <span></span>
+								</p> -->
+								<img src="assets/images/main/premium_img_02.png" alt="">
+								<!-- <a class="premium-rotate-btn" href="pages/premium.html">
+									<div class="premium-rotate-text"></div>
+									<div class="premium-rotate-circle"></div>
+								</a>
+									<p class="premium-img-text">
+										인근 약 4,500여 세대<br>
+										메이저 브랜드타운이 예정된 미래
+									</p> -->
+								</div>
+								<!-- <p class="foot">
+										※ 상기 이미지는 소비자의 이해를 돕기 위해 제작된 것으로 실제와 차이가 있을 수 있습니다.<br>
+								</p>
+								<h3 class="premium-slide-title">S<span>pecial</span></h3>
+								<p class="premium-slide-small-title">더 특별한 <span>프리미엄</span></p> -->
+								<div class="premium-slide-con">
+									<h2 class="premium-slide-title2">Special</h2>
+									<h3 class="premium-slide-sub-title2">
+										더 특별한 <b>프리미엄</b>
+									</h3>
+									<p class="premium-slide-desc2">
+										인근 약 4,500여 세대<br>
+										메이저 브랜드타운이 예정된 미래
+									</p>
+								</div>
+							</div>
+						</div>
+		
+						<div class="swiper-slide">
+							<div class="premium-slide-inner">
+							<div class="premium-img">
+							<!-- <p class="premium-img-title">
+								Infra <span></span>
+							</p> -->
+							<img src="assets/images/main/premium_img_03.png" alt="">
+							<!-- <a class="premium-rotate-btn" href="pages/premium.html">
+								<div class="premium-rotate-text"></div>
+								<div class="premium-rotate-circle"></div>
+							</a>
+								<p class="premium-img-text">
+									남산근린공원 및 울산시청, <br>
+									롯데마트 등 풍부한 생활인프라
+								</p> -->
+							</div>
+							<!-- <h3 class="premium-slide-title">I<span>nfra</span></h3>
+							<p class="premium-slide-small-title">더 편리한 <span>생활특권</span></p> -->
+								<div class="premium-slide-con">
+									<h2 class="premium-slide-title2">Infra</h2>
+									<h3 class="premium-slide-sub-title2">
+										더 편리한 <b>생활특권</b>
+									</h3>
+									<p class="premium-slide-desc2">
+										남산근린공원 및 울산시청, <br>
+										롯데마트 등 풍부한 생활인프라
+									</p>
+								</div>
+							</div>
+						</div>
+		
+						<div class="swiper-slide">
+							<div class="premium-slide-inner">
+								<div class="premium-img">
+								<!-- <p class="premium-img-title">
+									Design Plan <span></span>
+								</p> -->
+								<img src="assets/images/main/premium_img_04.png" alt="">
+								<!-- <a class="premium-rotate-btn" href="pages/premium.html">
+									<div class="premium-rotate-text"></div>
+									<div class="premium-rotate-circle"></div>
+								</a>
+									<p class="premium-img-text">
+										실사용 면적을 극대화한 <br>
+										코아루만의 특화공간 설계 적용
+									</p> -->
+								</div>
+								<!-- <h3 class="premium-slide-title">D<span>esign Plan</span></h3>
+								<p class="premium-slide-small-title">더 새로워진 <span>코아루</span></p> -->
+
+								<div class="premium-slide-con">
+									<h2 class="premium-slide-title2">Design Plan</h2>
+									<h3 class="premium-slide-sub-title2">
+										더 새로워진 <b>코아루</b>
+									</h3>
+									<p class="premium-slide-desc2">
+										실사용 면적을 극대화한 <br>
+										코아루만의 특화공간 설계 적용
+									</p>
+								</div>
+							</div>
+						</div>
+		
+						<div class="swiper-slide">
+							<div class="premium-slide-inner">
+								<div class="premium-img">
+								<!-- <p class="premium-img-title">
+									Traffic <span></span>
+								</p> -->
+								<img src="assets/images/main/premium_img_05.png" alt="">
+								<!-- <a class="premium-rotate-btn" href="pages/premium.html">
+									<div class="premium-rotate-text"></div>
+									<div class="premium-rotate-circle"></div>
+								</a>
+									<p class="premium-img-text">
+										봉월로, 문수로 및 도시철도 1호선<small>(예정)</small>을 <br>
+										누리는 쾌적 교통
+									</p> -->
+								</div>
+								<!-- <h3 class="premium-slide-title">T<span>raffic</span></h3>
+								<p class="premium-slide-small-title">더 빨라진 <span>출퇴근로</span></p> -->
+								<div class="premium-slide-con">
+									<h2 class="premium-slide-title2">Traffic</h2>
+									<h3 class="premium-slide-sub-title2">
+										더 빨라진 <b>출퇴근로</b>
+									</h3>
+									<p class="premium-slide-desc2">
+										봉월로, 문수로 및 도시철도 1호선<small>(예정)</small>을 <br>
+										누리는 쾌속교통
+									</p>
+								</div>
+							</div>
+						</div>
+		
+						<div class="swiper-slide  premium-last-slide">
+							<div class="premium-slide-inner">
+								<div class="premium-img">
+								<!-- <p class="premium-img-title">
+									Benefit <span></span>
+								</p> -->
+								<img src="assets/images/main/premium_img_06.png" alt="">
+								<!-- <a class="premium-rotate-btn" href="pages/premium.html">
+									<div class="premium-rotate-text"></div>
+									<div class="premium-rotate-circle"></div>
+								</a>
+									<div class="premium-img-text">
+										1차 계약금 500만원/<br>
+										중도금 무이자 등 부담 없는 분양 조건
+									</div> -->
+								</div>
+								<!-- <h3 class="premium-slide-title">B<span>enefit</span></h3>
+								<p class="premium-slide-small-title">더 특별한 <span>계약특권</span></p> -->
+								<div class="premium-slide-con">
+									<h2 class="premium-slide-title2">Benefit</h2>
+									<h3 class="premium-slide-sub-title2">
+										더 특별한 <b>계약특권</b>
+									</h3>
+									<p class="premium-slide-desc2">
+										계약금 5%(1차계약금 500만원) /<br>
+										중도금 무이자 등 부담 없는 분양 조건
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="premium-slide-control">
+						<div class="premium-btn-box">
+							<div class="premium-progress"></div>
+							<div class="premium-pagination">
+								<span>1</span>/<span>6</span>
+							</div>
+							<div class="premium-navigation2">
+								<div class="premium-prev"></div>
+								<div class="premium-next"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+        <!-- <section class="section main-section-envi">
+        			<div class="section-inner">
+            <div class="envi-slide type1">
+                <div class="swiper-wrapper">
+        					<div class="swiper-slide envi-first-slide">
+        						<div class="envi-inner">
+        							<div class="envi-title-box envi-title-box1">
+        								<h2 class="envi-title">
+        									<p>코아루가 제안합니다!</p>
+        									<p><img src="assets/images/main/premium-title.png"></p>
+        									<p><b>교육에 최적화</b>된 대치동 스타일 설계</p>
+        								</h2>
+        								<h2 class="envi-bottom-title">
+        														<p>CASTLE</p>
+        														<p>LOCATION</p>
+        													</h2>
+        							</div>
+        					
+        							<div class="envi-con envi-con-01 premium-box02 ">
+        								<h3>생활을 확장하는 안방</h3>
+        								<p>
+        									머물수록 쉼은 깊어지고,<br>쓰임은 넓어지며,<br>취향이 채워지는 안방
+        								</p>
+        								<p>
+        									<img src="assets/images/main/premium-img02.png">
+        								</p>
+        								<p class="tit"><span></span>Style PLAN. 02</p>
+        							</div>
+        							<div class="envi-con envi-con-02 premium-box01">
+        								<div class="premium-img">
+        									<p class="tit"><span></span>Style PLAN. 01</p>
+        									<img src="assets/images/main/premium-img01.png">
+        								</div>
+        								<div class="premium-desc">
+        									<h3>그룹 홈스터디형 거실</h3>
+        									<p>
+        										아이들의 학습과 부모의 동반학습,<br>취미생활을 동시에 지원할 수 있는<br>다기능형 거실
+        									</p>
+        								</div>
+        							</div>
+        						</div>
+        					</div>
+        					<div class="swiper-slide envi-last-slide">
+        						<div class="envi-inner">
+        							<div class="envi-title-box envi-title-box1">
+        								<h2 class="envi-title">
+        									<p>코아루가 제안합니다!</p>
+        									<p><img src="assets/images/main/premium-title.png"></p>
+        									<p><b>교육에 최적화</b>된 대치동 스타일 설계</p>
+        								</h2>
+        								<h2 class="envi-bottom-title">
+        														<p>CASTLE</p>
+        														<p>LOCATION</p>
+        													</h2>
+        							</div>
+        					
+        							
+        							<div class="envi-con envi-con-02 premium-box01 premium-box03">
+        								<div class="premium-img">
+        									<p class="tit"><span></span>Style PLAN. 03</p>
+        									<img src="assets/images/main/premium-img03.png">
+        								</div>
+        								<div class="premium-desc">
+        									<h3>개성이 드러나는 멀티룸</h3>
+        									<p>
+        										공부만 하는 데스크룸을 넘어<br>자녀의 취미를 연출할 수 있는<br>개인 멀티룸
+        									</p>
+        								</div>
+        							</div>
+        							<div class="envi-con envi-con-01 premium-box02 premium-box04">
+        								<div class="premium-desc">
+        									<h3>안락한 부부의 침실</h3>
+        									<p>
+        										효율적 구조로 완성된 부부의 공간이자<br>더 깊은 휴식을 선사하는<br>안락한 침실
+        									</p>
+        								</div>
+        								<p>
+        									<img src="assets/images/main/premium-img04.jpg">
+        								</p>
+        								<p class="tit"><span></span>Style PLAN. 04</p>
+        							</div>
+        							<div class="envi-con envi-con-01 premium-box02 premium-box05">
+        								<p class="tit"><span></span>Style PLAN. 05</p>
+        								<p>
+        									<img src="assets/images/main/premium-img05.jpg">
+        								</p>
+        								<h3>부부의 홈시어터룸</h3>
+        								<p>
+        									외부의 방해 없이<br>
+        									영화관 수준의 몰입감을 제공하는<br>
+        									프라이빗한 부부공간
+        								</p>
+        							</div>
+        					
+        						</div>
+        					</div>
+                </div>
+        				<div class="envi-navigation">
+        					<div class="envi-prev"></div>
+        					<div class="envi-rect"></div>
+        					<div class="envi-next"></div>
+        				</div>
+            </div>
+        			</div>
+        </section> -->
+
+				<section class="section main-section-design">
+			<div class="design-slide">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide design-first-slide design-slide-01">
+						<div class="design-inner">
+							<div class="design-img design-img1">
+								<img src="assets/images/main/envi-right-img01.png" alt="" class="design-01-01"><img src="assets/images/main/envi-right-img01-active.png" alt="" class="design-01-01 design-01-01-active"><span class="line1"></span>
+								<img src="assets/images/main/envi-right-img02.png" alt="" class="design-01-02"><span class="line2"></span>
+								<img src="assets/images/main/envi-right-img03.png" alt="" class="design-01-03">
+		
+								<img src="assets/images/main/envi-right-img06.png" alt="" class="design-obj-01-03">
+								<img src="assets/images/main/envi-right-img04.png" alt="" class="design-obj-01-01">
+								<img src="assets/images/main/envi-right-img07.png" alt="" class="design-obj-01-04">
+								<img src="assets/images/main/envi-right-img05.png" alt="" class="design-obj-01-02">
+								<!-- <img src="assets/images/main/design-obj-01-05.png" alt="" class="design-obj-01-05"> -->
+							</div>
+							
+							<div class="design-desc design-desc3">
+								<h3>더 차이나는<span></span><b>교육</b></h3>
+								<p>
+									- 도보 5분 거리 신정초교 및 다수의 초・중・고 인접<br>
+									- 울산 최선호 옥동 학원가가 가까운 명품 교육환경
+								</p>
+							</div>
+
+						</div>
+					</div>
+					<div class="swiper-slide design-slide-02">
+						<div class="design-inner">
+							<div class="design-img design-img2">
+								<img src="assets/images/main/envi-right-img01.png" alt="" class="design-02-01"><span class="line1"></span>
+								<img src="assets/images/main/envi-right-img02.png" alt="" class="design-02-02"><img src="assets/images/main/envi-right-img02-active.png" alt="" class="design-02-02 design-02-02-active"><span class="line2"></span>
+								<img src="assets/images/main/envi-right-img03.png" alt="" class="design-02-03">
+		
+								<img src="assets/images/main/envi-right-img06.png" alt="" class="design-obj-02-03">
+								<img src="assets/images/main/envi-right-img04.png" alt="" class="design-obj-02-01">
+								<img src="assets/images/main/envi-right-img07.png" alt="" class="design-obj-02-04">
+								<img src="assets/images/main/envi-right-img05.png" alt="" class="design-obj-02-02">
+								<!-- <img src="assets/images/main/design-obj-01-05.png" alt="" class="design-obj-02-05"> -->
+							</div>
+							
+							<div class="design-desc design-desc3">
+								<h3>더 차이나는<span></span><b>생활</b></h3>
+								<p>
+									- 남산근린공원, 태화강 국가정원 등 쾌적한 자연환경<br>
+									- 롯데마트, 울산광역시청, 중앙병원 등 풍부한 생활인프라
+								</p>
+							</div>
+
+						</div>
+					</div>
+					<div class="swiper-slide design-last-slide design-slide-03">
+						<div class="design-inner">
+							<div class="design-img design-img3">
+								<img src="assets/images/main/envi-right-img01.png" alt="" class="design-03-01"><span class="line1"></span>
+								<img src="assets/images/main/envi-right-img02.png" alt="" class="design-03-02"><span class="line2"></span>
+								<img src="assets/images/main/envi-right-img03.png" alt="" class="design-03-03"><img src="assets/images/main/envi-right-img03-active.png" alt="" class="design-03-03 design-03-03-active">
+		
+								<img src="assets/images/main/envi-right-img06.png" alt="" class="design-obj-03-03">
+								<img src="assets/images/main/envi-right-img04.png" alt="" class="design-obj-03-01">
+								<img src="assets/images/main/envi-right-img07.png" alt="" class="design-obj-03-04">
+								<img src="assets/images/main/envi-right-img05.png" alt="" class="design-obj-03-02">
+								<!-- <img src="assets/images/main/design-obj-01-05.png" alt="" class="design-obj-01-05"> -->
+							</div>
+							
+							<div class="design-desc design-desc3">
+								<h3>더 차이나는<span></span><b>미래</b></h3>
+								<p>
+									- 봉월로 일대 정비사업으로 더 커질 에듀벨트<br>
+									- 약 4,500여 세대 메이저 브랜드 타운 형성 예정
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="design-con">
+					<div class="design-header">
+						<h2 class="design-title">
+							<p>문수로의 미래비전에</p>
+							<p>특별한 일상을</p>
+						</h2>
+						<p><img src="assets/images/main/envi-title-img01.png" alt=""></p>
+					</div>
+					<div class="pager"></div>
+					<!-- <div class="design-navigation">
+						<div class="design-prev"><img src="assets/images/main/envi-title-img01.png" alt=""></div>
+						<div class="design-rect"></div>
+						<div class="design-next"><img src="assets/images/main/design-arrow.png" alt=""></div>
+					</div> -->
+					
+				</div>
+			</div>
+		</section>
+	
+				<section class="section main-section-location">
+					<div class="section-inner">
+				
+						<div class="location-bg"><img src="assets/images/main/location-bg.jpg" alt=""></div>
+						<div class="location-inner">
+							<div class="location-title-box1">
+								<p class="location-desc">
+									코아루 에듀 스카이 <b>오시는길</b>
+								</p>
+								<h2 class="location-title">
+									<p>CONTACT.</p>
+								</h2>
+							</div>
+				
+							<div class="location-map-box">
+								<div class="location-map">
+									<div class="location-map-img hover_ani" data-color="#111"><img src="assets/images/main/location-map-01.jpg"
+											alt=""></div>
+									<div class="location-right">
+										<p class="location-address">
+											<span>현&nbsp;&nbsp;&nbsp;&nbsp;장</span>
+											울산광역시 남구 신정동 1335-7번지 일원
+										</p>
+										<div class="location-btn-box">
+											<a href="https://naver.me/GvfxaW9r" class="naver" target="_blank"><img src="assets/images/main/naver.jpg" alt=""></a>
+											<a href="https://kko.kakao.com/DeN-S4Nyq5" class="daum" target="_blank"><img src="assets/images/main/daum.jpg" alt=""></a>
+										</div>
+										<p class="location-address">
+											<span>홍보관</span>
+											울산광역시 남구 신정동 729-23
+										</p>
+										<div class="location-btn-box">
+											<a href="https://naver.me/FvQVAT8j" class="naver" target="_blank"><img src="assets/images/main/naver.jpg" alt=""></a>
+											<a href="https://kko.kakao.com/jjgV-qyH_j" class="daum" target="_blank"><img src="assets/images/main/daum.jpg" alt=""></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				
+					</div>
+				</section>
+
+        <section class="section main-section-footer fp-auto-height">
+			<footer class="footer">
+	<div class="footer-inner">
+		<img src="" alt="" class="footer-logo">
+		<ul class="footer-ul">
+			<li><b style="font-weight : 700">홍보관</b>&nbsp;: 울산광역시 남구 신정동 729-23</li>
+			<li><b style="font-weight : 700">현장</b>&nbsp;: 울산광역시 남구 신정동 1335-7번지 일원</li>
+		</ul>
+		<ul class="footer-ul">
+			<li><b style="font-weight : 700">시행</b>&nbsp;: (주) 한국토지신탁(울산 신정동 1335-7 주상복합)</li>
+			<li><b style="font-weight : 700">주소</b>&nbsp;: 서울특별시 강남구 테헤란로 137(역삼동)</li>
+			<li><b style="font-weight : 700">사업자등록번호</b>&nbsp;: 845-32-01403</li>
+		</ul>
+		<!-- <ul class="footer-ul">
+			<li><b style="font-weight : 700">시행사</b>&nbsp;: 해조건설 주식회사</li>
+			<li><b style="font-weight : 700">대표</b>&nbsp;: 조성현</li>
+			<li><b style="font-weight : 700">주소</b>&nbsp;: 경기도 안양시 동안구 시민대로159번길 25, 1층 108호(비산동, Festa via)</li>
+			<li><b style="font-weight : 700">사업자등록번호</b>&nbsp;: 138-81-59649</li>
+		</ul> -->
+		<ul class="footer-info">
+			<li>홈페이지 제작에 사용된 CG 및 이미지컷은 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있습니다.</li>
+			<li>세부 설계내용은 향후 인허가 과정에서 변동될 수 있습니다.</li>
+			<li>홈페이지 제작과정 상 오탈자가 있을 수 있으므로 계약 시 반드시 확인하시기 바랍니다.</li>
+		</ul>
+		<p class="footer-copy">COPYRIGHT &copy; ALL RIGHTS RESERVED.</p>
+		<!-- <img src="assets/images/common/sigong.png?v=1" alt="" class="sigong"> -->
+	</div>
+</footer>
+
+        </section>
+    </div>
+	<script src="assets/js/vendors/jquery.fullpage.min.js"></script>
+<script src="assets/js/vendors/swiper.min.js"></script>
+<script src="assets/js/vendors/gsap.min.js"></script>
+<script src="assets/js/vendors/split-type.js"></script>
+<script src="assets/js/vendors/imageMapResizer.min.js"></script>
+<script src="assets/js/vendors/aos.js"></script>
+<script src="assets/js/common.js?v=1"></script>
+<script src="assets/js/sub.js"></script>
+
+<!-- Google Tag Manager (noscript) -->
+<!-- End Google Tag Manager (noscript) -->    <script src="assets/js/main.js?v=11"></script>
+
+
+  <script>
+    (function(){
+      const main = document.getElementById('mainVideo');
+      const thumbs = Array.from(document.querySelectorAll('.thumb'));
+
+      if(!main) return;
+
+      /*
+        동작 요약:
+        - 썸네일 클릭 시 현재 main 비디오는 pause()
+        - 현재 시간(lastTime)을 저장
+        - main의 <source> 를 교체하고 load()
+        - loadedmetadata 이벤트에서 currentTime을 복원
+        - data-allow-play-when-changed 가 "true" 면 복원한 뒤 재생
+        - 접근성: Enter / Space 로도 활성화
+      */
+
+      function activateThumb(t, ev){
+        if(ev && ev.type === 'keydown' && !(ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar')) return;
+        if(ev) ev.preventDefault();
+
+        const src = t.dataset.videoSrc;
+        if(!src) return;
+
+        // 현재 재생 위치 저장
+        const lastTime = isFinite(main.currentTime) ? main.currentTime : 0;
+
+        // 멈추기
+        try{ main.pause(); } catch(e){}
+
+        // 완전 교체: 안정적으로 작동하도록 innerHTML 로 source 재설정
+        main.innerHTML = `<source src="${src}" type="video/mp4" autoplay muted loop >`;
+
+        // poster (옵션)
+        if(t.dataset.poster){
+          main.setAttribute('poster', t.dataset.poster);
+        }
+
+        // 메타데이터 로드 후 타임 복원
+        const onLoaded = function(){
+          // duration 확인 후 설정 (overflow 방지)
+          if(isFinite(main.duration) && main.duration > 0){
+            // lastTime가 duration보다 크면 끝으로 맞춘다
+            main.currentTime = Math.min(lastTime, Math.max(0, main.duration - 0.1));
+          } else {
+            main.currentTime = lastTime;
+          }
+          main.removeEventListener('loadedmetadata', onLoaded);
+        };
+
+        main.addEventListener('loadedmetadata', onLoaded);
+
+        // 로드 및 재생 여부 결정
+        main.load();
+        const allowPlay = main.dataset.allowPlayWhenChanged === 'true';
+        if(allowPlay){
+          // 브라우저 정책상 play()가 거부될 수 있으니 catch
+          main.play().catch(()=>{});
+        }
+
+        // aria 상태 갱신
+        thumbs.forEach(x => x.setAttribute('aria-pressed','false'));
+        t.setAttribute('aria-pressed','true');
+      }
+
+      // 이벤트 바인딩
+      thumbs.forEach(t =>{
+        t.addEventListener('click', (ev) => activateThumb(t, ev));
+        t.addEventListener('keydown', (ev) => activateThumb(t, ev));
+      });
+
+      // 초기 동기화: main 소스와 같은 썸네일 표시 활성화
+      (function syncInitial(){
+        const mainSrc = main.querySelector('source') ? main.querySelector('source').src : null;
+        if(!mainSrc) return;
+        thumbs.forEach(t =>{
+          const src = t.dataset.videoSrc;
+          // 브라우저가 절대경로로 바꿔줄 수 있으므로 endsWith 로 비교도 허용
+          if(src === mainSrc || (mainSrc && mainSrc.endsWith(src))){
+            t.setAttribute('aria-pressed','true');
+          }
+        });
+      })();
+
+    })();
+  </script>
+
+
+	<style>
+		/*popup*/
+		#popup-wrap {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%;opacity: 0;position: fixed;z-index: 10001;left: 0;top: 0;}
+		.popup.is--mobile{display : none;}
+		#popup-wrap table {width: 100%;padding-top : 10px;}
+		#popup-wrap table tr {display: flex;justify-content: space-between;align-items: center;width: 100%;color : #fff;}
+		#popup-wrap table tr td {display: flex;justify-content: start;align-items:center;cursor: pointer;font-size: 18px;white-space : nowrap;}
+		#popup-wrap table tr td:last-child {justify-content : end;}
+		#popup-wrap table tr td label{cursor : pointer;}
+		.popup-bg {width: 100%;height: 100%;background: rgba(0,0,0,0.5);opacity: 0;position: fixed;z-index: 10000;left: 0;top: 0;}
+		.popup ul {display:flex;gap:5px;}
+		@media (max-width: 991px) {
+			.popup.is--mobile{display : flex;}
+			.popup.is--pc{display : none;}
+			#popup-wrap {top : 50%;z-index:10003;transform : translateY(-50%);}
+			.popup {display: flex;align-items: center;justify-content: center;position: absolute;top: 0;left: 0;z-index: 10002;width: 100%;height: 100%;}
+			#popup-wrap .swiper-container {width: 80%;position: relative;overflow: hidden;}
+			#popup-wrap table {position: relative;z-index: 1;padding-top : 5px;}
+			#popup-wrap table tr td {font-size: 12px;gap : 3px;}
+			#popup-wrap .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {text-align: center;} 
+			#popup-wrap .swiper-container .swiper-pagination-bullet {width: 10px;height: 10px;background: #fff;}
+			#popup-wrap .swiper-container .swiper-pagination-bullet-active {background: #fff;}
+			#popup-wrap .swiper-control-area {display: flex;justify-content: end;margin-top: 10px;}
+			#popup-wrap .swiper-control-area .swiper-button-area {width: 100%;}
+			#popup-wrap .swiper-control-area .swiper-control-control {display: flex;align-items: center;justify-content: center;height: 25px;width: 25%;max-width : 100px;position: relative;border-radius: 25px;background: #000846;}
+			#popup-wrap .swiper-label-area {display: flex;align-items: center;justify-content: space-between;color: #fff;height: 100%;width: 45%;font-size: 14px;}
+			#popup-wrap .swiper-label-area .swiper-label__bar {width: 1px;background: #fff;display:block;height: 8px;}
+			#popup-wrap .swiper-button-next, #popup-wrap .swiper-button-prev {display : flex;align-items : center; justify-content : center;width : 15px;height : 100%;color: #fff;position : absolute;top : 0;background : none;margin : 0 !important;padding : 0 !important;left:auto;right : auto;top :0;bottom : 0;font-size : 12px;padding-bottom : 2px !important;}
+			#popup-wrap .swiper-button-prev {left: 0;}
+			#popup-wrap .swiper-button-next {right: 0;}
+		}
+	</style>
+	<!-- 데모: 팝업 제거 -->
+<!-- popup -->
+
+
+
+
+<script>
+	const archiSlides = [];
+
+	for (let i = 1; i <= 4; i++) {
+	  const swiper = new Swiper(`.archi-slide-0${i}`, {
+		speed: 1000,
+		slidesPerView: 1,
+		navigation: {
+		  prevEl: `.archi-prev-0${i}`,
+		  nextEl: `.archi-next-0${i}`,
+		},
+	  });
+
+	  archiSlides.push(swiper);
+	}
+
+	videoList = [
+		{ 
+			video : '/assets/video/1_0~10층엘베뷰.mp4',
+			name : 'PLAY 0~10 floor View'
+		},
+		{ 
+			video : '/assets/video/2_10층파노라마뷰.mp4',
+			name : 'PLAY 0~10 floor PANORAMA'
+		},
+		{ 
+			video : '/assets/video/3_10층~20층엘베뷰.mp4',
+			name : 'PLAY 10~20 floor View'
+		},
+		{ 
+			video : '/assets/video/4_20층파노라마뷰.mp4',
+			name : 'PLAY 10~20 floor PANORAMA'
+		},
+		{ 
+			video : '/assets/video/5_20층~38층엘베뷰.mp4',
+			name : 'PLAY 20~38 floor View'
+		},
+		{ 
+			video : '/assets/video/6_38층파노라마뷰.mp4',
+			name : 'PLAY 20~38 floor PANORAMA'
+		},
+	]
+
+	videoNum = 0;
+
+	for (let i = 0; i <= 10; i++) {
+	  $(`.media-video-box-0${i}`).on('mouseover', function() {
+		$('.media-slide-window').fadeIn(500)
+
+		$('.media-video > video').attr('src', videoList[i - 1].video)
+		$('.media-slide-title').text(videoList[i - 1].name)
+
+		videoNum = i
+	  });
+
+//	   $(`.media-btn-0${i}`).on('click', function() {
+//		$('.archi-slide-window').fadeIn(500)
+//		$('.archi-btn-list > li').removeClass('on')
+//		$(this).addClass('on')
+//		$('.archi-video > video').attr('src', videoList[i - 1].video)
+//		$('.archi-slide-title').text(videoList[i - 1].name)
+//
+//		videoNum = i
+//	  });
+	}
+
+	$('.media-prev').on('click',function(){
+		videoNum--
+		if(videoNum <= 0){
+			videoNum = 6	
+		}
+//		$('.archi-btn-list > li').removeClass('on')
+//		$(`.archi-btn-0${videoNum}`).addClass('on')
+
+		$('.media-video > video').attr('src', videoList[videoNum - 1].video)
+		$('.media-slide-title').text(videoList[videoNum - 1].name)
+
+		if(videoNum === 1 || videoNum === 2){
+			mediaSlide.slideTo(0)
+		}
+		if(videoNum === 3 || videoNum === 4){
+			mediaSlide.slideTo(1)
+		}
+		if(videoNum === 5 || videoNum === 6){
+			mediaSlide.slideTo(2)
+		}
+	})
+
+	$('.media-next').on('click',function(){
+		videoNum++
+		if(videoNum > 6){
+			videoNum = 1
+		}
+//		$('.archi-btn-list > li').removeClass('on')
+//		$(`.archi-btn-0${videoNum}`).addClass('on')
+
+		$('.media-video > video').attr('src', videoList[videoNum - 1].video)
+		$('.media-slide-title').text(videoList[videoNum - 1].name)
+
+		if(videoNum === 1 || videoNum === 2){
+			mediaSlide.slideTo(0)
+		}
+		if(videoNum === 3 || videoNum === 4){
+			mediaSlide.slideTo(1)
+		}
+		if(videoNum === 5 || videoNum === 6){
+			mediaSlide.slideTo(2)
+		}
+	})
+
+
+	$('.media-close').on('click',function(){
+		$('.media-slide-window').fadeOut(500)
+		setTimeout(function(){
+			$('.media-video > video').attr('src','')
+		},500)
+	})
+</script>
+
+<style>
+	.popvideo{
+		width : 100%;
+		height : 100%;
+		position : fixed;
+		left : 0;
+		top : 0;
+	}
+	.popvideo.on{pointer-events : all;}
+	.popvideo1{z-index : 100000}
+	.popvideo2{z-index : 10000}
+	.layerscreen{
+		width : 100vw;
+		height : 100vh;
+		background : rgba(0,0,0,0.6);
+		position : fixed;
+		left : 0;
+		top : 0;
+	}
+	#layerScreen1{z-index : 10001;}
+	#layerScreen2{z-index : 9999;}
+	.pop_wrap{
+		width : 100%;
+		max-width : 1200px;
+		position : absolute;
+		left : 50%;
+		top : 50%;
+		transform : translate(-50%, -50%);
+	}
+	.video_con{
+		width : 100%;
+		padding-bottom : 56.25%;
+		position : relative;
+	}
+	.video_con > iframe{
+		position : absolute;
+		left : 50%;
+		top : 50%;
+		transform : translate(-50% , -50%);
+		width : 100%;
+		height : 100%;
+	}
+	.video_con > video{
+		position : absolute;
+		left : 50%;
+		top : 50%;
+		transform : translate(-50% , -50%);
+		width : 100%;
+		height : 100%;
+	}
+	a.closevideo{
+		display : block;
+		width : 100%;
+		color : #fff;
+		text-align : center;
+		padding : 10px 0;
+		font-size : 15px;
+	}
+	@media(max-width : 1200px){
+		.pop_wrap{width : 100%;}
+	}
+</style>
+<!-- 데모: 유튜브 영상 팝업 제거 -->
+
+<a id="mvp-fab" href="tour.html" aria-label="사이버 임장 체험하기"><i></i>사이버 임장 체험하기 →<small>새 기능</small></a>
+</body>
+</html>

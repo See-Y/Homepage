@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:image" content="/assets/images/common/og_image.png">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="627">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<script src="../assets/js/vendors/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="../assets/style/vendors/jquery.fullpage.min.css">
+<link rel="stylesheet" href="../assets/style/vendors/swiper.css">
+<link rel="stylesheet" href="../assets/style/vendors/aos.css">
+<link rel="stylesheet" href="../assets/style/vendors/tab.css">
+<link rel="stylesheet" href="../assets/style/common.css?v=11">
+<link rel="stylesheet" href="../assets/style/sub.css?v=1">
+
+<!-- 1127 스크립트 --> 
+<title>[MVP 데모] 문수로 코아루 에듀 Sky&nbsp;층별영상</title>
+	<style>
+		.sub-content-box{max-width : 1200px;margin : 0 auto}
+		.video-container{width : 100%;padding-bottom : 56.25%;position : relative;}
+		.video-container > video {width : 100%;height : 100%;position : absolute;left : 0;top : 0;}
+	</style>
+<style id="mvp-ribbon-style">
+#mvp-ribbon{position:fixed;left:0;top:0;width:100%;height:40px;z-index:20000;background:#B4453A;color:#fff;font:700 14px/40px "Noto Sans KR","Malgun Gothic",sans-serif;text-align:center;letter-spacing:.02em;box-shadow:0 1px 6px rgba(0,0,0,.25)}
+#mvp-ribbon b{background:#fff;color:#B4453A;border-radius:3px;padding:2px 8px;margin-right:10px;font-size:12px;letter-spacing:.08em}
+#mvp-ribbon a{color:#fff;text-decoration:underline;margin-left:12px;font-weight:400;font-size:13px}
+.header{margin-top:40px!important}
+@media (max-width:640px){#mvp-ribbon{font-size:12px;line-height:1.35;padding:6px 10px;height:auto}#mvp-ribbon b{display:inline-block;margin:0 0 2px}}
+</style>
+<meta name="robots" content="noindex,nofollow">
+<style id="mvp-attention">
+.header-nav .mvp-tour{position:relative}
+.header-nav .mvp-tour>a{color:#12B3BE!important;font-weight:700;position:relative;border-radius:8px;box-shadow:0 0 0 0 rgba(18,179,190,.55);animation:mvpGlow 1.8s ease-out infinite}
+.header-nav .mvp-tour::after{content:"NEW";position:absolute;left:50%;top:8px;transform:translateX(-50%);background:#E0B060;color:#0B1418;font:900 10px/1 "Noto Sans KR","Malgun Gothic",sans-serif;padding:3px 7px;border-radius:999px;letter-spacing:.08em;animation:mvpBob 1s ease-in-out infinite;pointer-events:none;z-index:2;white-space:nowrap}
+@keyframes mvpGlow{0%{box-shadow:0 0 0 0 rgba(18,179,190,.6);background:rgba(18,179,190,.22)}70%{box-shadow:0 0 0 14px rgba(18,179,190,0);background:rgba(18,179,190,.06)}100%{box-shadow:0 0 0 0 rgba(18,179,190,0);background:rgba(18,179,190,.22)}}
+@keyframes mvpBob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-4px)}}
+#mvp-fab{position:fixed;right:22px;bottom:26px;z-index:20001;display:flex;align-items:center;gap:10px;background:#12B3BE;color:#04191c;text-decoration:none;font:900 15px/1 "Noto Sans KR","Malgun Gothic",sans-serif;padding:15px 20px 15px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.35);animation:mvpFab 1.8s ease-out infinite}
+#mvp-fab i{font-style:normal;display:inline-block;width:10px;height:10px;border-radius:50%;background:#04191c;box-shadow:0 0 0 0 rgba(4,25,28,.5);animation:mvpDot 1.8s ease-out infinite}
+#mvp-fab small{font-weight:500;font-size:12px;opacity:.85}
+#mvp-fab:hover{background:#5EE0E8}
+@keyframes mvpFab{0%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 0 rgba(18,179,190,.7)}70%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 18px rgba(18,179,190,0)}100%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 0 rgba(18,179,190,0)}}
+@keyframes mvpDot{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
+@media (max-width:640px){#mvp-fab{right:12px;bottom:14px;padding:13px 16px;font-size:14px}}
+@media (prefers-reduced-motion:reduce){.header-nav .mvp-tour>a,.header-nav .mvp-tour>a::before,#mvp-fab,#mvp-fab i{animation:none}}
+</style>
+</head>
+<body>
+<div id="mvp-ribbon" role="note"><b>MVP DEMO</b>MVP용으로 시연하고자 만든 것으로, 실제 홈페이지가 아닙니다. 시행사·분양대행사와 무관합니다.<a href="../../index.html">← Pensieve 제품 페이지</a></div>
+    <header class="header">
+	<div class="header-inner">
+		<h1 class="main-logo"><a href="../index.html"></a></h1>
+		<nav class="header-nav">
+			<ul>
+				<li><a href="overview.html">사업안내</a>
+					<ul>
+						<li><a href="overview.html">사업개요</a></li>
+					</ul>
+				</li>
+				<li><a href="environment.html">단지안내</a>
+					<ul>
+						<li><a href="environment.html">입지환경</a></li>
+						<li><a href="premium.html">프리미엄</a></li>
+						<li><a href="place.html">단지배치도</a></li>
+						<li><a href="video.html">층별영상</a></li>
+						<li><a href="telecom.html">이동통신 설비협의서</a></li>
+					</ul>
+				</li>
+				<li><a href="unit.html">공간안내</a>
+					<ul>
+						<li><a href="unit.html">타입별평면안내</a></li>
+					</ul>
+				</li>
+				<li class="mvp-tour"><a href="tour.html">사이버 임장</a>
+					<ul>
+						<li><a href="tour.html">사이버 임장 체험</a></li>
+					</ul>
+				</li>
+				<li><a href="notice.html">분양안내</a>
+					<ul>
+						<li><a href="notice.html">입주자모집공고</a></li>
+					</ul>
+				</li>
+				<li><a href="tv.html">홍보센터</a>
+					<ul>
+						<li><a href="tv.html">홍보영상</a></li>
+						<li><a href="media.html">언론보도</a></li>
+					</ul>
+				</li>
+				<li><a href="location.html">오시는길</a></li>
+				<!-- <li><a href="#" title="준비중">관심고객등록</a></li> -->
+			</ul>
+		</nav>
+		<div class="header-right">
+			<div class="bap-bar-box">
+				<a class="bap-bar" href="javascript:void(0)">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</a>
+				사운드를 켜고 감상하세요.
+			
+				<div class="toggle">
+					<span>ON</span>
+					<span>OFF</span>
+					<div></div>
+				</div>
+			</div>
+
+			<!-- <a href="/customer/customer.html" class="customer"><div class="customer-icon"></div><span>관심고객등록</span></a> -->
+			<a href="#" class="header-tel"><img src="../assets/images/common/header-tel-icon.png" alt="" class="header-tel-icon"><span>052.227.0737</span></a>
+			<a href="javascript:void(0)" class="hamburger"><span></span><span></span><span></span></a>
+		</div>
+	</div>
+</header>    <div id="wrap">
+        <div class="sub-title-box">
+			<img src="../assets/images/sub/sub-title-bg.jpg" alt="" class="sub-title-bg">
+			<div class="sub-title-inner">			
+				<h2 class="sub-title-eng">FLOOR VIEW</h2>
+				<h2 class="sub-title-kor">층별영상</h2>
+			</div>
+            
+        </div>
+        <div class="sub-menu-box" data-aos="fade-right">
+            <div class="sub-menu-inner">
+                <a href="../index.html" class="sub-home"><img src="../assets/images/sub/sub-home.jpg" alt=""></a>
+				<div class="sub-menu">
+                    단지안내
+                    <ul>
+	<li><a href="overview.html">사업안내</a></li>
+	<li><a href="#" title="준비중">입지환경</a></li>
+	<li><a href="#" title="준비중">브랜드소개</a></li>
+	<li><a href="#" title="준비중">프리미엄</a></li>
+	<li><a href="place.html">단지안내</a></li>
+	<li><a href="#" title="준비중">오시는길</a></li>
+</ul>                </div>
+				<div class="sub-menu">
+                    층별영상                    <ul>
+	<li><a href="environment.html">입지환경</a></li>
+	<li><a href="premium.html">프리미엄</a></li>
+	<li><a href="place.html">단지배치도</a></li>
+	<li><a href="video.html">층별영상</a></li>
+	<li><a href="telecom.html">이동통신 설비협의서</a></li>
+</ul>                </div>
+            </div>
+        </div>
+		<div class="sub-content-box" data-aos="fade-in" data-aos-delay="700">
+			<ul class="tabs">
+				<li class="current">Whole</li>
+				<li>0~10 View</li>
+				<li>10 View</li>
+				<li>10~20 View</li>
+				<li>20 View</li>
+				<li>20~38 View</li>
+				<li>38 View</li>
+			</ul>
+			<div class="video-container">
+				<video preload="none" title="데모: 영상은 원본 홈페이지에서 재생됩니다" poster="../assets/images/poster/pano2.jpg" data-demo-video="Whole.mp4" loop playsinline controls></video>
+			</div>
+		</div>
+			
+
+	<footer class="footer">
+	<div class="footer-inner">
+		<img src="" alt="" class="footer-logo">
+		<ul class="footer-ul">
+			<li><b style="font-weight : 700">홍보관</b>&nbsp;: 울산광역시 남구 신정동 729-23</li>
+			<li><b style="font-weight : 700">현장</b>&nbsp;: 울산광역시 남구 신정동 1335-7번지 일원</li>
+		</ul>
+		<ul class="footer-ul">
+			<li><b style="font-weight : 700">시행</b>&nbsp;: (주) 한국토지신탁(울산 신정동 1335-7 주상복합)</li>
+			<li><b style="font-weight : 700">주소</b>&nbsp;: 서울특별시 강남구 테헤란로 137(역삼동)</li>
+			<li><b style="font-weight : 700">사업자등록번호</b>&nbsp;: 845-32-01403</li>
+		</ul>
+		<!-- <ul class="footer-ul">
+			<li><b style="font-weight : 700">시행사</b>&nbsp;: 해조건설 주식회사</li>
+			<li><b style="font-weight : 700">대표</b>&nbsp;: 조성현</li>
+			<li><b style="font-weight : 700">주소</b>&nbsp;: 경기도 안양시 동안구 시민대로159번길 25, 1층 108호(비산동, Festa via)</li>
+			<li><b style="font-weight : 700">사업자등록번호</b>&nbsp;: 138-81-59649</li>
+		</ul> -->
+		<ul class="footer-info">
+			<li>홈페이지 제작에 사용된 CG 및 이미지컷은 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있습니다.</li>
+			<li>세부 설계내용은 향후 인허가 과정에서 변동될 수 있습니다.</li>
+			<li>홈페이지 제작과정 상 오탈자가 있을 수 있으므로 계약 시 반드시 확인하시기 바랍니다.</li>
+		</ul>
+		<p class="footer-copy">COPYRIGHT &copy; ALL RIGHTS RESERVED.</p>
+		<!-- <img src="../assets/images/common/sigong.png?v=1" alt="" class="sigong"> -->
+	</div>
+</footer>
+
+    
+    <script src="../assets/js/vendors/jquery.fullpage.min.js"></script>
+<script src="../assets/js/vendors/swiper.min.js"></script>
+<script src="../assets/js/vendors/gsap.min.js"></script>
+<script src="../assets/js/vendors/split-type.js"></script>
+<script src="../assets/js/vendors/imageMapResizer.min.js"></script>
+<script src="../assets/js/vendors/aos.js"></script>
+<script src="../assets/js/common.js?v=1"></script>
+<script src="../assets/js/sub.js"></script>
+
+<!-- Google Tag Manager (noscript) -->
+<!-- End Google Tag Manager (noscript) -->	<script>
+		$('.header').addClass('sub');
+		$('.tabs > li').on('click',function(){
+			let videoList = [
+				'/assets/video/Whole.mp4',					//1
+				'/assets/video/1_0~10층엘베뷰.mp4',			//2
+				'/assets/video/2_10층파노라마뷰.mp4',			//3
+				'/assets/video/3_10층~20층엘베뷰.mp4',		//4
+				'/assets/video/4_20층파노라마뷰.mp4',			//5
+				'/assets/video/5_20층~38층엘베뷰.mp4',		//6
+				'/assets/video/6_38층파노라마뷰.mp4',			//7
+			]
+			let thisIndex = $(this).index();
+
+			$('.video-container > video').attr('src', videoList[thisIndex])
+		})
+	</script>
+<a id="mvp-fab" href="tour.html" aria-label="사이버 임장 체험하기"><i></i>사이버 임장 체험하기 →<small>새 기능</small></a>
+</body>
+</html>

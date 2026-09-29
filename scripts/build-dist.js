@@ -18,6 +18,7 @@ const includePaths = [
   'travel',
   'about', // 추후 추가될 경우 대비
   'now',
+  'pensieve', // Pensieve 사이버 임장 제품 페이지 + 데모 (2026-09-30, 시연 후 제거 예정)
   'index.html',
   'about.html',
   'now.html',
