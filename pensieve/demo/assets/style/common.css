@@ -1,22 +1,22 @@
 @font-face{
 	font-family : koaroo;
-	src : url(/assets/fonts/KOAROOMedium.woff2);
+	src : url(/pensieve/demo/assets/fonts/KOAROOMedium.woff2);
 	font-weight : 500
 }
 
 @font-face{
 	font-family : FuturaCyrillicLight;
-	src : url(/assets/fonts/FuturaCyrillicLight.woff);
+	src : url(/pensieve/demo/assets/fonts/FuturaCyrillicLight.woff);
 	font-weight : 700
 }
 @font-face{
 	font-family : FuturaCyrillicMedium;
-	src : url(/assets/fonts/FuturaCyrillicMedium.woff);
+	src : url(/pensieve/demo/assets/fonts/FuturaCyrillicMedium.woff);
 	font-weight : 700
 }
 @font-face{
 	font-family : FuturaCyrillicBold;
-	src : url(/assets/fonts/FuturaCyrillicBold.woff);
+	src : url(/pensieve/demo/assets/fonts/FuturaCyrillicBold.woff);
 	font-weight : 700
 }
 *{margin : 0;padding : 0;box-sizing: border-box;font-family : pretendard;}
@@ -51,22 +51,22 @@ img{display: block;max-width: 100%;}
 .header.sub .customer{color : #fff}
 .header.white .customer{color : #fff}
 .header.on .customer{color : #000}
-.customer-icon{width : 21px;height : 20px;background: url(/assets/images/common/customer-icon.png)no-repeat center / contain; transition : background .5s;}
+.customer-icon{width : 21px;height : 20px;background: url(/pensieve/demo/assets/images/common/customer-icon.png)no-repeat center / contain; transition : background .5s;}
 .header.sub .customer-icon{filter : brightness(100)}
 .header.on .customer-icon{filter : brightness(1)}
 .header-tel{display: flex;align-items: center;gap : 10px;font-size: 21px;color : #fff;transition: color .5s;}
-.header-tel-icon{width : 40px;height : 40px;background: url(/assets/images/common/header-tel-icon.png)no-repeat center / contain; transition : background .5s;}
-.header.dark .header-tel-icon{background: url(/assets/images/common/header-tel-icon-dark.png)no-repeat center / contain;}
+.header-tel-icon{width : 40px;height : 40px;background: url(/pensieve/demo/assets/images/common/header-tel-icon.png)no-repeat center / contain; transition : background .5s;}
+.header.dark .header-tel-icon{background: url(/pensieve/demo/assets/images/common/header-tel-icon-dark.png)no-repeat center / contain;}
 .header-tel > span{font-family: futura-pt-bold;font-weight: 700;}
 .header.white .header-tel{color : #fff;}
 .header.dark .header-tel{color : #000;}
 .header.sub .header-tel{color : #fff;}
 .header.on .header-tel{color : #000;}
-.main-logo{width : 196px;height : 25px;background : url(/assets/images/common/logo.png)no-repeat center;background-size: contain;transition : background .5s;flex-shrink : 0;}
-.header.dark .main-logo{background : url(/assets/images/common/logo-color.png)no-repeat center;background-size: contain;}
-.header.sub .main-logo{background : url(/assets/images/common/logo.png)no-repeat center;background-size: contain;}
-.header.active .main-logo{background : url(/assets/images/common/logo-color.png?v=1)no-repeat center;background-size: contain;}
-.header.on .main-logo{background : url(/assets/images/common/logo-color.png)no-repeat center;background-size: contain;}
+.main-logo{width : 196px;height : 25px;background : url(/pensieve/demo/assets/images/common/logo.png)no-repeat center;background-size: contain;transition : background .5s;flex-shrink : 0;}
+.header.dark .main-logo{background : url(/pensieve/demo/assets/images/common/logo-color.png)no-repeat center;background-size: contain;}
+.header.sub .main-logo{background : url(/pensieve/demo/assets/images/common/logo.png)no-repeat center;background-size: contain;}
+.header.active .main-logo{background : url(/pensieve/demo/assets/images/common/logo-color.png?v=1)no-repeat center;background-size: contain;}
+.header.on .main-logo{background : url(/pensieve/demo/assets/images/common/logo-color.png)no-repeat center;background-size: contain;}
 .main-logo > a{display: block;width : 100%;height : 100%;font-size: 0;line-height: 0;color : transparent;}
 .header-nav{display: flex;justify-content: center;height : 100%; font-family: pretendard;}
 .header-nav > ul{display: flex;align-items: center;height : 100%;white-space : nowrap;}
@@ -125,11 +125,11 @@ img{display: block;max-width: 100%;}
 .header.hide{transform : translateY(-100%);}
 .header::after{position : absolute;content : '';width : 100%;height : 0;top : 0;left : 0; background: #fff;opacity : 0;transition : height 0.7s, opacity 0.7s;z-index : -10;}
 .header.on::after{height : 350px;opacity : 1;}
-.main-logo{width : 241px;height : 25px;background : url(/assets/images/common/logo.png)no-repeat center / contain;transition : background .5s;flex-shrink : 0;}
-.header.dark .main-logo{background : url(/assets/images/common/logo-color.png)no-repeat center / contain;}
-.header.sub .main-logo{background : url(/assets/images/common/logo-color.png)no-repeat center / contain;}
-.header.on .main-logo{background : url(/assets/images/common/logo-color.png)no-repeat center / contain;}
-.header.active .main-logo{background : url(/assets/images/common/logo-color.png)no-repeat center / contain;}
+.main-logo{width : 241px;height : 25px;background : url(/pensieve/demo/assets/images/common/logo.png)no-repeat center / contain;transition : background .5s;flex-shrink : 0;}
+.header.dark .main-logo{background : url(/pensieve/demo/assets/images/common/logo-color.png)no-repeat center / contain;}
+.header.sub .main-logo{background : url(/pensieve/demo/assets/images/common/logo-color.png)no-repeat center / contain;}
+.header.on .main-logo{background : url(/pensieve/demo/assets/images/common/logo-color.png)no-repeat center / contain;}
+.header.active .main-logo{background : url(/pensieve/demo/assets/images/common/logo-color.png)no-repeat center / contain;}
 .main-logo > a{font-size : 0; color : transparent; line-height : 0;display : block;width : 100%;height : 100%;}
 .header-inner{display : flex; justify-content : center; align-items : end;width : 100%;max-width : 1700px;margin : 0 auto;height : 130px;position : relative;padding-bottom: 40px;}
 .header-right{display : flex; position : absolute;right : 0; gap : 10px;    align-items: center;}
@@ -146,7 +146,7 @@ img{display: block;max-width: 100%;}
 .header-nav > ul > li > ul > li > a:hover{color: #8b2332;text-decoration: underline;}
 */
 
-.customer-icon{width : 21px;height : 20px;background: url(/assets/images/common/customer-icon.png)no-repeat center / contain; transition : background .5s;}
+.customer-icon{width : 21px;height : 20px;background: url(/pensieve/demo/assets/images/common/customer-icon.png)no-repeat center / contain; transition : background .5s;}
 
 .header-tel{position : relative;}
 .header-tel > img{position : relative;z-index : 1;}

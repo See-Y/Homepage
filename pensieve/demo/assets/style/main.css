@@ -2,7 +2,7 @@
 
 .cursor .left {
 	position : absolute;
-	background: url(/assets/images/main/cursor-left.png) no-repeat center;
+	background: url(/pensieve/demo/assets/images/main/cursor-left.png) no-repeat center;
 	left: 0;
 	margin-left: -20px;
 	width: 9px;
@@ -10,7 +10,7 @@
 }
 .cursor .right {
 	position : absolute;
-	background: url(/assets/images/main/cursor-right.png) no-repeat center;
+	background: url(/pensieve/demo/assets/images/main/cursor-right.png) no-repeat center;
 	right: 0;
 	margin-right: -20px;
 	width: 9px;
@@ -23,7 +23,7 @@
 
 .cursor.premium .left, .cursor.premium .right{display : none}
 
-.cursor.premium::after{position : absolute;content : '';width : 110px;height : 110px; background: url(/assets/images/main/cursor-rotate-text.png?v=1)no-repeat center / contain;animation : rotate-text 6s infinite linear}
+.cursor.premium::after{position : absolute;content : '';width : 110px;height : 110px; background: url(/pensieve/demo/assets/images/main/cursor-rotate-text.png?v=1)no-repeat center / contain;animation : rotate-text 6s infinite linear}
 
 .open-rotate{display : flex;flex-direction : column;align-items : center;justify-content : center;text-align : center; position : absolute;bottom : 65px;right : 95px;width : 90px;height : 90px;background: #004C5C;color : #fff;font-size : 20px;letter-spacing : -0.033em;border-radius : 50%;font-weight : 500;font-family : pretendard;animation : open-rotate 2s both 1s;z-index: 10; transition : opacity 1s; pointer-events : none}
 .open-rotate.hide{opacity : 0 !important;;}
@@ -34,7 +34,7 @@
 .open-rotate b{font-size : 22px; line-height: 26px; letter-spacing: -3.3px;}
 .open-rotate p:first-child {display: flex; align-items: center; margin-bottom: -2px;}
 .open-rotate p{font-size : 17px; line-height: 20px;}
-.open-rotate::after{position : absolute;content : '';width : 129px;height : 127px;background: url(/assets/images/main/open-rotate-text.png)no-repeat center / contain;animation : rotate-text 6s infinite linear;}
+.open-rotate::after{position : absolute;content : '';width : 129px;height : 127px;background: url(/pensieve/demo/assets/images/main/open-rotate-text.png)no-repeat center / contain;animation : rotate-text 6s infinite linear;}
 
 .section{overflow: hidden;}
 .main-section-visual{overflow: hidden;position: relative;}
@@ -68,7 +68,7 @@
 @keyframes visual-mask-img {
     0%{opacity: 0;}
 }
-.visual-mask > video{position : absolute;mask-image: url(/assets/images/main/visual-mark.png);mask-repeat: no-repeat;mask-size: contain;width: 100%;height: 100%;object-fit: cover;}
+.visual-mask > video{position : absolute;mask-image: url(/pensieve/demo/assets/images/main/visual-mark.png);mask-repeat: no-repeat;mask-size: contain;width: 100%;height: 100%;object-fit: cover;}
 .visual-mask-video2{opacity : 0;transition : opacity 1s;animation : visual-mask-video2 7s infinite alternate ease-in-out}
 @keyframes visual-mask-video2{
 	0%{opacity : 0;}
@@ -246,10 +246,10 @@
 .premium-box05{position : absolute;top : 0;}
 
 /* .envi-first-slide {
-	background: url(/assets/images/main/premium-bg.png)no-repeat center; background-size: cover;
+	background: url(/pensieve/demo/assets/images/main/premium-bg.png)no-repeat center; background-size: cover;
 }
 .envi-last-slide {
-	background: url(/assets/images/main/premium-bg-02.png)no-repeat center; background-size: cover;
+	background: url(/pensieve/demo/assets/images/main/premium-bg-02.png)no-repeat center; background-size: cover;
 } */
 /**/
 
@@ -351,7 +351,7 @@
 
 
 
-.main-section-design{overflow: hidden;background: url(/assets/images/main/design-bg.jpg)no-repeat center / cover;}
+.main-section-design{overflow: hidden;background: url(/pensieve/demo/assets/images/main/design-bg.jpg)no-repeat center / cover;}
 .design-bg{position : absolute;left : 0;top : 0;}
 .design-bg > img{width : 100%;height : 100%;object-fit: cover;object-position: center;}
 .design-bg::after{position : absolute;content: '';width : 128px;height : 100%;background: #F8F7F5;left : 45%;top : 0;clip-path: inset(50% 0);transition : cilp-path 1s;}
@@ -809,7 +809,7 @@
 }
 
 /* NEW */
-.archi-intro{display : flex; justify-content : center;align-items : center;width : 100%;height : 100%;position : absolute;left : 0;top : 0; background: url(/assets/images/main/archi-intro-bg.jpg)no-repeat center / cover;z-index : 10;}
+.archi-intro{display : flex; justify-content : center;align-items : center;width : 100%;height : 100%;position : absolute;left : 0;top : 0; background: url(/pensieve/demo/assets/images/main/archi-intro-bg.jpg)no-repeat center / cover;z-index : 10;}
 
 .archi-intro-inner{display : flex; justify-content : space-between;align-items : center;width : 100%;max-width : 1400px; color : #fff;}
 
@@ -831,7 +831,7 @@
 .active .archi-bg{opacity : 0; filter : brightness(2); transition :opacity 2s 1.6s,filter 2s 1.6s;}
 .archi-bg > img{position : absolute;}
 .archi-bg-img{width : 100%;height : 100%;object-fit : cover; object-position : center bottom}
-.archi-mask{left : 39.515%;bottom : 6.1%;position : absolute; mask-image : url(/assets/images/main/mask-archi.png); background: red;width : 19.8958vw;height : 42.0313vw; mask-size : contain}
+.archi-mask{left : 39.515%;bottom : 6.1%;position : absolute; mask-image : url(/pensieve/demo/assets/images/main/mask-archi.png); background: red;width : 19.8958vw;height : 42.0313vw; mask-size : contain}
 .archi-space{width : 100%;height : 100%; object-fit : cover; object-position : center; transform : scale(2);transition : transform 1s .4s;}
 .active .archi-space{transform : scale(1); transition : transform 3s 0.4s;}
 .archi-line{width : 100%;height : 100%;object-fit : cover; object-position : center;position: absolute;left: 0;top: 0;}
@@ -940,7 +940,7 @@
 
 .archi-btn-img{display : flex; justify-content : center; align-items : center; height : 89px;position : relative;}
 .archi-btn-list > li .archi-btn-img::after{position : absolute; content : ''; width : 100%;height : 100%; border : 3px solid #fff; left : 0;top : 0;opacity : 0;box-sizing : border-box;}
-.archi-btn-list > li .archi-btn-img::before{position : absolute; content : ''; width : 20px;height : 20px; background: url(/assets/images/main/archi-play.png)no-repeat;}
+.archi-btn-list > li .archi-btn-img::before{position : absolute; content : ''; width : 20px;height : 20px; background: url(/pensieve/demo/assets/images/main/archi-play.png)no-repeat;}
 .archi-btn-list > li.on .archi-btn-img::after{opacity : 1}
 .archi-btn-img > img{width : 100%;height : 100%;object-fit : cover; object-position : center; filter : brightness(0.5); transition : filter .5s;}
 .on .archi-btn-img > img{filter : brightness(1)}
@@ -1013,7 +1013,7 @@
 .envi-con-desc{font-size : 18px; color : #ddd; line-height : 1.5em}
 
 /**/
-.main-section-premium2{background : url(/assets/images/main/premium-bg.jpg)no-repeat center / cover;}
+.main-section-premium2{background : url(/pensieve/demo/assets/images/main/premium-bg.jpg)no-repeat center / cover;}
 .main-section-premium2 .premium-inner{display : block;width : 100%;max-width : none;height : 100%;position : relative;z-index : 1;}
 .premium-slide2 {display : flex; justify-content : center;align-items : center; width : 100%;height : 100%;position : absolute;top : 0;left : 0;overflow : hidden;}
 .premium-slide2 .swiper-slide{display : flex; align-items : center; justify-content : center;}
@@ -1037,8 +1037,8 @@
 .premium-slide2 .swiper-slide .premium-img > img{display : block;width : 100%;height : 100%;object-fit : contain;object-position : center bottom;}
 .premium-slide2 .swiper-slide .premium-img .premium-rotate-btn{display : flex;justify-content : center;align-items : center;width : 5.7292vw;height : 5.7292vw;position : absolute;right : 1.3021vw;top : 0;transform :translateY(-50%);}
 .premium-slide2 .swiper-slide-next .premium-img .premium-rotate-btn{display : none;}
-.premium-slide2 .swiper-slide .premium-img .premium-rotate-btn .premium-rotate-text{background : url(/assets/images/main/premium-rotate-text3.png)no-repeat;background-size : 100% 100%;position : absolute;}
-.premium-slide2 .swiper-slide .premium-img .premium-rotate-btn .premium-rotate-circle{width : 4.3719vw;height : 4.3719vw;background : url(/assets/images/main/premium-rotate-circle3.png)no-repeat;background-size : 100% 100%;position : absolute;}
+.premium-slide2 .swiper-slide .premium-img .premium-rotate-btn .premium-rotate-text{background : url(/pensieve/demo/assets/images/main/premium-rotate-text3.png)no-repeat;background-size : 100% 100%;position : absolute;}
+.premium-slide2 .swiper-slide .premium-img .premium-rotate-btn .premium-rotate-circle{width : 4.3719vw;height : 4.3719vw;background : url(/pensieve/demo/assets/images/main/premium-rotate-circle3.png)no-repeat;background-size : 100% 100%;position : absolute;}
 .premium-slide2 .swiper-slide .premium-img .premium-img-text{position : absolute;right : 0;text-align : right;transform : translateY(1.875vw);line-height : 1.3542vw;letter-spacing : -0.06em;color : #fff;font-size : 18px;font-weight : 500;opacity : 0;}
 .premium-slide2 .swiper-slide-next .premium-img .premium-img-text{opacity : 0;}
 @keyframes premium-opa-ani{
@@ -1068,9 +1068,9 @@
 .premium-slide2 .premium-btn-box .premium-pagination span{font-family : futura-pt;}
 .premium-slide2 .premium-btn-box .premium-pagination span:nth-child(1){font-size : 18px;color : #fff;}
 .premium-slide2 .premium-btn-box .premium-navigation2{width: 46px;height : 12px;position : absolute;right : 0;}
-.premium-slide2 .premium-btn-box .premium-navigation2 .premium-prev{width : 10px;height : 100%;background : url(/assets/images/main/premium-prev2.png)no-repeat;background-size : contain;position : absolute;left : 0;top : 0;cursor : pointer;}
+.premium-slide2 .premium-btn-box .premium-navigation2 .premium-prev{width : 10px;height : 100%;background : url(/pensieve/demo/assets/images/main/premium-prev2.png)no-repeat;background-size : contain;position : absolute;left : 0;top : 0;cursor : pointer;}
 .premium-slide2 .premium-btn-box .premium-navigation2 .premium-prev::after{position : absolute;content : "";width : 1px;height : 80%;right : -12px;bottom : 10%;background : #fff;}
-.premium-slide2 .premium-btn-box .premium-navigation2 .premium-next{width : 10px;height : 100%;background : url(/assets/images/main/premium-next2.png?v=0613)no-repeat;background-size : contain;position : absolute;right : 0;top : 0;cursor : pointer;}
+.premium-slide2 .premium-btn-box .premium-navigation2 .premium-next{width : 10px;height : 100%;background : url(/pensieve/demo/assets/images/main/premium-next2.png?v=0613)no-repeat;background-size : contain;position : absolute;right : 0;top : 0;cursor : pointer;}
 
 .premium-slide2 .foot{font-size : 0.6vw; position : absolute; bottom : -10vh;color : #aaa; letter-spacing : -0.06em; opacity : 0;}
 .premium-slide2 .swiper-slide-active .foot{opacity : 1;transition : 1s;}
@@ -1085,7 +1085,7 @@
 	100%{transform : translateX(-100%)}
 }
 
-.premium-slide-con{display : flex; flex-direction : column;justify-content : center;  align-items : center;width: 450px;height : 450px; background: url(/assets/images/main/complex-pattern.jpg)no-repeat center / cover;border-radius : 50%; opacity : 0; color : #fff; text-align : center; margin-left: auto; transform : translateX(100px) translateY(20%); transition : opacity 1s .4s, transform 1s .4s;position : relative;z-index : 1;}
+.premium-slide-con{display : flex; flex-direction : column;justify-content : center;  align-items : center;width: 450px;height : 450px; background: url(/pensieve/demo/assets/images/main/complex-pattern.jpg)no-repeat center / cover;border-radius : 50%; opacity : 0; color : #fff; text-align : center; margin-left: auto; transform : translateX(100px) translateY(20%); transition : opacity 1s .4s, transform 1s .4s;position : relative;z-index : 1;}
 .premium-slide-con::before{position : absolute;content : '';width : 266px;height : 266px; background: rgba(255,255,255,0.1); border-radius : 50%;right : -14%; top : -14%;z-index : -10;opacity : 1; mix-blend-mode: color-burn;}
 
 .main-section-premium2.active .premium-slide-con{transform : translateX(0px) translateY(20%); opacity : 0;transition : opacity 2s 1s, transform 2s 1s;}
@@ -1103,7 +1103,7 @@
 
 /**/
 
-.main-section-tv{background: url(/assets/images/main/tv-bg-02.jpg)no-repeat center / cover;}
+.main-section-tv{background: url(/pensieve/demo/assets/images/main/tv-bg-02.jpg)no-repeat center / cover;}
 
 .tv-inner{display : flex; width : 100%;max-width : 1750px;min-width : 1750px; margin : 0 auto; height : 100%;}
 .tv-slide{overflow : hidden;}
@@ -1171,7 +1171,7 @@
 
 .complex-slide-inner{display : flex; justify-content : start;align-items : start;width : 100%; max-width : 1740px;/* width: 100%; */ margin : 0 auto; text-align : center; color : #fff;height : 100%;padding-bottom: 50px; white-space : nowrap;padding-top: 350px; padding-left: 100px;}
 
-.complex-slide-con{display : flex; flex-direction : column;justify-content : center;  align-items : center;width: 500px;height : 500px; background: url(/assets/images/main/complex-pattern.jpg)no-repeat center / cover;border-radius : 50%; transform : translateX(-100px); opacity : 0; transition : opacity 1s .4s, transoform 1s .4s;}
+.complex-slide-con{display : flex; flex-direction : column;justify-content : center;  align-items : center;width: 500px;height : 500px; background: url(/pensieve/demo/assets/images/main/complex-pattern.jpg)no-repeat center / cover;border-radius : 50%; transform : translateX(-100px); opacity : 0; transition : opacity 1s .4s, transoform 1s .4s;}
 
 .active .on .complex-slide-con{transform : translateX(0); opacity : 1;transition : opacity 2s 1s, transform 2s 1s;}
 
@@ -1185,9 +1185,9 @@
 .complex-slide-desc{font-size : 24px; font-weight : 500; font-family : pretendard; line-height : 1.5em;transform : translateY(50px); opacity : 0; transition : opacity 1s, transform 1s;}
 .active .on .swiper-slide-active .complex-slide-desc{transform : translateY(0px); opacity : 1; transition : opacity 1s 1s, transform 1s 1s;}
 
-/* .complex-pattern{position : absolute;left : 0;top : 0;width : 100%;height : 100%;background: url(/assets/images/main/complex-pattern.jpg)no-repeat center / cover; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);transition : clip-path 1s .4s;} */
+/* .complex-pattern{position : absolute;left : 0;top : 0;width : 100%;height : 100%;background: url(/pensieve/demo/assets/images/main/complex-pattern.jpg)no-repeat center / cover; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);transition : clip-path 1s .4s;} */
 
-.complex-pattern{position : absolute;left : 0;top : 0;width : 100%;height : 100%;background: url(/assets/images/main/complex-pattern.jpg)no-repeat center / cover; clip-path: circle(100% at 50% 50%);transition : clip-path 1s .4s;}
+.complex-pattern{position : absolute;left : 0;top : 0;width : 100%;height : 100%;background: url(/pensieve/demo/assets/images/main/complex-pattern.jpg)no-repeat center / cover; clip-path: circle(100% at 50% 50%);transition : clip-path 1s .4s;}
 /* .active .complex-pattern{clip-path: polygon(56% 50%, 100% 20%, 100% 100%, 56% 100%);transition : clip-path 2s 2s;} */
 .active .complex-pattern{clip-path: circle(45% at 100% 125%);transition : clip-path 2s 2s;}
 
