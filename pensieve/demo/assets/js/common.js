@@ -1,17 +1,11 @@
 $(function(){
-function checkDevice() {
-	var pathName = location.pathname
-	if (navigator.userAgent.match(/iPhone|iPad|Mobile|UP.Browser|Android|BlackBerry|Windows CE|Nokia|webOS|Opera Mini|SonyEricsson|opera mobi|Windows Phone|IEMobile|POLARIS/) != null) {
-		location.href = "/m" + pathName;
-	}
-}
+// [Pensieve demo] 원본의 모바일 전용 사이트(/m/) 리다이렉트 제거 — 데모는 한 사이트가 반응형으로 대응한다.
 if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
 	window.location = 'microsoft-edge:' + window.location;
 	setTimeout(function () {
 		window.location = 'https://go.microsoft.com/fwlink/?linkid=2135547';
 	}, 1);
 }
-checkDevice()
 
 $('map').imageMapResize();
 

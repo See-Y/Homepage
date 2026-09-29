@@ -35,7 +35,7 @@ h3{margin:0 0 10px;font-size:clamp(20px,2.6vw,28px);font-weight:900;line-height:
 .axes{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;max-width:900px;margin:26px auto 8px;text-align:left}
 @media (max-width:760px){.axes{grid-template-columns:1fr;gap:18px}}
 .ax{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 18px 14px}
-.ax .t{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:#5EE0E8;margin-bottom:10px}
+.ax .t{font-size:clamp(17px,1.6vw,21px);font-weight:700;letter-spacing:-.02em;color:#EAF2F4;margin-bottom:12px}.ax .t b{color:#5EE0E8}
 .ax .cap{font-size:13px;color:#B9C8CD;margin-top:10px}
 .ax .cap b{color:#fff}
 .len-track{position:relative;height:70px}
@@ -236,7 +236,7 @@ h3{margin:0 0 10px;font-size:clamp(20px,2.6vw,28px);font-weight:900;line-height:
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style>
 
-<div class="topbar"><span>PENSIEVE VR · CYBER IMJANG</span><span><a href="demo/index.html">데모 홈페이지 →</a> &nbsp; <button class="theme" id="theme" type="button" aria-label="테마 전환">◐</button></span></div>
+<div class="topbar"><span>PENSIEVE · CYBER IMJANG</span><span><a href="demo/index.html">데모 홈페이지 →</a> &nbsp; <button class="theme" id="theme" type="button" aria-label="테마 전환">◐</button></span></div>
 <nav class="navdots" aria-label="슬라이드"><a href="#s1" title="1"></a><a href="#s2" title="2"></a><a href="#s3" title="3"></a><a href="#s4" title="4"></a><a href="#s5" title="5"></a><a href="#s6" title="6"></a><a href="#s7" title="7"></a></nav>
 
 <section class="slide hero" id="s1">
@@ -246,18 +246,16 @@ h3{margin:0 0 10px;font-size:clamp(20px,2.6vw,28px);font-weight:900;line-height:
     <h1>분양 마케팅의<br><span class="kw len">길이</span>와 <span class="kw wid">폭</span>을 넓힙니다</h1>
     <div class="axes">
       <div class="ax">
-        <div class="t">길이 — 얼마나 오래 팔 수 있나</div>
+        <div class="t">마케팅의 시간은 <b>길게</b></div>
         <div class="len-track">
           <div class="ticks"><span>모집공고</span><span>청약</span><span>계약</span><span>잔여세대</span><span>입주</span></div>
           <div class="row mh"><span>실물 모델하우스</span><i></i></div>
           <div class="row us"><span>사이버 임장</span><i></i></div>
         </div>
-        <div class="cap">모델하우스는 <b>몇 주</b> 서 있고, 사이버 임장은 <b>공고 다음 날부터 입주까지</b> 서 있습니다.</div>
       </div>
       <div class="ax">
-        <div class="t">폭 — 얼마나 멀리 닿나</div>
+        <div class="t">고객의 폭은 <b>넓게</b></div>
         <div class="wid-viz"><span class="lab l">현장 3.5 km</span><span class="lab r">전국 · 해외</span><i class="ring"></i><i class="ring"></i><i class="ring"></i><i class="ring"></i><i class="dot"></i></div>
-        <div class="cap">계약자 절반은 현장 <b>3.5 km 안</b>에 삽니다. 나머지 절반에게도 <b>같은 집</b>을 보냅니다.</div>
       </div>
     </div>
     <div class="hint">SCROLL</div>
@@ -267,7 +265,7 @@ h3{margin:0 0 10px;font-size:clamp(20px,2.6vw,28px);font-weight:900;line-height:
 <section class="slide" id="s2">
   <div class="in">
     <span class="num">01 · 문제</span>
-    <h2>가상 모델하우스, 효과는 확실합니다.<br>그런데 3D는 비쌌습니다.</h2>
+    <h2>만들고는 싶은데…<br>너무 비싸지 않나?</h2>
     <div class="split">
       <div class="col good">
         <span class="tag">효과 · EFFECT</span>
@@ -434,7 +432,7 @@ h3{margin:0 0 10px;font-size:clamp(20px,2.6vw,28px);font-weight:900;line-height:
       <div class="sent" id="sent" hidden><b>메일 앱이 열리지 않았다면</b> 아래 내용을 복사해 <a href="mailto:dev.pensieve@gmail.com">dev.pensieve@gmail.com</a>으로 보내 주세요. <button class="btn sec small" type="button" id="copy">내용 복사</button><textarea id="draft" readonly rows="6"></textarea></div>
     </form>
     <p class="mail">또는 직접: <a id="mailto" href="mailto:dev.pensieve@gmail.com">dev.pensieve@gmail.com</a></p>
-    <p class="foot">Pensieve VR · 이 페이지는 제품 소개용이며, 데모 홈페이지의 단지 정보는 시행사 공개 자료를 인용한 시연입니다.</p>
+    <p class="foot">Pensieve · 이 페이지는 제품 소개용이며, 데모 홈페이지의 단지 정보는 시행사 공개 자료를 인용한 시연입니다.</p>
   </div>
 </section>
 
@@ -446,7 +444,7 @@ h3{margin:0 0 10px;font-size:clamp(20px,2.6vw,28px);font-weight:900;line-height:
   f.addEventListener('submit',function(e){e.preventDefault();
     var g=function(n){return (f.elements[n].value||'').trim()};
     var subject='[데모 요청] '+(g('site')||'사이버 임장')+(g('name')?' — '+g('name'):'');
-    var body=['성함·회사: '+g('name'),'회신 이메일: '+g('from'),'단지·지역: '+g('site'),'','내용:',g('msg'),'','— Pensieve 사이버 임장 제품 페이지에서 보냄'].join('\n');
+    var body=['성함·회사: '+g('name'),'회신 이메일: '+g('from'),'단지·지역: '+g('site'),'','내용:',g('msg'),'','— Pensieve 사이버 임장 제품 데모 페이지에서 보냄'].join('\n');
     var href='mailto:'+TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
     // Open the mail client through a real anchor click (works inside sandboxed embeds where location changes are blocked),
     // and always show the draft with a copy button as the fallback.

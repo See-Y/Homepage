@@ -22,7 +22,7 @@
 #mvp-ribbon b{background:#fff;color:#B4453A;border-radius:3px;padding:2px 8px;margin-right:10px;font-size:12px;letter-spacing:.08em}
 #mvp-ribbon a{color:#fff;text-decoration:underline;margin-left:12px;font-weight:400;font-size:13px}
 .header{margin-top:40px!important}
-@media (max-width:640px){#mvp-ribbon{font-size:12px;line-height:1.35;padding:6px 10px;height:auto}#mvp-ribbon b{display:inline-block;margin:0 0 2px}}
+@media (max-width:640px){#mvp-ribbon{height:34px;font-size:12px;line-height:34px;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#mvp-ribbon b{font-size:10px;padding:2px 6px;margin-right:6px}#mvp-ribbon a{display:none}#mvp-ribbon .full{display:none}.header{margin-top:34px!important}.header .header-tel,.header .bap-bar-box{display:none!important}}@media (min-width:641px){#mvp-ribbon .short{display:none}}
 </style>
 <meta name="robots" content="noindex,nofollow">
 <style id="mvp-attention">
@@ -38,11 +38,11 @@
 @keyframes mvpFab{0%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 0 rgba(18,179,190,.7)}70%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 18px rgba(18,179,190,0)}100%{box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 0 rgba(18,179,190,0)}}
 @keyframes mvpDot{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
 @media (max-width:640px){#mvp-fab{right:12px;bottom:14px;padding:13px 16px;font-size:14px}}
-@media (prefers-reduced-motion:reduce){.header-nav .mvp-tour>a,.header-nav .mvp-tour>a::before,#mvp-fab,#mvp-fab i{animation:none}}
+.hamburger-nav .mvp-tour>a{color:#12B3BE!important;font-weight:700}.hamburger-nav .mvp-tour>a::after{content:"NEW";display:inline-block;position:static;width:auto;height:auto;margin-left:8px;background:#E0B060;color:#0B1418;font:900 10px/1 "Noto Sans KR","Malgun Gothic",sans-serif;padding:3px 7px;border-radius:999px;letter-spacing:.08em;vertical-align:middle;animation:mvpBob2 1s ease-in-out infinite}@media(max-width:750px){.hamburger-nav{top:34px;height:calc(100% - 34px);padding-top:70px}.hamburger-nav>ul>li>a{color:#333}}.hamburger-nav .mvp-tour>a{color:#12B3BE!important}@keyframes mvpBob2{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}@media (prefers-reduced-motion:reduce){.header-nav .mvp-tour>a,.header-nav .mvp-tour>a::before,#mvp-fab,#mvp-fab i{animation:none}}
 </style>
 </head>
 <body>
-<div id="mvp-ribbon" role="note"><b>MVP DEMO</b>MVP용으로 시연하고자 만든 것으로, 실제 홈페이지가 아닙니다. 시행사·분양대행사와 무관합니다.<a href="../../index.html">← Pensieve 제품 페이지</a></div>
+<div id="mvp-ribbon" role="note"><b>MVP DEMO</b><span class="full">MVP용으로 시연하고자 만든 것으로, 실제 홈페이지가 아닙니다. 시행사·분양대행사와 무관합니다.</span><span class="short">시연용 데모 · 실제 홈페이지가 아닙니다</span><a href="../../index.html">← Pensieve 제품 페이지</a></div>
     <header class="header">
 	<div class="header-inner">
 		<h1 class="main-logo"><a href="../index.html"></a></h1>
@@ -109,7 +109,45 @@
 			<a href="javascript:void(0)" class="hamburger"><span></span><span></span><span></span></a>
 		</div>
 	</div>
-</header>    <div id="wrap">
+</header><nav class="hamburger-nav" aria-label="모바일 메뉴"><ul>
+				<li><a href="overview.html">사업안내<span></span></a>
+					<ul>
+						<li><a href="overview.html">사업개요</a></li>
+					</ul>
+				</li>
+				<li><a href="environment.html">단지안내<span></span></a>
+					<ul>
+						<li><a href="environment.html">입지환경</a></li>
+						<li><a href="premium.html">프리미엄</a></li>
+						<li><a href="place.html">단지배치도</a></li>
+						<li><a href="video.html">층별영상</a></li>
+						<li><a href="telecom.html">이동통신 설비협의서</a></li>
+					</ul>
+				</li>
+				<li><a href="unit.html">공간안내<span></span></a>
+					<ul>
+						<li><a href="unit.html">타입별평면안내</a></li>
+					</ul>
+				</li>
+				<li class="mvp-tour"><a href="tour.html">사이버 임장<span></span></a>
+					<ul>
+						<li><a href="tour.html">사이버 임장 체험</a></li>
+					</ul>
+				</li>
+				<li><a href="notice.html">분양안내<span></span></a>
+					<ul>
+						<li><a href="notice.html">입주자모집공고</a></li>
+					</ul>
+				</li>
+				<li><a href="tv.html">홍보센터<span></span></a>
+					<ul>
+						<li><a href="tv.html">홍보영상</a></li>
+						<li><a href="media.html">언론보도</a></li>
+					</ul>
+				</li>
+				<li><a href="location.html">오시는길</a></li>
+				
+			</ul></nav><div class="hamburger-dim"></div>    <div id="wrap">
         <div class="sub-title-box">
 			<img src="../assets/images/sub/sub-title-bg.jpg" alt="" class="sub-title-bg">
 			<div class="sub-title-inner">			
